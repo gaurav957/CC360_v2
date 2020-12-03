@@ -532,7 +532,8 @@ THEMES:
 .os-theme-dark > .os-scrollbar-vertical,
 .os-theme-light > .os-scrollbar-vertical {
     bottom: 10px;
-    width: 10px;
+    /* width: 10px; */
+    width: 14px;
 }
 .os-theme-dark.os-host-rtl > .os-scrollbar-horizontal,
 .os-theme-light.os-host-rtl > .os-scrollbar-horizontal {

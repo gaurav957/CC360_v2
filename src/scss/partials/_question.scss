@@ -1,6 +1,6 @@
 .right-panel-wrapper {
   width: 100%;
-  padding: 110px 30px 0px;
+  padding: 100px 30px 0px; /* A_B */
   height: calc(100vh - 94px);
   @media (max-width: 1024px) {
     padding: 95px 15px 0px;
@@ -22,7 +22,7 @@
     font-weight: normal;
     border: 1px solid #eeeeee;
     cursor: pointer;
-    font-size: 1.25em;
+    font-size: 1.18em;/* A_B */
     position: relative;
   }
   .question-type1 {
@@ -36,7 +36,7 @@
     }
     .question-line {
       font-weight: normal;
-      border-bottom: 1px solid #d3d3d3;
+      // border-bottom: 1px solid #d3d3d3;/* A_B */
       padding-bottom: 10px;
     }
     .question-row {
@@ -60,6 +60,7 @@
           display: table-cell;
           vertical-align: middle;
           position: relative;
+          font-size: 0.85em;
           & >span{
               &:first-child{
                 padding-right: 27px;
@@ -78,7 +79,7 @@
           margin-right: 10px;         
           position: absolute;
           right: 0;
-          top: 13px;          
+          top: 10px;/* A_B */          
         }
       }
     }
@@ -111,9 +112,9 @@
       display: block;
       .question-line {
         font-weight: normal;
-        border-bottom: 1px solid #d3d3d3;
+        // border-bottom: 1px solid #d3d3d3;/* A_B */
         padding-bottom: 10px;
-        width: 95%;
+        width: 95%;        
       }
       .question-group {
         width: 100%;
@@ -125,6 +126,7 @@
           display: table-cell;
           vertical-align: middle;
           position: relative;
+          font-size: 0.85em;/* A_B */
           & >span{
             &:first-child{
               padding-right: 35px;
@@ -178,9 +180,12 @@
 .progress-panel {
   width: 100%;
   .progress {
-    width: calc(100% - 335px);
+    width: calc(100% - 435px);
     float: left;
     margin-top: 12px;
+    font-weight: bold;/* A_B */
+    font-size: 90%;/* A_B */
+    color: #666;/* A_B */
     .perc-data {
       width: 200px;
       display: inline-block;
@@ -215,14 +220,14 @@
   }
 
   .progress-panel-inner {
-    border-bottom: 1px solid $light-gray;
-    padding-bottom: 20px;
+    // border-bottom: 1px solid $light-gray;/* A_B */
+    padding-bottom: 5px;/* A_B */
   }
 }
 
 .tooltip {
-  width: 20px;
-  height: 20px;
+  width: 15px;/* A_B */
+  height: 15px;/* A_B */
   position: relative;
   display: inline-block;
   border-radius: 50px;
@@ -297,11 +302,12 @@
     }
   }
   .custom-infoicon {
-    width: 20px;
-    height: 20px;
+    width: 17px;/* A_B */
+    height: 17px;/* A_B */
     display: block;
-    background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNC4zLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA2NCA2NCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjQgNjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiMwRDM3RDY7fQ0KPC9zdHlsZT4NCjxwYXRoIGlkPSJfQ29tcG91bmRfUGF0aF8iIGNsYXNzPSJzdDAiIGQ9Ik02NCwzMkM2NCwxNC4zLDQ5LjcsMCwzMiwwUzAsMTQuMywwLDMyczE0LjMsMzIsMzIsMzJTNjQsNDkuNyw2NCwzMnogTTU4LjQsMzINCgljMCwxNC42LTExLjgsMjYuNC0yNi40LDI2LjRTNS42LDQ2LjYsNS42LDMyQzUuNiwxNy40LDE3LjQsNS42LDMyLDUuNmwwLDBDNDYuNiw1LjYsNTguNCwxNy40LDU4LjQsMzJ6Ii8+DQo8cmVjdCB4PSIyOC41IiB5PSIxMi4yIiBjbGFzcz0ic3QwIiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+DQo8cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjM1LjUsNDQuNCAzNS41LDMwLjkgMzUuNSwyMy45IDI4LjksMjMuOSAyNS42LDIzLjkgMjUuNiwzMC45IDI4LjksMzAuOSAyOC45LDQ0LjQgMjUuNiw0NC40IA0KCTI1LjYsNTEuMyAyOC45LDUxLjMgMzUuNSw1MS4zIDM4LjMsNTEuMyAzOC4zLDQ0LjQgIi8+DQo8L3N2Zz4NCg==");
-    background-size: 100%;
+    background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNC4zLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA2NCA2NCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjQgNjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiMwRDM3RDY7fQ0KPC9zdHlsZT4NCjxwYXRoIGlkPSJfQ29tcG91bmRfUGF0aF8iIGNsYXNzPSJzdDAiIGQ9Ik02NCwzMkM2NCwxNC4zLDQ5LjcsMCwzMiwwUzAsMTQuMywwLDMyczE0LjMsMzIsMzIsMzJTNjQsNDkuNyw2NCwzMnogTTU4LjQsMzINCgljMCwxNC42LTExLjgsMjYuNC0yNi40LDI2LjRTNS42LDQ2LjYsNS42LDMyQzUuNiwxNy40LDE3LjQsNS42LDMyLDUuNmwwLDBDNDYuNiw1LjYsNTguNCwxNy40LDU4LjQsMzJ6Ii8+DQo8cmVjdCB4PSIyOC41IiB5PSIxMi4yIiBjbGFzcz0ic3QwIiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+DQo8cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjM1LjUsNDQuNCAzNS41LDMwLjkgMzUuNSwyMy45IDI4LjksMjMuOSAyNS42LDIzLjkgMjUuNiwzMC45IDI4LjksMzAuOSAyOC45LDQ0LjQgMjUuNiw0NC40IA0KCTI1LjYsNTEuMyAyOC45LDUxLjMgMzUuNSw1MS4zIDM4LjMsNTEuMyAzOC4zLDQ0LjQgIi8+DQo8L3N2Zz4NCg==");   
+    background-size: 17px;/* A_B */
+    background-repeat: no-repeat;/* A_B */
   }
   &.tooltip-show {
     .tooltiptext {
@@ -379,7 +385,7 @@
 }
 
 .survey-wrapper {
-  padding-top: 20px;
+  padding-top: 5px;/* A_B */
   // max-height: calc(100vh - 355px);
 
   //  height: calc(100vh - 300px);
@@ -547,7 +553,7 @@
   color: $btn-border;
   font-weight: bold;
   background: $e1-clr;
-  padding: 9px 15px;
+  padding: 10px 15px;/* A_B */
   font-size: 15px;
   @media (max-width:767px){   
       width: 100%;
@@ -558,4 +564,36 @@
    @media (min-width:481px){
       margin-right: 10px;
    }
+}
+
+
+.badge {
+  padding-right: .6em;
+  padding-left: .6em;
+  display: inline-block;
+  padding: .25em .6em;
+  font-size: 0.75em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+
+  &-status{
+    float: left;
+    width: 100px;
+    margin-top: 12px;
+  }
+
+  &-not{
+    color: #1E32E6;
+    background-color: #E6ECFF;
+  }
+  &-progress{
+    Color:#6A4F00;
+    background:#FFF3CE;
+  }
+  &-completed{
+    Color:#006200;
+    background:#D1F4DD;
+  }
 }

@@ -125,9 +125,9 @@ p{
 .cst-form-control{
     width: 100%;
     border: 1px solid $input-bor;
-    height: 44px;
+    height: 36px;/* A_B */
     padding: 6px 12px;
-    font-size: 1em;
+    font-size: 0.85em;/* A_B */
     color: $drak-gray;  
     padding-right: 30px;
    @include box-shadow(0, 1PX, 1PX,  rgba(0,0,0,.075), inset);   
@@ -194,7 +194,7 @@ select:required:invalid {
     -webkit-appearance:none;  
     appearance: none;
     position: relative;
-    background-position: top 14px right 13px;
+    background-position: top 9px right 13px;/* A_B */
     @extend %arrow-dwn;
     &::-ms-expand {
         display: none;

@@ -370,8 +370,10 @@ Vue.component("progress-panel", {
     };
   },
   template: `<div class='progress-panel'>
-    
         <div class='progress-panel-inner'>
+          <div class="badge-status">
+            <span class="badge badge-not">Not started</span>
+          </div>
             <div class='progress'>
                 <div class='perc-data'>
                     <span v-html='progressData.answerTxt'>Answered</span>
