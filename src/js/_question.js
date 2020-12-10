@@ -1,98 +1,257 @@
 Vue.component("right-panel", {
   props: ["rightData", "progressData", "leftData"],
+  data: function () {
+    return {
+      dd2Options: [],
+    };
+  },
   template: `
   <div class="right-panel-wrapper">
   <div class="right-panel clearfix">
-    <progress-panel ref="prsPanel" :progress-data="progressData"></progress-panel>
-    <div class="survey-wrapper"> 
+    <progress-panel
+      ref="prsPanel"
+      :progress-data="progressData"
+    ></progress-panel>
+    <div class="survey-wrapper">
       <div class="scrollable">
-      <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===1">
-          <h2 class="ques-heading" v-html='qType.heading'></h2>
+        <div
+          class="questions-inner"
+          v-for="qType of rightData"
+          v-if="qType.catType ===1"
+        >
+          <h2 class="ques-heading" v-html="qType.heading"></h2>
           <div class="question-type1">
-            <h4 class="sub-heading" v-html='qType.subheading'></h4>
-            <p class="question-line" v-html='qType.categoryHeading'></p>
-            <div class="question-row" v-for="(question,quesIndex) of qType.questions">
-              <div class="question-group" v-if="question.type=='dd'">
-                <div class="text-label"><span v-html='question.optionName'></span> 
-                  <span class="tooltips">
-                      <div class="tooltip">
-                        <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                        <span class="tooltiptext" v-html="question.description"></span>
-                      </div>
-                  </span>
-                </div>
-                <div class="input-box">
-                
-                  <select class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
-                    <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
-                    <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="question-group" v-if="question.type=='txt' || question.type=='num'">
-                <div class="text-label"><span v-html="question.optionName"></span>
+            <h4 class="sub-heading" v-html="qType.subheading"></h4>
+            <p class="question-line" v-html="qType.categoryHeading"></p>
+            <div
+              class="question-row"
+              v-for="(question,quesIndex) of qType.questions"
+            >
+              <div class="question-group" v-if="question.type=='ddd'">
+                <div class="text-label">
+                  <span v-html="question.optionName"></span>
                   <span class="tooltips">
                     <div class="tooltip">
-                      <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                      <span class="tooltiptext" v-html="question.description"></span>
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description"
+                      ></span>
                     </div>
                   </span>
                 </div>
                 <div class="input-box">
-                  <input type="text" class="cst-form-control" :placeholder="question.placeholder" @input="handleInput(question,qType.catType,quesIndex,null ,$event)" :value="question.selectedText" />
+                  <select
+                    class="cst-form-control"
+                    @change="handleSelect(qType.catType, quesIndex, null, $event)"
+                  >
+                    <option
+                      disabled
+                      v-html="question.placeholder"
+                      :selected="question.selectedId==''"
+                    ></option>
+                    <option
+                      v-for="option of question.options"
+                      v-html="option.ddName"
+                      :value="option.ddId"
+                      :selected="option.ddId==question.selectedId"
+                    ></option>
+                  </select>
                 </div>
-                <div v-html="question.afterText" class="after-text"></div>
               </div>
-            </div>            
-          
-          </div>          
-        </div>
-   
-        <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===2">
-          <h2 class="ques-heading" v-html='qType.heading'></h2>
-          <div class="question-type2" >
-            <h4 class="sub-heading" v-html='qType.subheading'></h4>           
-            <div class="question-row" v-for="(question,quesIndex) of qType.questions" :class="{'wide': question.quesLength>1 }">                          
-
-            <div class="question-line" v-html='question.questionHeading'></div>
-              <div class="question-group" v-for="(option,optionIndex) of question.options">
-                <div class="text-label"><span v-html='option.optionName'></span>
+              <div class="question-group" v-if="question.type=='ddd' && dd2Options.length">
+                <div class="text-label">
+                  <span v-html="question.optionName2"></span>
                   <span class="tooltips">
-                      <div class="tooltip">
-                        <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                        <span class="tooltiptext" v-html="option.description"></span>
-                      </div>
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description2"
+                      ></span>
+                    </div>
                   </span>
                 </div>
                 <div class="input-box">
-          
-                  <input v-if="option.type=='num' || option.type=='txt'" type="text" :placeholder="option.placeholder"
-                  class="cst-form-control"  :value="option.selectedText" @input="handleInput(option,qType.catType, quesIndex,optionIndex ,$event)">
-                  <div  v-if="option.type=='num' || option.type=='txt'" type="text" v-html="option.afterText" class="after-text"></div>
+                  <select
+                    class="cst-form-control"
+                    @change="handleDddSelect(qType.catType, quesIndex, null, $event)"
+                  >
+                    <option
+                      disabled
+                      v-html="question.placeholder2"
+                      :selected="question.selectedId2==''"
+                    ></option>
+                    <option
+                      v-for="option of dd2Options"
+                      v-html="option.ddName"
+                      :value="option.ddId"
+                      :selected="option.ddId==question.selectedId2"
+                    ></option>
+                  </select>
+                </div>
+              </div>
+              <div class="question-group" v-if="question.type=='dd'">
+                <div class="text-label">
+                  <span v-html="question.optionName"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <select
+                    class="cst-form-control"
+                    @change="handleSelect(qType.catType, quesIndex, null, $event)"
+                  >
+                    <option
+                      disabled
+                      v-html="question.placeholder"
+                      :selected="question.selectedId==''"
+                    ></option>
+                    <option
+                      v-for="option of question.options"
+                      v-html="option.ddName"
+                      :value="option.ddId"
+                      :selected="option.ddId==question.selectedId"
+                    ></option>
+                  </select>
+                </div>
+              </div> 
 
+              <div
+                class="question-group"
+                v-if="question.type=='txt' || question.type=='num'"
+              >
+                <div class="text-label">
+                  <span v-html="question.optionName"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <input
+                    type="text"
+                    class="cst-form-control"
+                    :placeholder="question.placeholder"
+                    @input="handleInput(question,qType.catType,quesIndex,null ,$event)"
+                    :value="question.selectedText"
+                  />
+                </div>
+                <div v-html="question.afterText" class="after-text"></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                  <select v-if="option.type=='dd' " class="cst-form-control" @change="handleSelect(qType.catType, quesIndex,optionIndex,$event)" >
-                      <option disabled v-html="option.placeholder" :selected="option.selectedId==''"></option>
-                      <option v-for="quesOption of option.options" v-html="quesOption.ddName" :value="quesOption.ddId" :selected="option.selectedId==quesOption.ddId"></option>
-                    </select>
+        <div
+          class="questions-inner"
+          v-for="qType of rightData"
+          v-if="qType.catType ===2"
+        >
+          <h2 class="ques-heading" v-html="qType.heading"></h2>
+          <div class="question-type2">
+            <h4 class="sub-heading" v-html="qType.subheading"></h4>
+            <div
+              class="question-row"
+              v-for="(question,quesIndex) of qType.questions"
+              :class="{'wide': question.quesLength>1 }"
+            >
+              <div
+                class="question-line"
+                v-html="question.questionHeading"
+              ></div>
+              <div
+                class="question-group"
+                v-for="(option,optionIndex) of question.options"
+              >
+                <div class="text-label">
+                  <span v-html="option.optionName"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="option.description"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <input
+                    v-if="option.type=='num' || option.type=='txt'"
+                    type="text"
+                    :placeholder="option.placeholder"
+                    class="cst-form-control"
+                    :value="option.selectedText"
+                    @input="handleInput(option,qType.catType, quesIndex,optionIndex ,$event)"
+                  />
+                  <div
+                    v-if="option.type=='num' || option.type=='txt'"
+                    type="text"
+                    v-html="option.afterText"
+                    class="after-text"
+                  ></div>
+
+                  <select
+                    v-if="option.type=='dd' "
+                    class="cst-form-control"
+                    @change="handleSelect(qType.catType, quesIndex,optionIndex,$event)"
+                  >
+                    <option
+                      disabled
+                      v-html="option.placeholder"
+                      :selected="option.selectedId==''"
+                    ></option>
+                    <option
+                      v-for="quesOption of option.options"
+                      v-html="quesOption.ddName"
+                      :value="quesOption.ddId"
+                      :selected="option.selectedId==quesOption.ddId"
+                    ></option>
+                  </select>
                 </div>
               </div>
             </div>
-            
-          </div>          
-        </div> 
-
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
+
+
   `,
   mounted: function () {
     // this.setHeight();
     // window.addEventListener("resize", this.setHeight);
+
     document.addEventListener("DOMContentLoaded", () => {
       //The first argument are the elements to which the plugin shall be initialized
       //The second argument has to be at least a empty object or a object with your desired options
@@ -116,7 +275,6 @@ Vue.component("right-panel", {
         .querySelectorAll(".tooltip-show")
         .forEach((elem) => elem.classList.remove("tooltip-show"));
     });
-
   },
   methods: {
     openAccordion: function (e) {
@@ -138,6 +296,24 @@ Vue.component("right-panel", {
         this.rightData.forEach((category) => {
           if (category.catType == 1) {
             category.questions[quesIndex].selectedId = e.target.value;
+            if (
+              category.questions[quesIndex].options2 &&
+              category.questions[quesIndex].options2.length
+            ) {
+              var parentOption = category.questions[quesIndex].options.filter(
+                (option) => option.id == e.target.value
+              );
+              var parentOptionIndex = category.questions[quesIndex].options.indexOf(parentOption);
+
+              var optionIndexArray = category.questions[quesIndex].map[
+                e.target.value
+              ].map((index) => index - 1);
+              var newOption = category.questions[quesIndex].options2.filter(
+                (option, i) => optionIndexArray.indexOf(i) >= 0
+              );
+              this.dd2Options = newOption;
+              category.questions[quesIndex].selectedId2 = "";
+            }
           }
         });
       }
@@ -151,8 +327,24 @@ Vue.component("right-panel", {
       }
       this.updateProgressData();
       document.getElementById(e.target.value).click();
+      console.log(this.rightData);
     },
-    
+
+    handleDddSelect: function (catType, quesIndex, optionIndex, e) {
+      //dropdown
+      if (catType == 1) {
+        this.rightData.forEach((category) => {
+          if (category.catType == 1) {
+            category.questions[quesIndex].selectedId2 = e.target.value;
+          }
+        });
+      }
+
+      this.updateProgressData();
+      document.getElementById(e.target.value).click();
+      console.log(this.rightData);
+    },
+
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
       let { type, maxLength, selectedId } = question;
       let val, valArr;
@@ -170,16 +362,15 @@ Vue.component("right-panel", {
         valArr = val.split("");
         for (let i = 0; i < valArr.length; i++) {
           const ch = valArr[i];
-          if(ch==' '){
-            valArr.splice(i,1);
-            console.log(valArr)
-          }else{
+          if (ch == " ") {
+            valArr.splice(i, 1);
+            console.log(valArr);
+          } else {
             break;
           }
         }
-        
-          valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
-        
+
+        valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
       }
 
       if (Number(valArr.join("")) > question.maxRange) {
@@ -225,6 +416,11 @@ Vue.component("right-panel", {
           data.questions.forEach((question) => {
             if (question.type == "dd") {
               if (question.selectedId !== "") {
+                totalAttempted++;
+              }
+            }
+            if (question.type == "ddd") {
+              if (question.selectedId !== "" && question.selectedId2 !== "") {
                 totalAttempted++;
               }
             }
@@ -364,8 +560,8 @@ Vue.component("progress-panel", {
   data: function () {
     return {
       submitStatus: false,
-      badgStatus:0, //0 for not started //1 for in progess and 2 for completed
-      badgeText:"Not started"
+      badgStatus: 0, //0 for not started //1 for in progess and 2 for completed
+      badgeText: "Not started",
     };
   },
   template: `<div class='progress-panel'>
@@ -398,7 +594,10 @@ Vue.component("progress-panel", {
   mounted: function () {
     document.querySelector("#ttl-attmpt").value = this.progressData.answrdQues;
     document.querySelector("#cur-prcntge").value = this.progressData.percentge;
-    document.querySelector("#cur-state").value = this.getBadgeIconValue(this.progressData.answrdQues,this.progressData.totalQues);
+    document.querySelector("#cur-state").value = this.getBadgeIconValue(
+      this.progressData.answrdQues,
+      this.progressData.totalQues
+    );
 
     this.updateProgresbar(this.progressData.answrdQues); // this  is called from questions above on every question attempt
   },
@@ -423,15 +622,21 @@ Vue.component("progress-panel", {
 
       document.querySelector("#ttl-attmpt").value = ttlAttempt;
       document.querySelector("#cur-prcntge").value = percentage;
-      document.querySelector("#cur-state").value = this.getBadgeIconValue(Number(ttlAttempt),Number(this.progressData.totalQues));
+      document.querySelector("#cur-state").value = this.getBadgeIconValue(
+        Number(ttlAttempt),
+        Number(this.progressData.totalQues)
+      );
 
-      if(Number(ttlAttempt) == 0){
-          this.badgeText = this.progressData.notstarted;
-          this.badgStatus = 0;
-      }else if(Number(ttlAttempt) > 0 && Number(ttlAttempt)<Number(this.progressData.totalQues)){
+      if (Number(ttlAttempt) == 0) {
+        this.badgeText = this.progressData.notstarted;
+        this.badgStatus = 0;
+      } else if (
+        Number(ttlAttempt) > 0 &&
+        Number(ttlAttempt) < Number(this.progressData.totalQues)
+      ) {
         this.badgeText = this.progressData.inprogress;
         this.badgStatus = 1;
-      }else if(Number(ttlAttempt) == Number(this.progressData.totalQues)){
+      } else if (Number(ttlAttempt) == Number(this.progressData.totalQues)) {
         this.badgeText = this.progressData.complete;
         this.badgStatus = 2;
       }
@@ -449,21 +654,16 @@ Vue.component("progress-panel", {
         this.nextPage(this.progressData.submitVal);
       }
     },
-    getBadgeIconValue:function(initialQAnsd,ttlQAnsd){
-
-      if(initialQAnsd == 0){
+    getBadgeIconValue: function (initialQAnsd, ttlQAnsd) {
+      if (initialQAnsd == 0) {
         return 0;
-      }
-      else if(initialQAnsd > 0 && initialQAnsd < ttlQAnsd){
+      } else if (initialQAnsd > 0 && initialQAnsd < ttlQAnsd) {
         return 1;
-      }
-      else if(initialQAnsd == ttlQAnsd){
+      } else if (initialQAnsd == ttlQAnsd) {
         return 2;
       }
-
     },
-  }
-
+  },
 });
 
 {

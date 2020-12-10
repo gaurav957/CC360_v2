@@ -1,32 +1,119 @@
 {
-    "optionName": "Geographic",
-    "optionName2": "Geographic",
-    "type": "ddd",
-    "placeholder": "Please select",
-    "placeholder2": "Please select",
-    "description": "Geographical region/ continent",
-    "description2": "Geographical region/ continent",
-    "selectedId": "",
-    "selectedId2": "",
-    "options": [{
-        "ddName": "A",
-        "ddId": "A"
-    }, {
-        "ddName": "B",
-        "ddId": "B"
-    }],
-    "options2": [{
-        "ddName": "A1",
-        "ddId": "A1"
-    }, {
-        "ddName": "B1",
-        "ddId": "B1"
-    },{
-        "ddName": "A2",
-        "ddId": "A2"
-    }, {
-        "ddName": "B2",
-        "ddId": "B2"
-    }],
-    "map":"1:1-2|2:3-4|3:0"
+  "headerData": {
+    "logo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/mck-logo.svg",
+    "headerTitle": "CC 360 Assessment",
+    "leftPanelOpen": "true"
+  },
+  "leftData": {
+    "seltdVal": "FP_GEO_DD",
+    "mandatoryQuesVal": [
+      "FP_GEO_DD",
+      "CID_ICALLS_INPNU",
+      "CS_ASOCC_INPNU",
+      "IVR_COMPLETION_INPNU"
+    ],
+    "links": [
+      {
+        "menuTxt": "Organizational details",
+        "menuVal": "FP_GEO_DD",
+        "initialQAnsd": "0",
+        "totalQues": "11",
+        "intialUponTtl": "/",
+        "curState": "0"
+      },
+      {
+        "menuTxt": "Call details",
+        "menuVal": "CID_ICALLS_INPNU",
+        "initialQAnsd": "14",
+        "totalQues": "15",
+        "intialUponTtl": "/",
+        "curState": "0"
+      }
+    ]
+  },
+  "rightData": [
+    {
+      "readdOnly": false,
+      "catType": 1,
+      "scrollPosition": 200,
+      "heading": "Organizational details",
+      "subheading": "Footprint",
+      "categoryHeading": "Footprint by geo, economy, service type and size",
+      "questions": [
+        {
+          "optionName": "Geographic",
+          "optionName2": "Geographic 2",
+          "type": "ddd",
+          "placeholder": "Please select",
+          "placeholder2": "Please select 2",
+          "description": "Geographical region/ continent",
+          "description2": "Geographical region/ continent 2",
+          "selectedId": "",
+          "selectedId2": "",
+          "options": [
+            {
+              "ddName": "A",
+              "ddId": "A"
+            },
+            {
+              "ddName": "B",
+              "ddId": "B"
+            },
+            {
+              "ddName": "C",
+              "ddId": "C"
+            }
+          ],
+          "options2": [
+            {
+              "ddName": "A1",
+              "ddId": "A1"
+            },
+            {
+              "ddName": "B1",
+              "ddId": "B1"
+            },
+            {
+              "ddName": "A2",
+              "ddId": "A2"
+            },
+            {
+              "ddName": "B2",
+              "ddId": "B2"
+            }
+          ],
+          "map": {
+            "A": [1, 2],
+            "B": [3, 4],
+            "C": []
+          }
+        }
+      ]
+    }
+  ],
+  "progressData": {
+    "answerTxt": "Answered",
+    "answrdQues": "0",
+    "of": "of",
+    "totalQues": "11",
+    "percentge": "0",
+    "saveTxt": "Save",
+    "sveVal": "FP_GEO_DD",
+    "submitTxt": "Submit",
+    "submitVal": "Sub_Thank",
+    "notstarted": "Not Started",
+    "inprogress": "In progress",
+    "complete": "Completed"
+  },
+  "footerData": {
+    "prevTxt": "Previous",
+    "prevVal": "",
+    "forwardTxt": "Forward",
+    "forwardVal": "CID_ICALLS_INPNU",
+    "footerLogo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/mck-logo-footer.png",
+    "copyrghtTxt": "© 1996-2019 McKinsey & Company",
+    "ttlCnt": "Total Answered:"
+  }
 }
+
+

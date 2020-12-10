@@ -26,7 +26,6 @@ Vue.component("left-panel", {
       "left-panel-menu-slctn"
     ).value = this.LeftData.seltdVal;
 
-
     let linksLen = this.LeftData.links.length;
 
     if (this.LeftData.links[0].menuVal == this.LeftData.seltdVal) {
@@ -46,9 +45,9 @@ Vue.component("left-panel", {
     });
   },
   methods: {
-   
     navClick: function (menuVal, sublinkVal) {
       document.getElementById("left-panel-menu-slctn").value = menuVal;
+
       // document.getElementById("left-panel-subMenu-slctn").value = sublinkVal;
       document.getElementById("forwardbutton").click();
     },
@@ -76,15 +75,17 @@ Vue.component("left-panel", {
           link.initialQAnsd = ttlAttempt.toString();
 
           //setting badge icon
-          if(link.initialQAnsd==0){
+          if (link.initialQAnsd == 0) {
             link.curState = 0;
-          }else if(link.initialQAnsd>0 && link.initialQAnsd<link.totalQues){
+          } else if (
+            link.initialQAnsd > 0 &&
+            link.initialQAnsd < link.totalQues
+          ) {
             link.curState = 1;
-          }else if(link.initialQAnsd==link.totalQues){
+          } else if (link.initialQAnsd == link.totalQues) {
             link.curState = 2;
           }
           //setting badge icon
-
         }
       }
 

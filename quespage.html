@@ -314,7 +314,8 @@
     
     
     <span id="jsonData" style="display: none">
-        {
+		
+		{
 			"headerData": {
 				"logo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/mck-logo.svg",
 				"headerTitle": "CC 360 Assessment",
@@ -339,328 +340,56 @@
 					"curState":"0"
 				}]
 			},
-			"rightData": [{
+			"rightData": [    
+			{
 					"readdOnly": false,
 					"catType": 1,
 					"scrollPosition": 200,
 					"heading": "Organizational details",
 					"subheading": "Footprint",
 					"categoryHeading": "Footprint by geo, economy, service type and size",
-					"questions": [{
-						"optionName": "Geographic",
-						"type": "dd",
-						"placeholder": "Please select",
-						"description": "Geographical region/ continent",
-						"selectedId": "",
-						"options": [{
-							"ddName": "Africa",
-							"ddId": "FP_GEO_DD_1_label"
-						}, {
-							"ddName": "Asia",
-							"ddId": "FP_GEO_DD_2_label"
+					"questions": [
+						{
+							"optionName": "Geographic",
+							"optionName2": "Geographic 2",
+							"type": "ddd",
+							"placeholder": "Please select",
+							"placeholder2": "Please select 2",
+							"description": "Geographical region/ continent",
+							"description2": "Geographical region/ continent 2",
+							"selectedId": "",
+							"selectedId2": "",
+							"options": [{
+								"ddName": "A",
+								"ddId": "A"
+							}, {
+								"ddName": "B",
+								"ddId": "B"
+							},
+							{
+								"ddName": "C",
+								"ddId": "C"
+							}],
+							"options2": [{
+								"ddName": "A1",
+								"ddId": "A1"
+							}, {
+								"ddName": "B1",
+								"ddId": "B1"
+							},{
+								"ddName": "A2",
+								"ddId": "A2"
+							}, {
+								"ddName": "B2",
+								"ddId": "B2"
+							}],
+							"map":{
+								"A":[1,2],
+								"B":[3,4],
+								"C":[]
+							}
 						}]
-					}, {
-						"optionName": "Country",
-						"type": "dd",
-						"placeholder": "Please select",
-						"description": "Country of footprint",
-						"selectedId": "",
-						"options": [{
-							"ddName": "Afghanistan",
-							"ddId": "FP_COU_DD_1_label"
-						}, {
-							"ddName": "Albania",
-							"ddId": "FP_COU_DD_2_label"
-						}]
-					}, {
-						"optionName": "City",
-						"type": "txt",
-						"placeholder": "Enter the value",
-						"description": "City of delivery footprint",
-						"selectedText": "",
-						"selectedId": "FP_City_TXT",
-						"maxLength": 10,
-						"maxRange": 100
-					}, {
-						"optionName": "Economic status",
-						"type": "dd",
-						"placeholder": "Please select",
-						"description": "Advanced/developed or Emerging/developing",
-						"selectedId": "",
-						"options": [{
-							"ddName": "Advanced",
-							"ddId": "FP_ECOST_DD_1_label"
-						}, {
-							"ddName": "Emerging and developing",
-							"ddId": "FP_ECOST_DD_2_label"
-						}]
-					}, {
-						"optionName": "Sector",
-						"type": "dd",
-						"placeholder": "Please select",
-						"description": "Industry or sector of operation",
-						"selectedId": "",
-						"options": [{
-							"ddName": "Banking",
-							"ddId": "FP_SEC_DD_1_label"
-						}, {
-							"ddName": "EPNG",
-							"ddId": "FP_SEC_DD_2_label"
-						}]
-					}, {
-						"optionName": "Business line/service offering",
-						"type": "dd",
-						"placeholder": "Please select",
-						"description": "Sub- sector of client operation",
-						"selectedId": "",
-						"options": [{
-							"ddName": "Telco Mobile-Prepaid",
-							"ddId": "FP_BULSO_DD_1_label"
-						}, {
-							"ddName": "Telco Mobile-Postpaid",
-							"ddId": "FP_BULSO_DD_2_label"
-						}]
-					}, {
-						"optionName": "Major work type",
-						"type": "dd",
-						"placeholder": "Please select",
-						"description": "Type of activity/ service performed",
-						"selectedId": "",
-						"options": [{
-							"ddName": "Inbound",
-							"ddId": "FP_MWT_DD_1_label"
-						}, {
-							"ddName": "Inbound/outbound mixed",
-							"ddId": "FP_MWT_DD_2_label"
-						}]
-					}, {
-						"optionName": "Site Type",
-						"type": "dd",
-						"placeholder": "Please select",
-						"description": "Delivery site ownership",
-						"selectedId": "",
-						"options": [{
-							"ddName": "Inhouse - Onshore",
-							"ddId": "FP_SITY_DD_1_label"
-						}, {
-							"ddName": "Inhouse - Offshore",
-							"ddId": "FP_SITY_DD_2_label"
-						}]
-					}, {
-						"optionName": "Year",
-						"type": "dd",
-						"placeholder": "Please select",
-						"description": "Year of data collection",
-						"selectedId": "",
-						"options": [{
-							"ddName": "2014",
-							"ddId": "FP_SITY_DD_1_label1"
-						}, {
-							"ddName": "2015",
-							"ddId": "FP_SITY_DD_2_label1"
-						}]
-					}, {
-						"optionName": "Annual customer base",
-						"type": "num",
-						"placeholder": "Enter the value",
-						"description": "Number of customers/subscribers ",
-						"selectedText": "",
-						"selectedId": "FP_ANCB_INPNU",
-						"afterText": "#",
-						"maxLength": 5
-					}, {
-						"optionName": "Revenue",
-						"type": "txt",
-						"placeholder": "Enter the value",
-						"description": "Currency conversion using latest year average rate as per www.oanda.com",
-						"selectedText": "",
-						"selectedId": "FP_REV_INPNU",
-						"afterText": "$",
-						"maxLength": 9
-					}]
-				},
-				{
-					"readdOnly": false,
-					"catType": 2,
-					"heading": "Call details",
-					"subheading": "Calls/interaction details",
-					"questions": [{
-						"questionHeading": "Annual inbound calls",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Inbound - calls - agent handled only",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Total number of inbound calls handled calls by agents from in-house as well as outsourced sites",
-							"selectedText": "",
-							"selectedId": "CID_ICALLS_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}, {
-						"questionHeading": "Annual inbound emails",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Inbound - emails - agent handled only",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Total number of inbound emails handled by agents from in-house and outsourced sites",
-							"selectedText": "",
-							"selectedId": "CID_IEMAILS_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}, {
-						"questionHeading": "Annual inbound chats",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Inbound - chat - agent handled only",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Total number of inbound chat handled by agents from in-house and outsourced sites",
-							"selectedText": "",
-							"selectedId": "CID_ICHAT_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}, {
-						"questionHeading": "Outsourcing leverage for inbound calls",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Inbound calls outsourced",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Total annual inbound calls outsourced to onshore, nearshore and offshore vendors",
-							"selectedText": "",
-							"selectedId": "CID_ICALLSO_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}, {
-						"questionHeading": "Inbound call volume mix (agent handled) - please provide site wise",
-						"quesLength": 6,
-						"options": [{
-							"optionName": "Customer service (billing and inquiries)",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-							"selectedText": "",
-							"selectedId": "CID_CS_INPNU",
-							"afterText": "%",
-							"maxLength": 3
-						}, {
-							"optionName": "Complaint handling",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-							"selectedText": "",
-							"selectedId": "CID_CH_INPNU",
-							"afterText": "%",
-							"maxLength": 3
-						}, {
-							"optionName": "Technical helpdesk",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-							"selectedText": "",
-							"selectedId": "CID_TH_INPNU",
-							"afterText": "%",
-							"maxLength": 3
-						}, {
-							"optionName": "Transaction or processing involved ",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-							"selectedText": "",
-							"selectedId": "CID_TPI_INPNU",
-							"afterText": "%",
-							"maxLength": 3
-						}, {
-							"optionName": "Response to direct marketing ",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-							"selectedText": "",
-							"selectedId": "CID_RDM_INPNU",
-							"afterText": "%",
-							"maxLength": 3
-						}, {
-							"optionName": "Other",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-							"selectedText": "",
-							"selectedId": "CID_OTHER_INPNU",
-							"afterText": "%",
-							"maxLength": 3
-						}]
-					}, {
-						"questionHeading": "Annual outbound calls",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Outbound calls",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Call center (in-house + outsourced)-provide site wise numbers for outbound (excludes follow-up calls in relation to inbound call)",
-							"selectedText": "",
-							"selectedId": "CID_OC_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}, {
-						"questionHeading": "Outbound - sales",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Telesales",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Total outbound calls made for Telesales",
-							"selectedText": "",
-							"selectedId": "CID_TELESALES_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}, {
-						"questionHeading": "Outbound - collection",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Collections",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Total outbound calls made for collections",
-							"selectedText": "",
-							"selectedId": "CID_COLLECTIONS_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}, {
-						"questionHeading": "Outbound - retention",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Retentions",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Total outbound calls made for customer retention",
-							"selectedText": "",
-							"selectedId": "CID_RETENTIONS_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}, {
-						"questionHeading": "Outbound - marketing &amp; others",
-						"quesLength": 1,
-						"options": [{
-							"optionName": "Marketing &amp; others",
-							"type": "num",
-							"placeholder": "Enter the value",
-							"description": "Total outbound calls made for marketing or surveys etc.",
-							"selectedText": "",
-							"selectedId": "CID_MO_INPNU",
-							"afterText": "#",
-							"maxLength": 5
-						}]
-					}]
-				}
+				}        
 			],
 			"progressData": {
 				"answerTxt": "Answered",
@@ -707,18 +436,24 @@
 <!-- <div style="display:none;" class="navigationarea"></div> -->
 <input type="hidden" id="forwardbutton" name="__fwd" tabindex="9998" class="navbutton confirmit-nav" onclick=" if(typeof wix=='object') {wix.nav(event, 'p1862356818');} " value="  >>  ">
 
-<div style="position:fixed;top:10px;z-index:999999;background:blue;color:white; display:none;">
-    <input type="radio" id="FP_GEO_DD_1_label" name="q" />
-    <label for="male">FP_GEO_DD_1_label</label>
-    <input type="radio" id="FP_GEO_DD_2_label" name="q" />
-	<label for="female">FP_GEO_DD_2_label</label><br>
+<div style="position:fixed;top:10px;right:0;z-index:999999;background:blue;color:white; display: none;">
+    <!-- <input type="radio" id="A" name="q" />
+    <label for="male">A</label>
+    <input type="radio" id="C" name="q" />
+    <label for="male">C</label>
+    <input type="radio" id="B" name="q" />
+	<label for="female">B</label><br>
 	
-	<input type="radio" id="FP_COU_DD_1_label" name="w" />
-    <label for="male">FP_COU_DD_1_label</label>
-    <input type="radio" id="FP_COU_DD_2_label" name="w" />
-	<label for="female">FP_COU_DD_2_label</label><br>
+	<input type="radio" id="A1" name="w" />
+    <label for="male">A1</label>
+    <input type="radio" id="B1" name="w" />
+	<label for="female">B1</label><br>
+    <input type="radio" id="A2" name="w" />
+	<label for="female">A2</label><br>
+    <input type="radio" id="B2" name="w" />
+	<label for="female">B2</label><br> -->
 	
-	<input type="radio" id="FP_ECOST_DD_1_label" name="r" />
+	<!-- <input type="radio" id="FP_ECOST_DD_1_label" name="r" />
     <label for="male">FP_ECOST_DD_1_label</label>
     <input type="radio" id="FP_ECOST_DD_2_label" name="r" />
 	<label for="female">FP_ECOST_DD_2_label</label><br>
@@ -754,7 +489,7 @@
     <input type="text" id="FP_ANCB_INPNU">
 	<input type="text" id="FP_REV_INPNU">
 	
-	<br/>
+	<br/> -->
 	
 
 </br>
