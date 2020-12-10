@@ -1,0 +1,17 @@
+{
+    "optionName": "Geographic",
+    "type": "numlist",
+    "placeholder": "Please select",
+    "description": "Geographical region/ continent",
+    "selectedId": "",
+    "selectedText": "",
+    "options": [{
+        "ddName": "Africa",
+        "ddId": "FP_GEO_DD_1_label",
+        "textId":"A"
+    }, {
+        "ddName": "Asia",
+        "ddId": "FP_GEO_DD_2_label",
+        "textId":"B"
+    }]
+}

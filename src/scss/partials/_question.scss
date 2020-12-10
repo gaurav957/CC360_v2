@@ -1,3 +1,10 @@
+.question-row::before, .question-row::after{
+  content: '';
+  display: table;
+}
+// .question-row::after{
+//   clear: both;
+// }
 .right-panel-wrapper {
   width: 100%;
   padding: 100px 30px 0px; /* A_B */

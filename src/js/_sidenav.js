@@ -8,6 +8,7 @@ Vue.component("left-panel", {
                     <div class="nav-item" :data-menuval = item.menuVal :id='"menu_"+index' :class="{selected:LeftData.seltdVal == item.menuVal,open:LeftData.seltdVal == item.menuVal}"
                     v-on:click.stop="navClick(item.menuVal,'')">
                       <span>{{item.menuTxt}}</span>
+                      <span class="prgs-notify-icon" :class="[item.curState==0?'nc':'',item.curState==1?'prg':'',item.curState==2?'com':'']"></span>
                       <span class="rt-prgs">
                         <span v-if="item.initialQAnsd && item.totalQues">
                           {{item.initialQAnsd+""+item.intialUponTtl+""+item.totalQues}}
@@ -24,6 +25,7 @@ Vue.component("left-panel", {
     document.getElementById(
       "left-panel-menu-slctn"
     ).value = this.LeftData.seltdVal;
+
 
     let linksLen = this.LeftData.links.length;
 
@@ -44,6 +46,7 @@ Vue.component("left-panel", {
     });
   },
   methods: {
+   
     navClick: function (menuVal, sublinkVal) {
       document.getElementById("left-panel-menu-slctn").value = menuVal;
       // document.getElementById("left-panel-subMenu-slctn").value = sublinkVal;
@@ -70,7 +73,18 @@ Vue.component("left-panel", {
     updateQuesAttempt: function (ttlAttempt) {
       for (let link of this.LeftData.links) {
         if (this.LeftData.seltdVal == link.menuVal) {
-          link.initialQAnsd = ttlAttempt;
+          link.initialQAnsd = ttlAttempt.toString();
+
+          //setting badge icon
+          if(link.initialQAnsd==0){
+            link.curState = 0;
+          }else if(link.initialQAnsd>0 && link.initialQAnsd<link.totalQues){
+            link.curState = 1;
+          }else if(link.initialQAnsd==link.totalQues){
+            link.curState = 2;
+          }
+          //setting badge icon
+
         }
       }
 

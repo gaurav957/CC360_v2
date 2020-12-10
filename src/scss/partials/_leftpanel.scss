@@ -122,3 +122,22 @@
   .open {
      max-height: 500px;
   }
+
+
+  .prgs-notify-icon{
+    position: absolute;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    right: 60px;
+    top: 23px;
+    &.nc{
+      background-color: #d4dcf0;
+    }
+    &.prg{
+      background-color: #ffd048;
+    }
+    &.com{
+      background-color:#3aa537;
+    }
+  }

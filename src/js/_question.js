@@ -154,8 +154,6 @@ Vue.component("right-panel", {
     },
     
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
-      
-      console.log(question.maxRange, question.minRange);
       let { type, maxLength, selectedId } = question;
       let val, valArr;
 
@@ -259,7 +257,6 @@ Vue.component("right-panel", {
       // this.progressData.percentge = parseInt(
       //   (totalAttempted / Number(this.progressData.totalQues)) * 100
       // );
-
       this.$parent.updateLeftQuestionAttempt(totalAttempted); //calling parent
       this.$parent.getTotalQuestions(); //calling parent
       this.$refs.prsPanel.updateProgresbar(totalAttempted); //calling child component
@@ -367,12 +364,14 @@ Vue.component("progress-panel", {
   data: function () {
     return {
       submitStatus: false,
+      badgStatus:0, //0 for not started //1 for in progess and 2 for completed
+      badgeText:"Not started"
     };
   },
   template: `<div class='progress-panel'>
         <div class='progress-panel-inner'>
           <div class="badge-status">
-            <span class="badge badge-not">Not started</span>
+            <span class="badge" :class="[badgStatus==0?'badge-not':'',badgStatus==1?'badge-progress':'',badgStatus==2?'badge-completed':'']" v-html="badgeText">Not started</span>
           </div>
             <div class='progress'>
                 <div class='perc-data'>
@@ -399,6 +398,9 @@ Vue.component("progress-panel", {
   mounted: function () {
     document.querySelector("#ttl-attmpt").value = this.progressData.answrdQues;
     document.querySelector("#cur-prcntge").value = this.progressData.percentge;
+    document.querySelector("#cur-state").value = this.getBadgeIconValue(this.progressData.answrdQues,this.progressData.totalQues);
+
+    this.updateProgresbar(this.progressData.answrdQues); // this  is called from questions above on every question attempt
   },
   methods: {
     nextPage: function (forwardBtnVal) {
@@ -411,6 +413,8 @@ Vue.component("progress-panel", {
       document.getElementById("forwardbutton").click();
     },
     updateProgresbar: function (ttlAttempt) {
+      console.log("update progress bar called");
+      console.log(ttlAttempt);
       this.progressData.answrdQues = ttlAttempt;
       var percentage = parseInt(
         (ttlAttempt / Number(this.progressData.totalQues)) * 100
@@ -419,6 +423,18 @@ Vue.component("progress-panel", {
 
       document.querySelector("#ttl-attmpt").value = ttlAttempt;
       document.querySelector("#cur-prcntge").value = percentage;
+      document.querySelector("#cur-state").value = this.getBadgeIconValue(Number(ttlAttempt),Number(this.progressData.totalQues));
+
+      if(Number(ttlAttempt) == 0){
+          this.badgeText = this.progressData.notstarted;
+          this.badgStatus = 0;
+      }else if(Number(ttlAttempt) > 0 && Number(ttlAttempt)<Number(this.progressData.totalQues)){
+        this.badgeText = this.progressData.inprogress;
+        this.badgStatus = 1;
+      }else if(Number(ttlAttempt) == Number(this.progressData.totalQues)){
+        this.badgeText = this.progressData.complete;
+        this.badgStatus = 2;
+      }
     },
     enabDisSubmit: function (endis) {
       if (endis == "enable") {
@@ -432,6 +448,19 @@ Vue.component("progress-panel", {
       if (submitStatus != false) {
         this.nextPage(this.progressData.submitVal);
       }
+    },
+    getBadgeIconValue:function(initialQAnsd,ttlQAnsd){
+
+      if(initialQAnsd == 0){
+        return 0;
+      }
+      else if(initialQAnsd > 0 && initialQAnsd < ttlQAnsd){
+        return 1;
+      }
+      else if(initialQAnsd == ttlQAnsd){
+        return 2;
+      }
+
     },
   }
 

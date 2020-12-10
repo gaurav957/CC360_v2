@@ -1,0 +1,34 @@
+{
+    "optionName": "Geographic",
+    "optionName2": "Geographic",
+    "type": "ddd",
+    "placeholder": "Please select",
+    "placeholder2": "Please select",
+    "description": "Geographical region/ continent",
+    "description2": "Geographical region/ continent",
+    "selectedId": "",
+    "selectedId2": "",
+    "options": [{
+        "ddName": "A",
+        "ddId": "A",
+        "options":[{
+            "ddName": "A1",
+            "ddId": "A1"
+        },
+        {
+            "ddName": "B1",
+            "ddId": "B1"
+        }]
+    }, {
+        "ddName": "B",
+        "ddId": "B",
+        "options":[{
+            "ddName": "A2",
+            "ddId": "A2"
+        },
+        {
+            "ddName": "B2",
+            "ddId": "B2"
+        }]
+    }]
+}
