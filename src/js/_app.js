@@ -51,6 +51,7 @@ var eventInputvueObj = new Vue({
     },
     disNextParent: function () {
       this.$refs.footerPanel.disableNext();
+      this.$refs.rightPanel.enabDisSubmit();
     },
     updatePrgsSubmit: function (endis) {
       this.$refs.rightPanel.enabDisSubmit(endis);

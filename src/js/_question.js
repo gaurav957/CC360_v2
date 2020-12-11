@@ -27,76 +27,6 @@ Vue.component("right-panel", {
               class="question-row"
               v-for="(question,quesIndex) of qType.questions"
             >
-              <div class="question-group" v-if="question.type=='ddd'">
-                <div class="text-label">
-                  <span v-html="question.optionName"></span>
-                  <span class="tooltips">
-                    <div class="tooltip">
-                      <span
-                        class="custom-infoicon"
-                        @click="toltiptoggle"
-                      ></span>
-                      <span
-                        class="tooltiptext"
-                        v-html="question.description"
-                      ></span>
-                    </div>
-                  </span>
-                </div>
-                <div class="input-box">
-                  <select
-                    class="cst-form-control"
-                    @change="handleSelect(qType.catType, quesIndex, null, $event)"
-                  >
-                    <option
-                      disabled
-                      v-html="question.placeholder"
-                      :selected="question.selectedId==''"
-                    ></option>
-                    <option
-                      v-for="option of question.options"
-                      v-html="option.ddName"
-                      :value="option.ddId"
-                      :selected="option.ddId==question.selectedId"
-                    ></option>
-                  </select>
-                </div>
-              </div>
-              <div class="question-group" v-if="question.type=='ddd' && dd2Options.length">
-                <div class="text-label">
-                  <span v-html="question.optionName2"></span>
-                  <span class="tooltips">
-                    <div class="tooltip">
-                      <span
-                        class="custom-infoicon"
-                        @click="toltiptoggle"
-                      ></span>
-                      <span
-                        class="tooltiptext"
-                        v-html="question.description2"
-                      ></span>
-                    </div>
-                  </span>
-                </div>
-                <div class="input-box">
-                  <select
-                    class="cst-form-control"
-                    @change="handleDddSelect(qType.catType, quesIndex, null, $event)"
-                  >
-                    <option
-                      disabled
-                      v-html="question.placeholder2"
-                      :selected="question.selectedId2==''"
-                    ></option>
-                    <option
-                      v-for="option of dd2Options"
-                      v-html="option.ddName"
-                      :value="option.ddId"
-                      :selected="option.ddId==question.selectedId2"
-                    ></option>
-                  </select>
-                </div>
-              </div>
               <div class="question-group" v-if="question.type=='dd'">
                 <div class="text-label">
                   <span v-html="question.optionName"></span>
@@ -131,7 +61,7 @@ Vue.component("right-panel", {
                     ></option>
                   </select>
                 </div>
-              </div> 
+              </div>
 
               <div
                 class="question-group"
@@ -241,11 +171,228 @@ Vue.component("right-panel", {
             </div>
           </div>
         </div>
+
+        <div
+          class="questions-inner"
+          v-for="qType of rightData"
+          v-if="qType.catType ===3"
+        >
+          <h2 class="ques-heading" v-html="qType.heading"></h2>
+          <div class="question-type1">
+            <h4 class="sub-heading" v-html="qType.subheading"></h4>
+            <p class="question-line" v-html="qType.categoryHeading"></p>
+            <div
+              class="question-row"
+              v-for="(question,quesIndex) of qType.questions"
+            >
+              <div class="question-group" v-if="question.type=='ddd'">
+                <div class="text-label">
+                  <span v-html="question.optionName"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <select
+                    class="cst-form-control"
+                    @change="handleSelect(qType.catType, quesIndex, null, $event)"
+                  >
+                    <option
+                      disabled
+                      v-html="question.placeholder"
+                      :selected="question.selectedId==''"
+                    ></option>
+                    <option
+                      v-for="option of question.options"
+                      v-html="option.ddName"
+                      :value="option.ddId"
+                      :selected="option.ddId==question.selectedId"
+                    ></option>
+                  </select>
+                </div>
+              </div>
+              <div
+                class="question-group"
+                v-if="question.type=='ddd'"
+              >
+                <div class="text-label">
+                  <span v-html="question.optionName2"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description2"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <div class="cst-form-control" style="position:relative">
+                    <div v-html="question.placeholder2" @click="openDropDown($event)"></div>
+                    <div class="dd2">
+                      <div v-for="option of dd2Options[quesIndex]" class="option-wrapper">
+                        <input
+                          type="checkbox"
+                          :checked="option.isChecked"
+                          @click="handleDddSelect(qType.catType, quesIndex, null, option.ddId,$event)"
+                        />
+                        <span v-html="option.ddName"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="question-group" v-if="question.type=='numlist'">
+                <div class="text-label">
+                  <span v-html="question.optionName"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <select
+                    class="cst-form-control"
+                    @change="handleSelect(qType.catType, quesIndex, null, $event,question)"
+                  >
+                    <option
+                      disabled
+                      v-html="question.placeholder"
+                      :selected="question.selectedId==''"
+                    ></option>
+                    <option
+                      v-for="option of question.options"
+                      v-html="option.ddName"
+                      :value="option.ddId"
+                      :selected="option.ddId==question.selectedId"
+                    ></option>
+                  </select>
+                </div>
+              </div>
+              <div
+                class="question-group"
+                v-if="question.type=='numlist'"
+              >
+                <div class="text-label">
+                  <span v-html="question.optionName2"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description2"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <input
+                    type="text"
+                    class="cst-form-control"
+                    :placeholder="question.placeholder"
+                    @input="handleNumListInput(question,qType.catType,quesIndex,null ,$event)"
+                    :value="question.selectedText"
+                  />
+                </div>
+              </div>
+
+              <div class="question-group" v-if="question.type=='dd'">
+                <div class="text-label">
+                  <span v-html="question.optionName"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <select
+                    class="cst-form-control"
+                    @change="handleSelect(qType.catType, quesIndex, null, $event)"
+                  >
+                    <option
+                      disabled
+                      v-html="question.placeholder"
+                      :selected="question.selectedId==''"
+                    ></option>
+                    <option
+                      v-for="option of question.options"
+                      v-html="option.ddName"
+                      :value="option.ddId"
+                      :selected="option.ddId==question.selectedId"
+                    ></option>
+                  </select>
+                </div>
+              </div>
+
+              <div
+                class="question-group"
+                v-if="question.type=='txt' || question.type=='num'"
+              >
+                <div class="text-label">
+                  <span v-html="question.optionName"></span>
+                  <span class="tooltips">
+                    <div class="tooltip">
+                      <span
+                        class="custom-infoicon"
+                        @click="toltiptoggle"
+                      ></span>
+                      <span
+                        class="tooltiptext"
+                        v-html="question.description"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                  <input
+                    type="text"
+                    class="cst-form-control"
+                    :placeholder="question.placeholder"
+                    @input="handleInput(question,qType.catType,quesIndex,null ,$event)"
+                    :value="question.selectedText"
+                  />
+                </div>
+                <div v-html="question.afterText" class="after-text"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 
   `,
   mounted: function () {
@@ -263,7 +410,6 @@ Vue.component("right-panel", {
       );
       // instance.scroll({ el: document.getElementById('hellomoto'), block : "center"}, 100);
       let scrollHeight = this.rightData[0].scrollPosition;
-      console.log(this.rightData);
       if (scrollHeight == "") {
         scrollHeight = 0;
       }
@@ -275,8 +421,71 @@ Vue.component("right-panel", {
         .querySelectorAll(".tooltip-show")
         .forEach((elem) => elem.classList.remove("tooltip-show"));
     });
+    document.body.addEventListener("click", function () {
+      var elems = document.querySelectorAll(".dd2");
+      for (let index = 0; index < elems.length; index++) {
+        const element = elems[index];
+        element.style.display = "none";
+      }
+    });
+    var elems = document.querySelectorAll(".dd2");
+    for (let index = 0; index < elems.length; index++) {
+      const element = elems[index];
+      element.addEventListener("click", function (e) {
+        e.stopPropagation();
+        console.log("bubbling stopped");
+      });
+    }
+    this.populateOptions();
   },
   methods: {
+    populateOptions: function () {
+      var optionArr = [];
+      var category = this.rightData.filter((cat) => cat.catType === 3)[0];
+
+      category.questions.forEach((question, quesIndex) => {
+        if (question.selectedId !== "") {
+          var parentOptionIndex = -1;
+          for (let index = 0; index < question.options.length; index++) {
+            const option = question.options[index];
+            if (option.ddId == question.selectedId) {
+              parentOptionIndex = index;
+            }
+          }
+
+          var subOptions = question.map
+            .split("|")
+            .filter((option) => option.charAt(0) == parentOptionIndex + 1)[0]
+            .split(":")[1]
+            .split("-")
+            .map((value) => Number(value));
+
+          var subOptionObject = question.options2.filter(
+            (option, index) => subOptions.indexOf(index + 1) >= 0
+          );
+          var selectedValues = question.selectedId2.split("|");
+          subOptionObject.forEach((option) => {
+            if (selectedValues.indexOf(option.ddId) >= 0) {
+              option.isChecked = true;
+            } else {
+              option.isChecked = false;
+            }
+          });
+
+          console.log("myoptions", subOptionObject);
+
+          if (subOptionObject) {
+            optionArr.push([...subOptionObject]);
+          } else {
+            optionArr.push([]);
+          }
+        }
+      });
+
+      // console.log("category", optionArr);
+      this.dd2Options = optionArr;
+    },
+
     openAccordion: function (e) {
       e.stopPropagation();
 
@@ -290,30 +499,42 @@ Vue.component("right-panel", {
       }
     },
 
-    handleSelect: function (catType, quesIndex, optionIndex, e) {
+    openDropDown: function (e) {
+      e.stopPropagation();
+      console.log(e.target.closest(".cst-form-control").querySelector(".dd2"));
+      e.target
+        .closest(".cst-form-control")
+        .querySelector(".dd2").style.display = "block";
+    },
+
+    handleSelect: function (catType, quesIndex, optionIndex, e, question) {
       //dropdown
+
       if (catType == 1) {
         this.rightData.forEach((category) => {
           if (category.catType == 1) {
             category.questions[quesIndex].selectedId = e.target.value;
-            if (
-              category.questions[quesIndex].options2 &&
-              category.questions[quesIndex].options2.length
-            ) {
-              var parentOption = category.questions[quesIndex].options.filter(
-                (option) => option.id == e.target.value
-              );
-              var parentOptionIndex = category.questions[quesIndex].options.indexOf(parentOption);
+            // if (
+            //   category.questions[quesIndex].options2 &&
+            //   category.questions[quesIndex].options2.length
+            // ) {
+            //   var parentOption = category.questions[quesIndex].options.filter(
+            //     (option) => option.id == e.target.value
+            //   );
+            //   var parentOptionIndex = category.questions[
+            //     quesIndex
+            //   ].options.indexOf(parentOption);
+            //   console.log("Parent index", parentOptionIndex);
 
-              var optionIndexArray = category.questions[quesIndex].map[
-                e.target.value
-              ].map((index) => index - 1);
-              var newOption = category.questions[quesIndex].options2.filter(
-                (option, i) => optionIndexArray.indexOf(i) >= 0
-              );
-              this.dd2Options = newOption;
-              category.questions[quesIndex].selectedId2 = "";
-            }
+            //   var optionIndexArray = category.questions[quesIndex].map[
+            //     e.target.value
+            //   ].map((index) => index - 1);
+            //   var newOption = category.questions[quesIndex].options2.filter(
+            //     (option, i) => optionIndexArray.indexOf(i) >= 0
+            //   );
+            //   this.dd2Options = newOption;
+            //   category.questions[quesIndex].selectedId2 = "";
+            // }
           }
         });
       }
@@ -325,24 +546,98 @@ Vue.component("right-panel", {
           }
         });
       }
+      if (catType == 3) {
+        this.rightData.forEach((category) => {
+          if (category.catType == 3) {
+            category.questions[quesIndex].selectedId = e.target.value;
+            if (question && question.type == "numlist") {
+              category.questions[quesIndex].selectedText = "";
+              category.questions[quesIndex].options.forEach((option) => {
+                var textInputId = option.textId;
+                document.getElementById(textInputId).value = "";
+              });
+            } else {
+              if (
+                category.questions[quesIndex].options2 &&
+                category.questions[quesIndex].options2.length
+              ) {
+                var parentOptionIndex = -1;
+                for (
+                  let index = 0;
+                  index < category.questions[quesIndex].options.length;
+                  index++
+                ) {
+                  const option = category.questions[quesIndex].options[index];
+                  if (option.ddId == e.target.value) {
+                    parentOptionIndex = index;
+                  }
+                }
+
+                var subOptions = category.questions[quesIndex].map
+                  .split("|")
+                  .filter(
+                    (option) => option.charAt(0) == parentOptionIndex + 1
+                  )[0]
+                  .split(":")[1]
+                  .split("-")
+                  .map((value) => Number(value));
+
+                var subOptionObject = category.questions[
+                  quesIndex
+                ].options2.filter(
+                  (option, index) => subOptions.indexOf(index + 1) >= 0
+                );
+                subOptionObject.forEach((option) => {
+                  option.isChecked = false;
+                });
+                this.dd2Options[quesIndex] = subOptionObject;
+                category.questions[quesIndex].selectedId2 = "";
+              }
+            }
+          }
+          console.log(category.questions, this.dd2Options);
+        });
+      }
       this.updateProgressData();
       document.getElementById(e.target.value).click();
-      console.log(this.rightData);
     },
 
-    handleDddSelect: function (catType, quesIndex, optionIndex, e) {
+    handleDddSelect: function (catType, quesIndex, optionIndex, ddId, e) {
       //dropdown
-      if (catType == 1) {
+      console.log("i am clicked", e);
+      e.cancelBubble = true;
+      e.stopPropagation();
+      if (catType == 3) {
         this.rightData.forEach((category) => {
-          if (category.catType == 1) {
-            category.questions[quesIndex].selectedId2 = e.target.value;
+          if (category.catType == 3) {
+            var selectedValueArray = category.questions[
+              quesIndex
+            ].selectedId2.split("|");
+            if (selectedValueArray[0] == "") selectedValueArray.splice(0, 1);
+
+            if (selectedValueArray.indexOf(ddId) >= 0) {
+              selectedValueArray.splice(selectedValueArray.indexOf(ddId), 1);
+            } else {
+              selectedValueArray.push(ddId);
+            }
+            // console.log(selectedValueArray);
+            category.questions[quesIndex].selectedId2 = selectedValueArray.join(
+              "|"
+            );
+
+            this.dd2Options[quesIndex].forEach((option) => {
+              if (option.ddId == ddId) {
+                option.isChecked = !option.isChecked;
+              }
+            });
+            console.log(this.dd2Options[quesIndex]);
           }
         });
       }
 
       this.updateProgressData();
-      document.getElementById(e.target.value).click();
       console.log(this.rightData);
+      document.getElementById(ddId).click();
     },
 
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
@@ -364,7 +659,6 @@ Vue.component("right-panel", {
           const ch = valArr[i];
           if (ch == " ") {
             valArr.splice(i, 1);
-            console.log(valArr);
           } else {
             break;
           }
@@ -408,6 +702,73 @@ Vue.component("right-panel", {
       document.getElementById(selectedId).value = val;
     },
 
+    handleNumListInput: function (
+      question,
+      catType,
+      quesIndex,
+      optionIndex,
+      e
+    ) {
+      let { type, maxLength } = question;
+      let val, valArr;
+
+      if (type == "numlist") {
+        val = e.target.value.trim();
+        valArr = val.split("");
+        if (isNaN(val)) {
+          valArr = valArr.filter((ch) => !isNaN(ch));
+        }
+      }
+
+      if (type == "txt") {
+        val = e.target.value;
+        valArr = val.split("");
+        for (let i = 0; i < valArr.length; i++) {
+          const ch = valArr[i];
+          if (ch == " ") {
+            valArr.splice(i, 1);
+          } else {
+            break;
+          }
+        }
+
+        valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
+      }
+
+      if (Number(valArr.join("")) > question.maxRange) {
+        valArr.pop();
+      }
+      if (valArr.length > maxLength) {
+        if (valArr[valArr.length - 1] == " ") {
+          valArr = valArr.join("").trim().split("");
+        } else {
+          valArr.pop();
+        }
+      }
+
+      val = valArr.join("");
+
+      var selectedId = "";
+      if (catType == 3) {
+        this.rightData.forEach((category) => {
+          if (category.catType == 3) {
+            category.questions[quesIndex].selectedText = val;
+            var optionId = category.questions[quesIndex].selectedId;
+            category.questions[quesIndex].options.forEach((option) => {
+              if (option.ddId == optionId) {
+                selectedId = option.textId;
+              }
+            });
+          }
+        });
+      }
+
+      this.updateProgressData();
+      e.target.value = val;
+
+      document.getElementById(selectedId).value = val;
+    },
+
     updateProgressData: function () {
       let totalAttempted = 0;
 
@@ -419,16 +780,31 @@ Vue.component("right-panel", {
                 totalAttempted++;
               }
             }
-            if (question.type == "ddd") {
-              if (question.selectedId !== "" && question.selectedId2 !== "") {
-                totalAttempted++;
-              }
-            }
             if (question.type == "txt" || question.type == "num") {
               if (question.selectedText !== "") {
                 totalAttempted++;
               }
             }
+          });
+        }
+
+        if (data.catType == 3) {
+          data.questions.forEach((question) => {
+            // if (question.type == "dd") {
+            //   if (question.selectedId !== "") {
+            //     totalAttempted++;
+            //   }
+            // }
+            if (question.type == "ddd") {
+              if (question.selectedId !== "" && question.selectedId2 !== "") {
+                totalAttempted++;
+              }
+            }
+            // if (question.type == "txt" || question.type == "num") {
+            //   if (question.selectedText !== "") {
+            //     totalAttempted++;
+            //   }
+            // }
           });
         }
 
@@ -603,7 +979,6 @@ Vue.component("progress-panel", {
   },
   methods: {
     nextPage: function (forwardBtnVal) {
-      console.log("called");
       document.getElementById("left-panel-menu-slctn").value = forwardBtnVal;
       document.getElementById("forwardbutton").click();
     },
@@ -612,8 +987,6 @@ Vue.component("progress-panel", {
       document.getElementById("forwardbutton").click();
     },
     updateProgresbar: function (ttlAttempt) {
-      console.log("update progress bar called");
-      console.log(ttlAttempt);
       this.progressData.answrdQues = ttlAttempt;
       var percentage = parseInt(
         (ttlAttempt / Number(this.progressData.totalQues)) * 100
