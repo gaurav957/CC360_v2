@@ -595,10 +595,10 @@ Vue.component("right-panel", {
               }
             }
           }
-          console.log(category.questions, this.dd2Options);
         });
       }
       this.updateProgressData();
+      console.log(e.target.value);
       document.getElementById(e.target.value).click();
     },
 
