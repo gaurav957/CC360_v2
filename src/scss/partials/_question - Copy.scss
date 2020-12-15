@@ -1,3 +1,15 @@
+.dd2 {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #8b8b8b;
+  left: 0;
+  top: 35px;
+  display: none;
+  .option-wrapper {
+    padding: 6px 12px;
+  }
+}
+
 .question-row::before,
 .question-row::after {
   content: "";
@@ -49,10 +61,10 @@
     }
     .question-row {
       display: block;
-      width: 45%;
       .question-group {
         position: relative;
-        width: 100%;
+        width: 50%;
+        float: left;
         display: table;
         margin: 15px 0px;
         @media (max-width: 767px) {
@@ -88,13 +100,6 @@
           right: 0;
           top: 10px; /* A_B */
         }
-      }
-
-      &:nth-child(even) {
-        float: left;
-      }
-      &:nth-child(odd) {
-        float: right;
       }
     }
     @media (max-width: 768px) {
