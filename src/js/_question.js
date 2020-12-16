@@ -44,6 +44,25 @@ Vue.component("right-panel", {
                 </div>
                 <div v-html="question.afterText" class="after-text"></div>
               </div>
+              <div class="question-group" v-if="question.type=='numlist'">
+                <div class="text-label"><span v-html='question.optionName'></span> 
+                  <span class="tooltips">
+                      <div class="tooltip">
+                        <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                        <span class="tooltiptext" v-html="question.description"></span>
+                      </div>
+                  </span>
+                </div>
+                <div class="input-box">
+                
+                  <select class="cst-form-control" @change="handleNumlist(quesIndex,$event)" >
+                    <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
+                    <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId" :data-input-id="option.textId">                   
+                    </option>
+                  </select>
+                  <input type="text" class="numlist-input cst-form-control" @input="numListInput($event)" />
+                </div>
+              </div>
             </div>            
           
           </div>          
@@ -350,6 +369,26 @@ Vue.component("right-panel", {
       let scrollHeight = instance.scroll().position.y;
       document.getElementById("scroll-value").value = scrollHeight;
     },
+
+    handleNumlist:function(quesIndex,e){
+      $(e.target).find("option").each(function(index, elem) {
+        var getradio = $(this).attr("value");
+        var getText = $(this).attr("data-input-id");
+        $("#" + getradio).prop("checked", false);
+        $("#" + getText).val("");
+      })
+      var selectedOption = $(e.target).find(":selected");
+      var dataText = $(selectedOption).attr("data-input-id");
+      var dataId = $(selectedOption).attr("value");
+
+      $("#" + dataId).prop("checked", true);
+      $(e.target).parent().find("input").attr("data-text", dataText).val("");
+      
+    },
+    numListInput:function(e){
+      var getId= $(e.target).attr("data-text");
+      $("#"+getId).val(e.target.value);
+    }
   },
 });
 
