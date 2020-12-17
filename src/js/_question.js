@@ -132,7 +132,6 @@ Vue.component("right-panel", {
         .querySelectorAll(".tooltip-show")
         .forEach((elem) => elem.classList.remove("tooltip-show"));
     });
-
   },
   methods: {
     openAccordion: function (e) {
@@ -168,7 +167,7 @@ Vue.component("right-panel", {
       this.updateProgressData();
       document.getElementById(e.target.value).click();
     },
-    
+
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
       let { type, maxLength, selectedId } = question;
       let val, valArr;
@@ -186,16 +185,15 @@ Vue.component("right-panel", {
         valArr = val.split("");
         for (let i = 0; i < valArr.length; i++) {
           const ch = valArr[i];
-          if(ch==' '){
-            valArr.splice(i,1);
-            console.log(valArr)
-          }else{
+          if (ch == " ") {
+            valArr.splice(i, 1);
+            console.log(valArr);
+          } else {
             break;
           }
         }
-        
-          valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
-        
+
+        valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
       }
 
       if (Number(valArr.join("")) > question.maxRange) {
@@ -373,25 +371,26 @@ Vue.component("right-panel", {
       document.getElementById("scroll-value").value = scrollHeight;
     },
 
-    handleNumlist:function(quesIndex,e){
-      $(e.target).find("option").each(function(index, elem) {
-        var getradio = $(this).attr("value");
-        var getText = $(this).attr("data-input-id");
-        $("#" + getradio).prop("checked", false);
-        $("#" + getText).val("");
-      })
+    handleNumlist: function (quesIndex, e) {
+      $(e.target)
+        .find("option")
+        .each(function (index, elem) {
+          var getradio = $(this).attr("value");
+          var getText = $(this).attr("data-input-id");
+          $("#" + getradio).prop("checked", false);
+          $("#" + getText).val("");
+        });
       var selectedOption = $(e.target).find(":selected");
       var dataText = $(selectedOption).attr("data-input-id");
       var dataId = $(selectedOption).attr("value");
 
       $("#" + dataId).prop("checked", true);
       $(e.target).parent().find("input").attr("data-text", dataText).val("");
-      
     },
-    numListInput:function(e){
-      var getId= $(e.target).attr("data-text");
-      $("#"+getId).val(e.target.value);
-    }
+    numListInput: function (e) {
+      var getId = $(e.target).attr("data-text");
+      $("#" + getId).val(e.target.value);
+    },
   },
 });
 
@@ -400,8 +399,8 @@ Vue.component("progress-panel", {
   data: function () {
     return {
       submitStatus: false,
-      badgStatus:0, //0 for not started //1 for in progess and 2 for completed
-      badgeText:"Not started"
+      badgStatus: 0, //0 for not started //1 for in progess and 2 for completed
+      badgeText: "Not started",
     };
   },
   template: `<div class='progress-panel'>
@@ -434,7 +433,10 @@ Vue.component("progress-panel", {
   mounted: function () {
     document.querySelector("#ttl-attmpt").value = this.progressData.answrdQues;
     document.querySelector("#cur-prcntge").value = this.progressData.percentge;
-    document.querySelector("#cur-state").value = this.getBadgeIconValue(this.progressData.answrdQues,this.progressData.totalQues);
+    document.querySelector("#cur-state").value = this.getBadgeIconValue(
+      this.progressData.answrdQues,
+      this.progressData.totalQues
+    );
 
     this.updateProgresbar(this.progressData.answrdQues); // this  is called from questions above on every question attempt
   },
@@ -459,15 +461,21 @@ Vue.component("progress-panel", {
 
       document.querySelector("#ttl-attmpt").value = ttlAttempt;
       document.querySelector("#cur-prcntge").value = percentage;
-      document.querySelector("#cur-state").value = this.getBadgeIconValue(Number(ttlAttempt),Number(this.progressData.totalQues));
+      document.querySelector("#cur-state").value = this.getBadgeIconValue(
+        Number(ttlAttempt),
+        Number(this.progressData.totalQues)
+      );
 
-      if(Number(ttlAttempt) == 0){
-          this.badgeText = this.progressData.notstarted;
-          this.badgStatus = 0;
-      }else if(Number(ttlAttempt) > 0 && Number(ttlAttempt)<Number(this.progressData.totalQues)){
+      if (Number(ttlAttempt) == 0) {
+        this.badgeText = this.progressData.notstarted;
+        this.badgStatus = 0;
+      } else if (
+        Number(ttlAttempt) > 0 &&
+        Number(ttlAttempt) < Number(this.progressData.totalQues)
+      ) {
         this.badgeText = this.progressData.inprogress;
         this.badgStatus = 1;
-      }else if(Number(ttlAttempt) == Number(this.progressData.totalQues)){
+      } else if (Number(ttlAttempt) == Number(this.progressData.totalQues)) {
         this.badgeText = this.progressData.complete;
         this.badgStatus = 2;
       }
@@ -485,21 +493,16 @@ Vue.component("progress-panel", {
         this.nextPage(this.progressData.submitVal);
       }
     },
-    getBadgeIconValue:function(initialQAnsd,ttlQAnsd){
-
-      if(initialQAnsd == 0){
+    getBadgeIconValue: function (initialQAnsd, ttlQAnsd) {
+      if (initialQAnsd == 0) {
         return 0;
-      }
-      else if(initialQAnsd > 0 && initialQAnsd < ttlQAnsd){
+      } else if (initialQAnsd > 0 && initialQAnsd < ttlQAnsd) {
         return 1;
-      }
-      else if(initialQAnsd == ttlQAnsd){
+      } else if (initialQAnsd == ttlQAnsd) {
         return 2;
       }
-
     },
-  }
-
+  },
 });
 
 /*{

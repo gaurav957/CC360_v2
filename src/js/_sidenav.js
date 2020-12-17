@@ -116,11 +116,12 @@ Vue.component("left-panel", {
         }
       }
 
-      if (ttlManAttempt == ttlManQues) {
-        this.$parent.updatePrgsSubmit("enable"); //calling parent
-      } else {
-        this.$parent.updatePrgsSubmit("disable"); //calling parent
-      }
+      //this was condition when all question are answered now submimt button on last page
+      // if (ttlManAttempt == ttlManQues) {
+      //   this.$parent.updatePrgsSubmit("enable"); //calling parent
+      // } else {
+      //   this.$parent.updatePrgsSubmit("disable"); //calling parent
+      // }
     },
     PrevbtnClick: function () {
       if (!Object.entries) {
