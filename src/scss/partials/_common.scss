@@ -446,3 +446,14 @@ input[type="number"] {
   display: table;
   width: 100%;
 }
+.multiselect-row {
+  .tool-wrapper-ddd{
+    & > span{
+      &:first-child{
+        padding-right: 28px;
+        display: inline-block;
+       }
+    }
+  }
+}
+
