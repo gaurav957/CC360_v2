@@ -64,35 +64,42 @@ Vue.component("right-panel", {
                   <input type="text" :disabled="question.selectedId==''" class="numlist-input cst-form-control" :value="question.selectedText" :data-text="question.selectTextId" placeholder="%" @input="numListInput(question,quesIndex,$event)" />
                 </div>
               </div>
-              <div class="question-group cus-ddd" v-if="question.type=='ddd'">
+              <div class="question-group cus-ddd cus-ddd-wrapper" v-if="question.type=='ddd'" :index-attr="quesIndex">
+
+               <div class="multiselect-row multi-row-1">
+                  <div class="text-label">
+                    <div class="tool-wrapper-ddd">
+                      <span v-html='question.optionName'></span> 
+                      <span class="tooltips">
+                          <div class="tooltip">
+                            <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                            <span class="tooltiptext" v-html="question.description"></span>
+                          </div>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="input-box">
+                    <select id="cars" :dependent-one="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
+                      <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
+                      <option v-for="(option,optionIndex) of question.options" :data-valid="yoman(optionIndex,question.map)" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
+                      </option>
+                    </select>
+                  </div>
+               </div>
+
+               <div class="multiselect-row multi-row-2">
                 <div class="text-label">
                   <div class="tool-wrapper-ddd">
-                    <span v-html='question.optionName'></span> 
+                    <span v-html='question.optionName2'></span> 
                     <span class="tooltips">
                         <div class="tooltip">
                           <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                          <span class="tooltiptext" v-html="question.description"></span>
-                        </div>
-                    </span>
-                  </div>
-                  <div class="tool-wrapper-ddd">
-                    <span v-html='question.optionName'></span> 
-                    <span class="tooltips">
-                        <div class="tooltip">
-                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                          <span class="tooltiptext" v-html="question.description"></span>
+                          <span class="tooltiptext" v-html="question.description2"></span>
                         </div>
                     </span>
                   </div>
                 </div>
                 <div class="input-box">
-                
-                  <select id="cars" :dependent-one="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
-                    <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
-                    <option v-for="(option,optionIndex) of question.options" :data-valid="yoman(optionIndex,question.map)" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
-                    </option>
-                  </select>
-                  
                   <div class="multiselect" :id="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" >
                     <div class="multiselectBox-container">
                     <select class="cst-form-control">
@@ -100,25 +107,30 @@ Vue.component("right-panel", {
                     </select>
                     <div class="overSelect"></div>
                       <div id="checkboxes" class="cus-ddd level_1_dd">
-                        <label v-for="(option,optionIndex) of question.options2" :for="'level1_'+option.ddId" :data-attr="'level1_'+option.ddId">
-                          <input type="checkbox" :id="'level1_'+option.ddId" :data-valid="yoman(optionIndex,question.map2)"/><span v-html="option.ddName">First checkbox</span></label>
+                        <label v-for="(option,optionIndex) of question.options2" :for="'level1-'+option.ddId" :data-attr="'level1-'+option.ddId">
+                          <input type="checkbox" :id="'level1-'+option.ddId" :data-valid="yoman(optionIndex,question.map2)"/><span v-html="option.ddName">First checkbox</span></label>
                       </div>
                     </div>
                   </div>
-                  <div class="multiselect" :id="'cars3_'+quesIndex">
-                    <div class="multiselectBox-container">
-                    <select class="cst-form-control">
-                      <option v-html="question.placeholder"></option>
-                    </select>
-                    <div class="overSelect"></div>
-                      <div id="checkboxes2" class="cus-ddd level_2_dd">
-                        <label v-for="(option,optionIndex) of question.options3" :for="'level2_'+option.ddId" :data-attr="'level2_'+option.ddId">
-                          <input type="checkbox" :id="'level2_'+option.ddId"  /><span v-html="option.ddName">First checkbox</span></label>
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
+               </div>
+               <div class="multiselect-row multi-row-3">
+                 <div class="text-label">&nbsp;</div>
+                  <div class="input-box">
+                    <div class="multiselect" :id="'cars3_'+quesIndex">
+                      <div class="multiselectBox-container">
+                      <select class="cst-form-control">
+                        <option v-html="question.placeholder"></option>
+                      </select>
+                      <div class="overSelect"></div>
+                        <div id="checkboxes2" class="cus-ddd level_2_dd">
+                          <label v-for="(option,optionIndex) of question.options3" :for="'level2-'+option.ddId" :data-attr="'level2-'+option.ddId">
+                            <input type="checkbox" :id="'level2-'+option.ddId"  /><span v-html="option.ddName">First checkbox</span></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+               </div>              
               </div>
             </div>
             </div>
@@ -174,7 +186,7 @@ Vue.component("right-panel", {
       );
       // instance.scroll({ el: document.getElementById('hellomoto'), block : "center"}, 100);
       let scrollHeight = this.rightData[0].scrollPosition;
-      console.log(this.rightData);
+      //console.log(this.rightData);
       if (scrollHeight == "") {
         scrollHeight = 0;
       }
@@ -193,6 +205,8 @@ Vue.component("right-panel", {
 
     $("#checkboxes").find("label").hide(0);
     $("#checkboxes2").find("label").hide(0);
+    $(".multi-row-2").hide(0);
+    $(".multi-row-3").hide(0);
     $(document).mouseup(function(e){
       var container = $(".multiselect");
 
@@ -215,15 +229,15 @@ Vue.component("right-panel", {
     })
 
     $("#cars").change(function(){
-      console.log("called");
+      //console.log("called");
         
       var dependednt1Id = $(this).attr("dependent-one");
       var dependednt2Id = $(this).attr("dependent-two");
       var getSelected = $(this).find(":selected").attr("data-valid");
-      console.log("getSelected::"+getSelected);
+      //console.log("getSelected::"+getSelected);
       var dataValidArr = getSelected.split("|");
 
-      console.log("dataValidArr::"+dataValidArr)
+      //console.log("dataValidArr::"+dataValidArr)
 
       //remove all data
       $("#"+dependednt1Id+" #checkboxes").find("label").hide(0);
@@ -237,14 +251,30 @@ Vue.component("right-panel", {
       $("#"+dependednt2Id).find("select").append('<option selected disabled>Please select</option>');
 
       //remove from confirmitr as well
+
+      $("#"+dependednt1Id).find("input").each(function(){
+        var getId = $(this).prop("id").split("-")[1];
+          $("#"+getId).prop("checked",false);
+      })
+      $("#"+dependednt2Id).find("input").each(function(){
+        var getId = $(this).prop("id").split("-")[1];
+          $("#"+getId).prop("checked",false);
+      })
+      //remove from confirmitr as well
       //remove all data
 
-      if(dataValidArr[0]!=""){
+    if(dataValidArr[0]!=""){
 
-        dataValidArr.forEach(function(value,index){
-            $("#"+dependednt1Id+" #checkboxes").find("[data-attr=level1_"+value+"]").show(0);
-        })
-      }
+      $("#"+dependednt1Id).closest(".multiselect-row").show(0);
+
+      dataValidArr.forEach(function(value,index){
+        //console.log("maps"+value)
+        //console.log(dependednt1Id)
+          $("#"+dependednt1Id+" #checkboxes").find("[data-attr=level1-"+value+"]").show(0);
+      })
+    }else{
+      $("#"+dependednt1Id).closest(".multiselect-row").hide(0);
+    }
   })
 
 
@@ -253,8 +283,8 @@ Vue.component("right-panel", {
   $(".level_1_dd input").click(function(event){
       var getId = $(this).parent().parent().find("input:checked:last").attr("id");
       var getText = $(this).parent().parent().find("input:checked:last").parent().text();
-      console.log($(this).parent().parent().find("input:checked:last"))
-      console.log(getText)
+     // console.log($(this).parent().parent().find("input:checked:last"))
+     // console.log(getText)
       $(this).closest(".multiselect").find("select").empty();
       if(getId != undefined){
           getId = getId.split("_")[1];
@@ -273,6 +303,19 @@ Vue.component("right-panel", {
       $("#"+dd3).find("select").append('<option>Please select</option>');
 
       checkfornextDD(dd3,$(this).closest(".multiselect").prop("id"));
+
+      //console.log("kjdsfkds")
+      $(this).parent().find("input").each(function(){
+
+        var getId = $(this).prop("id").split("-")[1];
+
+        if($(this).is(":checked")){
+          $("#"+getId).prop("checked",true);
+        }else{
+          $("#"+getId).prop("checked",false);
+        }
+        
+      })
      
   })
 
@@ -292,13 +335,84 @@ Vue.component("right-panel", {
         if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
     });
 
-    console.log(uniqueNames)
+    if(uniqueNames.length != 0){
+      $("#"+thirdId).closest(".multiselect-row").show(0);
+        uniqueNames.forEach(function(el,index){
+        $("#"+thirdId).find("[data-attr=level2-"+el+"]").show(0);
+      })
 
-    uniqueNames.forEach(function(el,index){
-        $("#"+thirdId).find("[data-attr=level2_"+el+"]").show(0);
-    })
+    }else{
+      $("#"+thirdId).closest(".multiselect-row").hide(0);
+    }
+    
+
+
       
   }
+
+  $(".level_2_dd input").click(function(event){
+
+    var getId = $(this).parent().parent().find("input:checked:last").attr("id");
+      var getText = $(this).parent().parent().find("input:checked:last").parent().text();
+     // console.log($(this).parent().parent().find("input:checked:last"))
+     // console.log(getText)
+      $(this).closest(".multiselect").find("select").empty();
+      if(getId != undefined){
+          getId = getId.split("_")[1];
+          $(this).closest(".multiselect").find("select").append('<option>'+getText+'</option>');
+          // if($(this).closest(".multiselect").find("select [data-show="+getId+"]").length==0){
+             
+          // }
+      }else{
+          $(this).closest(".multiselect").find("select").append('<option>Please select</option>');
+      }
+    
+    $(this).parent().find("input").each(function(){
+
+      var getId = $(this).prop("id").split("-")[1];
+
+      if($(this).is(":checked")){
+        $("#"+getId).prop("checked",true);
+      }else{
+        $("#"+getId).prop("checked",false);
+      }
+      
+    })
+  })
+
+
+    //backpunch for dependednt dropdown
+      var vueThis = this;
+      $(".cus-ddd-wrapper").each(function(){
+        var getIndex = $(this).attr("index-attr");
+        //console.log("hello this");
+        var jsonDDD = vueThis.rightData[0].questions[getIndex];
+
+        
+        if(jsonDDD.selectedId != ""){
+          //console.log(jsonDDD.selectedId);
+          $(this).find("#cars").trigger("change");
+          if(jsonDDD.selectedId2 != ""){
+            var getlevel1selected = jsonDDD.selectedId2.split("-");
+            getlevel1selected.forEach(function(item,index){
+              $(".cus-ddd-wrapper[index-attr="+getIndex+"]").find("#level1-"+item).trigger("click")
+            })
+
+            if(jsonDDD.selectedId3 != ""){
+              var getlevel2selected = jsonDDD.selectedId3.split("-");
+              getlevel2selected.forEach(function(item,index){
+                //console.log("bc")
+                //console.log(item)
+                $(".cus-ddd-wrapper[index-attr="+getIndex+"]").find("#level2-"+item).trigger("click")
+              })
+            }
+            
+          }
+        }
+
+        $(".isopened").removeClass("isopened");
+      })
+    //backpunch for dependednt dropdown
     //All code for dependednt drop down level 2
 
   },
@@ -372,7 +486,7 @@ Vue.component("right-panel", {
           const ch = valArr[i];
           if(ch==' '){
             valArr.splice(i,1);
-            console.log(valArr)
+            //console.log(valArr)
           }else{
             break;
           }
@@ -418,21 +532,28 @@ Vue.component("right-panel", {
     },
 
     updateProgressData: function () {
+      //console.log("progress data");
+      //console.log(this.rightData)
       let totalAttempted = 0;
 
       this.rightData.forEach((data) => {
         if (data.catType == 1) {
           data.questions.forEach((question) => {
-            if (question.type == "dd") {
+            if (question.type == "dd"||question.type == "ddd") {
               if (question.selectedId !== "") {
                 totalAttempted++;
               }
             }
-            if (question.type == "txt" || question.type == "num") {
+            if (question.type == "txt" || question.type == "num"||question.type =="numlist") {
               if (question.selectedText !== "") {
                 totalAttempted++;
               }
             }
+            // if (question.type == "numlist") {
+            //   if (question.selectedText !== "") {
+            //     totalAttempted++;
+            //   }
+            // }
           });
         }
 
@@ -558,7 +679,7 @@ Vue.component("right-panel", {
     },
 
     handleNumlist:function(quesIndex,e){
-      console.log(quesIndex)
+      //console.log(quesIndex)
       $(e.target).find("option").each(function(index, elem) {
         var getradio = $(this).attr("value");
         var getText = $(this).attr("data-input-id");
@@ -648,7 +769,7 @@ Vue.component("progress-panel", {
   },
   methods: {
     nextPage: function (forwardBtnVal) {
-      console.log("called");
+      //console.log("called");
       document.getElementById("left-panel-menu-slctn").value = forwardBtnVal;
       document.getElementById("forwardbutton").click();
     },
@@ -657,8 +778,8 @@ Vue.component("progress-panel", {
       document.getElementById("forwardbutton").click();
     },
     updateProgresbar: function (ttlAttempt) {
-      console.log("update progress bar called");
-      console.log(ttlAttempt);
+      //console.log("update progress bar called");
+      //console.log(ttlAttempt);
       this.progressData.answrdQues = ttlAttempt;
       var percentage = parseInt(
         (ttlAttempt / Number(this.progressData.totalQues)) * 100
