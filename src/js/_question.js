@@ -23,7 +23,6 @@ Vue.component("right-panel", {
                   </span>
                 </div>
                 <div class="input-box">
-                
                   <select class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
                     <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
                     <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
@@ -55,7 +54,6 @@ Vue.component("right-panel", {
                   </span>
                 </div>
                 <div class="input-box">
-                
                   <select class="cst-form-control numlist-select" @change="handleNumlist(quesIndex,$event)" >
                     <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
                     <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId" :data-input-id="option.textId">                   
@@ -136,7 +134,6 @@ Vue.component("right-panel", {
             </div>
           </div>          
         </div>
-   
         <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===2">
           <h2 class="ques-heading" v-html='qType.heading'></h2>
           <div class="question-type2" >
@@ -153,7 +150,6 @@ Vue.component("right-panel", {
                   </span>
                 </div>
                 <div class="input-box">
-          
                   <input v-if="option.type=='num' || option.type=='txt'" type="text" :placeholder="option.placeholder"
                   class="cst-form-control"  :value="option.selectedText" @input="handleInput(option,qType.catType, quesIndex,optionIndex ,$event)">
                   <div  v-if="option.type=='num' || option.type=='txt'" type="text" v-html="option.afterText" class="after-text"></div>
@@ -164,7 +160,6 @@ Vue.component("right-panel", {
                 </div>
               </div>
             </div>
-            
           </div>          
         </div> 
       </div>
@@ -211,22 +206,21 @@ Vue.component("right-panel", {
       var container = $(".multiselect");
 
       // if the target of the click isn't the container nor a descendant of the container
-      if (!container.is(e.target) && container.has(e.target).length === 0) 
-      {
-          //container.hide();
-          $(".cus-ddd").removeClass("isopened");
+      if (!container.is(e.target) && container.has(e.target).length === 0) {
+        //container.hide();
+        $(".cus-ddd").removeClass("isopened");
       }
     });
 
-    $(".multiselectBox-container").click(function(){
+    $(".multiselectBox-container").click(function () {
       //$(".cus-ddd").removeClass("isopened");
 
-      if($(this).find(".cus-ddd").hasClass("isopened")){
-          $(this).find(".cus-ddd").removeClass("isopened");
-      }else{
-          $(this).find(".cus-ddd").addClass("isopened");
+      if ($(this).find(".cus-ddd").hasClass("isopened")) {
+        $(this).find(".cus-ddd").removeClass("isopened");
+      } else {
+        $(this).find(".cus-ddd").addClass("isopened");
       }
-    })
+    });
 
     $("#cars").change(function(){
       //console.log("called");
@@ -240,15 +234,31 @@ Vue.component("right-panel", {
       //console.log("dataValidArr::"+dataValidArr)
 
       //remove all data
-      $("#"+dependednt1Id+" #checkboxes").find("label").hide(0);
-      $("#"+dependednt1Id+" #checkboxes").find("input").prop("checked",false);
-      $("#"+dependednt1Id).find("select").empty();
-      $("#"+dependednt1Id).find("select").append('<option selected disabled>Please select</option>');
+      $("#" + dependednt1Id + " #checkboxes")
+        .find("label")
+        .hide(0);
+      $("#" + dependednt1Id + " #checkboxes")
+        .find("input")
+        .prop("checked", false);
+      $("#" + dependednt1Id)
+        .find("select")
+        .empty();
+      $("#" + dependednt1Id)
+        .find("select")
+        .append("<option selected disabled>Please select</option>");
 
-      $("#"+dependednt2Id+" #checkboxes2").find("label").hide(0);
-      $("#"+dependednt2Id+" #checkboxes2").find("input").prop("checked",false);
-      $("#"+dependednt2Id).find("select").empty();
-      $("#"+dependednt2Id).find("select").append('<option selected disabled>Please select</option>');
+      $("#" + dependednt2Id + " #checkboxes2")
+        .find("label")
+        .hide(0);
+      $("#" + dependednt2Id + " #checkboxes2")
+        .find("input")
+        .prop("checked", false);
+      $("#" + dependednt2Id)
+        .find("select")
+        .empty();
+      $("#" + dependednt2Id)
+        .find("select")
+        .append("<option selected disabled>Please select</option>");
 
       //remove from confirmitr as well
 
@@ -286,14 +296,20 @@ Vue.component("right-panel", {
      // console.log($(this).parent().parent().find("input:checked:last"))
      // console.log(getText)
       $(this).closest(".multiselect").find("select").empty();
-      if(getId != undefined){
-          getId = getId.split("_")[1];
-          $(this).closest(".multiselect").find("select").append('<option>'+getText+'</option>');
-          // if($(this).closest(".multiselect").find("select [data-show="+getId+"]").length==0){
-             
-          // }
-      }else{
-          $(this).closest(".multiselect").find("select").append('<option>Please select</option>');
+      if (getId != undefined) {
+        getId = getId.split("_")[1];
+        $(this)
+          .closest(".multiselect")
+          .find("select")
+          .append("<option>" + getText + "</option>");
+        // if($(this).closest(".multiselect").find("select [data-show="+getId+"]").length==0){
+
+        // }
+      } else {
+        $(this)
+          .closest(".multiselect")
+          .find("select")
+          .append("<option>Please select</option>");
       }
 
       var dd3 = $(this).closest(".multiselect").attr("dependent-two");
@@ -415,20 +431,29 @@ Vue.component("right-panel", {
     //backpunch for dependednt dropdown
     //All code for dependednt drop down level 2
 
+      console.log(uniqueNames);
+
+      uniqueNames.forEach(function (el, index) {
+        $("#" + thirdId)
+          .find("[data-attr=level2_" + el + "]")
+          .show(0);
+      });
+    }
+    //All code for dependednt drop down level 2
   },
   methods: {
-    yoman:function(optionIndex,mapping){
+    yoman: function (optionIndex, mapping) {
       //console.log(optionIndex)
       //console.log(mapping)
-      var optionIndex = optionIndex+1; //for making new tab
-      var dependecnyVar="";
-      mapping.split("|").forEach(function(value,index){
+      var optionIndex = optionIndex + 1; //for making new tab
+      var dependecnyVar = "";
+      mapping.split("|").forEach(function (value, index) {
         var indexing = value.split(":")[0];
         var dependency = value.split(":")[1];
-        if(Number(optionIndex)==Number(indexing)){
-          dependecnyVar =  dependency.replace(/-/g,"|")
+        if (Number(optionIndex) == Number(indexing)) {
+          dependecnyVar = dependency.replace(/-/g, "|");
         }
-      })
+      });
 
       return dependecnyVar;
       //console.log("yo man called");
@@ -466,7 +491,7 @@ Vue.component("right-panel", {
       this.updateProgressData();
       document.getElementById(e.target.value).click();
     },
-    
+
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
       let { type, maxLength, selectedId } = question;
       let val, valArr;
@@ -491,9 +516,8 @@ Vue.component("right-panel", {
             break;
           }
         }
-        
-          valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
-        
+
+        valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
       }
 
       if (Number(valArr.join("")) > question.maxRange) {
@@ -693,9 +717,8 @@ Vue.component("right-panel", {
       $("#" + dataId).prop("checked", true);
       $(e.target).parent().find("input").attr("data-text", dataText).val("");
       this.rightData[0].questions[quesIndex].selectedId = dataId;
-      
     },
-    numListInput:function(question,quesIndex,e){
+    numListInput: function (question, quesIndex, e) {
       let { type, maxLength, maxRange, minRange } = question;
       let val = e.target.value.trim();
       //console.log(val)
@@ -716,11 +739,11 @@ Vue.component("right-panel", {
       val = valArr.join("");
       //console.log(val)
       this.rightData[0].questions[quesIndex].selectedText = val;
-      var getId= $(e.target).attr("data-text");
+      var getId = $(e.target).attr("data-text");
       e.target.value = val;
-      $("#"+getId).val(val);
+      $("#" + getId).val(val);
       this.updateProgressData();
-    }
+    },
   },
 });
 
@@ -729,8 +752,8 @@ Vue.component("progress-panel", {
   data: function () {
     return {
       submitStatus: false,
-      badgStatus:0, //0 for not started //1 for in progess and 2 for completed
-      badgeText:"Not started"
+      badgStatus: 0, //0 for not started //1 for in progess and 2 for completed
+      badgeText: "Not started",
     };
   },
   template: `<div class='progress-panel'>
@@ -763,7 +786,10 @@ Vue.component("progress-panel", {
   mounted: function () {
     document.querySelector("#ttl-attmpt").value = this.progressData.answrdQues;
     document.querySelector("#cur-prcntge").value = this.progressData.percentge;
-    document.querySelector("#cur-state").value = this.getBadgeIconValue(this.progressData.answrdQues,this.progressData.totalQues);
+    document.querySelector("#cur-state").value = this.getBadgeIconValue(
+      this.progressData.answrdQues,
+      this.progressData.totalQues
+    );
 
     this.updateProgresbar(this.progressData.answrdQues); // this  is called from questions above on every question attempt
   },
@@ -788,15 +814,21 @@ Vue.component("progress-panel", {
 
       document.querySelector("#ttl-attmpt").value = ttlAttempt;
       document.querySelector("#cur-prcntge").value = percentage;
-      document.querySelector("#cur-state").value = this.getBadgeIconValue(Number(ttlAttempt),Number(this.progressData.totalQues));
+      document.querySelector("#cur-state").value = this.getBadgeIconValue(
+        Number(ttlAttempt),
+        Number(this.progressData.totalQues)
+      );
 
-      if(Number(ttlAttempt) == 0){
-          this.badgeText = this.progressData.notstarted;
-          this.badgStatus = 0;
-      }else if(Number(ttlAttempt) > 0 && Number(ttlAttempt)<Number(this.progressData.totalQues)){
+      if (Number(ttlAttempt) == 0) {
+        this.badgeText = this.progressData.notstarted;
+        this.badgStatus = 0;
+      } else if (
+        Number(ttlAttempt) > 0 &&
+        Number(ttlAttempt) < Number(this.progressData.totalQues)
+      ) {
         this.badgeText = this.progressData.inprogress;
         this.badgStatus = 1;
-      }else if(Number(ttlAttempt) == Number(this.progressData.totalQues)){
+      } else if (Number(ttlAttempt) == Number(this.progressData.totalQues)) {
         this.badgeText = this.progressData.complete;
         this.badgStatus = 2;
       }
@@ -814,21 +846,16 @@ Vue.component("progress-panel", {
         this.nextPage(this.progressData.submitVal);
       }
     },
-    getBadgeIconValue:function(initialQAnsd,ttlQAnsd){
-
-      if(initialQAnsd == 0){
+    getBadgeIconValue: function (initialQAnsd, ttlQAnsd) {
+      if (initialQAnsd == 0) {
         return 0;
-      }
-      else if(initialQAnsd > 0 && initialQAnsd < ttlQAnsd){
+      } else if (initialQAnsd > 0 && initialQAnsd < ttlQAnsd) {
         return 1;
-      }
-      else if(initialQAnsd == ttlQAnsd){
+      } else if (initialQAnsd == ttlQAnsd) {
         return 2;
       }
-
     },
-  }
-
+  },
 });
 
 /*{

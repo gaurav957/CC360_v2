@@ -25,6 +25,7 @@
   display: table;
   width: 100%;
   margin-bottom: 20px;
+  overflow: hidden;
   .ques-heading {
     background-color: #eeeeee;
     color: #2a2a2a;
@@ -39,18 +40,8 @@
   .question-type1 {
     padding: 20px 10px;
     display: table;
-    // width: 100%;
-    clear: both;
-    margin-left: -60px;
-    margin-right: -60px;
-    @media (min-width:1025px) and (max-width:1279px){
-      margin-left: -15px;
-      margin-right: -15px;
-    }
-    @media (max-width: 1024px) {
-      margin-left: -15px;
-      margin-right: -15px;
-    }
+    width: 100%;
+    clear: both;   
     .sub-heading {
       display: block;
       padding: 0px 0px 18px 0px;
@@ -67,22 +58,23 @@
       width: 50%;
       // float: left;
       display: inline-block;
-      vertical-align: top;
+      vertical-align: middle;
+      padding-left: 60px;
+      padding-right: 60px;
+      @media (min-width:1025px) and (max-width:1279px){
+        padding-left:15px;
+        padding-right:15px;
+      }
+      @media (max-width: 1024px) {
+        padding-left:15px;
+        padding-right:15px;
+      }
       .question-group {
         position: relative;
         width: 100%;
         display: table;
         margin: 15px 0px;
-        padding-left: 60px;
-        padding-right: 60px;
-        @media (min-width:1025px) and (max-width:1279px){
-          padding-left:15px;
-          padding-right:15px;
-        }
-        @media (max-width: 1024px) {
-          padding-left:15px;
-          padding-right:15px;
-        }
+       
         @media (max-width: 767px) {
           width: 100%;
         }
@@ -635,4 +627,19 @@
     color: #006200;
     background: #d1f4dd;
   }
+}
+.numlist-input{
+  margin-top: 5px;
+}
+.q-gutter{
+    margin-left: -60px;
+    margin-right: -60px;
+    @media (min-width:1025px) and (max-width:1279px){
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+    @media (max-width: 1024px) {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
 }
