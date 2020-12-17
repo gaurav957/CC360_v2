@@ -11,6 +11,7 @@ Vue.component("right-panel", {
           <div class="question-type1">
             <h4 class="sub-heading" v-html='qType.subheading'></h4>
             <p class="question-line" v-html='qType.categoryHeading'></p>
+            <div class="q-gutter">
             <div class="question-row" v-for="(question,quesIndex) of qType.questions">
               <div class="question-group" v-if="question.type=='dd'">
                 <div class="text-label"><span v-html='question.optionName'></span> 
@@ -55,16 +56,72 @@ Vue.component("right-panel", {
                 </div>
                 <div class="input-box">
                 
-                  <select class="cst-form-control" @change="handleNumlist(quesIndex,$event)" >
+                  <select class="cst-form-control numlist-select" @change="handleNumlist(quesIndex,$event)" >
                     <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
                     <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId" :data-input-id="option.textId">                   
                     </option>
                   </select>
-                  <input type="text" class="numlist-input cst-form-control" @input="numListInput($event)" />
+                  <input type="text" :disabled="question.selectedId==''" class="numlist-input cst-form-control" :value="question.selectedText" :data-text="question.selectTextId" placeholder="%" @input="numListInput(question,quesIndex,$event)" />
                 </div>
               </div>
-            </div>            
-          
+              <div class="question-group cus-ddd" v-if="question.type=='ddd'">
+                <div class="text-label">
+                  <div class="tool-wrapper-ddd">
+                    <span v-html='question.optionName'></span> 
+                    <span class="tooltips">
+                        <div class="tooltip">
+                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                          <span class="tooltiptext" v-html="question.description"></span>
+                        </div>
+                    </span>
+                  </div>
+                  <div class="tool-wrapper-ddd">
+                    <span v-html='question.optionName'></span> 
+                    <span class="tooltips">
+                        <div class="tooltip">
+                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                          <span class="tooltiptext" v-html="question.description"></span>
+                        </div>
+                    </span>
+                  </div>
+                </div>
+                <div class="input-box">
+                
+                  <select id="cars" :dependent-one="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
+                    <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
+                    <option v-for="(option,optionIndex) of question.options" :data-valid="yoman(optionIndex,question.map)" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
+                    </option>
+                  </select>
+                  
+                  <div class="multiselect" :id="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" >
+                    <div class="multiselectBox-container">
+                    <select class="cst-form-control">
+                      <option v-html="question.placeholder"></option>
+                    </select>
+                    <div class="overSelect"></div>
+                      <div id="checkboxes" class="cus-ddd level_1_dd">
+                        <label v-for="(option,optionIndex) of question.options2" :for="'level1_'+option.ddId" :data-attr="'level1_'+option.ddId">
+                          <input type="checkbox" :id="'level1_'+option.ddId" :data-valid="yoman(optionIndex,question.map2)"/><span v-html="option.ddName">First checkbox</span></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="multiselect" :id="'cars3_'+quesIndex">
+                    <div class="multiselectBox-container">
+                    <select class="cst-form-control">
+                      <option v-html="question.placeholder"></option>
+                    </select>
+                    <div class="overSelect"></div>
+                      <div id="checkboxes2" class="cus-ddd level_2_dd">
+                        <label v-for="(option,optionIndex) of question.options3" :for="'level2_'+option.ddId" :data-attr="'level2_'+option.ddId">
+                          <input type="checkbox" :id="'level2_'+option.ddId"  /><span v-html="option.ddName">First checkbox</span></label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            </div>
           </div>          
         </div>
    
@@ -130,8 +187,138 @@ Vue.component("right-panel", {
         .forEach((elem) => elem.classList.remove("tooltip-show"));
     });
 
+    $(".numlist-select").trigger("change");
+
+    //All code for dependednt drop down level 2
+
+    $("#checkboxes").find("label").hide(0);
+    $("#checkboxes2").find("label").hide(0);
+    $(document).mouseup(function(e){
+      var container = $(".multiselect");
+
+      // if the target of the click isn't the container nor a descendant of the container
+      if (!container.is(e.target) && container.has(e.target).length === 0) 
+      {
+          //container.hide();
+          $(".cus-ddd").removeClass("isopened");
+      }
+    });
+
+    $(".multiselectBox-container").click(function(){
+      //$(".cus-ddd").removeClass("isopened");
+
+      if($(this).find(".cus-ddd").hasClass("isopened")){
+          $(this).find(".cus-ddd").removeClass("isopened");
+      }else{
+          $(this).find(".cus-ddd").addClass("isopened");
+      }
+    })
+
+    $("#cars").change(function(){
+      console.log("called");
+        
+      var dependednt1Id = $(this).attr("dependent-one");
+      var dependednt2Id = $(this).attr("dependent-two");
+      var getSelected = $(this).find(":selected").attr("data-valid");
+      console.log("getSelected::"+getSelected);
+      var dataValidArr = getSelected.split("|");
+
+      console.log("dataValidArr::"+dataValidArr)
+
+      //remove all data
+      $("#"+dependednt1Id+" #checkboxes").find("label").hide(0);
+      $("#"+dependednt1Id+" #checkboxes").find("input").prop("checked",false);
+      $("#"+dependednt1Id).find("select").empty();
+      $("#"+dependednt1Id).find("select").append('<option selected disabled>Please select</option>');
+
+      $("#"+dependednt2Id+" #checkboxes2").find("label").hide(0);
+      $("#"+dependednt2Id+" #checkboxes2").find("input").prop("checked",false);
+      $("#"+dependednt2Id).find("select").empty();
+      $("#"+dependednt2Id).find("select").append('<option selected disabled>Please select</option>');
+
+      //remove from confirmitr as well
+      //remove all data
+
+      if(dataValidArr[0]!=""){
+
+        dataValidArr.forEach(function(value,index){
+            $("#"+dependednt1Id+" #checkboxes").find("[data-attr=level1_"+value+"]").show(0);
+        })
+      }
+  })
+
+
+  
+
+  $(".level_1_dd input").click(function(event){
+      var getId = $(this).parent().parent().find("input:checked:last").attr("id");
+      var getText = $(this).parent().parent().find("input:checked:last").parent().text();
+      console.log($(this).parent().parent().find("input:checked:last"))
+      console.log(getText)
+      $(this).closest(".multiselect").find("select").empty();
+      if(getId != undefined){
+          getId = getId.split("_")[1];
+          $(this).closest(".multiselect").find("select").append('<option>'+getText+'</option>');
+          // if($(this).closest(".multiselect").find("select [data-show="+getId+"]").length==0){
+             
+          // }
+      }else{
+          $(this).closest(".multiselect").find("select").append('<option>Please select</option>');
+      }
+
+      var dd3 = $(this).closest(".multiselect").attr("dependent-two");
+      $("#"+dd3+" #checkboxes2").find("label").hide(0);
+      $("#"+dd3+" #checkboxes2").find("input").prop("checked",false);
+      $("#"+dd3).find("select").empty();
+      $("#"+dd3).find("select").append('<option>Please select</option>');
+
+      checkfornextDD(dd3,$(this).closest(".multiselect").prop("id"));
+     
+  })
+
+  function checkfornextDD(thirdId,level1Id){
+    var totalIndex = [];
+    $("#"+level1Id).find("input:checked").each(function(){
+        var allData = $(this).attr("data-valid").split("|");
+        if(allData[0] != ""){
+            allData.forEach(function(cv,index){
+                totalIndex.push(cv);
+            })
+        }
+    })
+
+    var uniqueNames = [];
+    $.each(totalIndex, function(i, el){
+        if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+    });
+
+    console.log(uniqueNames)
+
+    uniqueNames.forEach(function(el,index){
+        $("#"+thirdId).find("[data-attr=level2_"+el+"]").show(0);
+    })
+      
+  }
+    //All code for dependednt drop down level 2
+
   },
   methods: {
+    yoman:function(optionIndex,mapping){
+      //console.log(optionIndex)
+      //console.log(mapping)
+      var optionIndex = optionIndex+1; //for making new tab
+      var dependecnyVar="";
+      mapping.split("|").forEach(function(value,index){
+        var indexing = value.split(":")[0];
+        var dependency = value.split(":")[1];
+        if(Number(optionIndex)==Number(indexing)){
+          dependecnyVar =  dependency.replace(/-/g,"|")
+        }
+      })
+
+      return dependecnyVar;
+      //console.log("yo man called");
+    },
     openAccordion: function (e) {
       e.stopPropagation();
 
@@ -371,6 +558,7 @@ Vue.component("right-panel", {
     },
 
     handleNumlist:function(quesIndex,e){
+      console.log(quesIndex)
       $(e.target).find("option").each(function(index, elem) {
         var getradio = $(this).attr("value");
         var getText = $(this).attr("data-input-id");
@@ -383,11 +571,34 @@ Vue.component("right-panel", {
 
       $("#" + dataId).prop("checked", true);
       $(e.target).parent().find("input").attr("data-text", dataText).val("");
+      this.rightData[0].questions[quesIndex].selectedId = dataId;
       
     },
-    numListInput:function(e){
+    numListInput:function(question,quesIndex,e){
+      let { type, maxLength, maxRange, minRange } = question;
+      let val = e.target.value.trim();
+      //console.log(val)
+      let valArr = val.split("");
+      if (isNaN(val)) {
+        valArr = valArr.filter((ch) => !isNaN(ch));
+      }
+      if (Number(valArr.join("")) > question.maxRange) {
+        valArr.pop();
+      }
+      if (valArr.length > maxLength) {
+        if (valArr[valArr.length - 1] == " ") {
+          valArr = valArr.join("").trim().split("");
+        } else {
+          valArr.pop();
+        }
+      }
+      val = valArr.join("");
+      //console.log(val)
+      this.rightData[0].questions[quesIndex].selectedText = val;
       var getId= $(e.target).attr("data-text");
-      $("#"+getId).val(e.target.value);
+      e.target.value = val;
+      $("#"+getId).val(val);
+      this.updateProgressData();
     }
   },
 });

@@ -51,11 +51,11 @@ var eventInputvueObj = new Vue({
     },
     disNextParent: function () {
       this.$refs.footerPanel.disableNext();
-      this.$refs.rightPanel.enabDisSubmit();
+      this.$refs.rightPanel.enabDisSubmit("enable");
     },
-    updatePrgsSubmit: function (endis) {
-      this.$refs.rightPanel.enabDisSubmit(endis);
-    },
+    // updatePrgsSubmit: function (endis) {
+    //   this.$refs.rightPanel.enabDisSubmit(endis);
+    // },
     // updateRightHeight: function () {
     //   this.$refs.rightPanel.setHeight();
     // },

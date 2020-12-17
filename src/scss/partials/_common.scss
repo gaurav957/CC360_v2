@@ -359,3 +359,42 @@ select:required:invalid {
     opacity: 0.5;
 }
 
+
+.multiselectBox-container {
+    position: relative;
+    width:100%;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.cus-ddd {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px #dadada solid;
+    width:calc(100% - 2px);
+    z-index: 1;
+}
+
+.cus-ddd label {
+    display: none;
+}
+
+.cus-ddd label:hover {
+    background-color: #1e90ff;
+}
+
+.cus-ddd.isopened{
+    display: block;
+    
+}
+
+.cus-ddd.isopened label{
+    display: block;
+}
