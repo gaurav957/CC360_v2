@@ -317,10 +317,13 @@
    }
 }
 .intro-nav{
-
   position: relative;  
   height: 20vh;
   min-height: 100px;
+  @media (min-width:1025px) and (max-width:1279px){
+    height: 23vh;
+    min-height: 108px;
+  }
   @extend %intro-header; 
   @media (max-width:1024px){
     height: 12vh;
@@ -356,6 +359,11 @@
     @media (max-width:481px){
       width: 90%;
       bottom: -60px;
+    }
+    @media (min-width:1025px) and (max-width:1279px){
+      width: 263px;
+      bottom: -35px;
+      font-size: 0.95em;
     }
      .title-banner{
         > img{
