@@ -437,10 +437,16 @@ input[type="number"] {
   display: block;
   padding: 6px 8px;
   transition: background-color 0.3s linear;
+
+  & input{
+    vertical-align: middle;
+  }
 }
 .cus-ddd.isopened label > span {
   font-size: 0.85em;
   color: #2a2a2a;
+  padding-left:5px;
+  
 }
 .multiselect-row {
   display: table;

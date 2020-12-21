@@ -12,19 +12,38 @@
   height: calc(100vh - 94px);
   @media (max-width: 1024px) {
     padding: 95px 15px 0px;
-    height: calc(100vh - 96px);
+    height: calc(100vh - 155px);
+  }
+  @media (max-width: 480px) {
+    padding: 95px 15px 0px;
+    height: calc(100vh - 200px);
   }
   @media (max-width: 1279px) {
     padding: 100px 15px 0px;
   }
 }
 
+.ques-heading {
+  background-color: #eeeeee;
+  color: #2a2a2a;
+  padding: 6px 15px;
+  margin: 0;
+  font-weight: normal;
+  border: 1px solid #eeeeee;
+  // cursor: pointer;
+  font-size: 1.18em; /* A_B */
+  position: relative;
+  margin-bottom:10px;
+}
+
 .questions-inner {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   clear: both;
   display: table;
   width: 100%;
-  margin-bottom: 20px;
+  height:100%; //from me
+  // margin-bottom: 20px;
+  padding-bottom:20px; //from me
   overflow: hidden;
   .ques-heading {
     background-color: #eeeeee;
@@ -36,6 +55,7 @@
     cursor: pointer;
     font-size: 1.18em; /* A_B */
     position: relative;
+    display: none;
   }
   .question-type1 {
     padding: 20px 10px;
@@ -272,7 +292,8 @@
   @include border-radius(50px);
   .tooltiptext {
     visibility: hidden;
-    width: 160px;
+    // width: 160px;
+    width: 200px;
     background-color: $black;
     color: $white;
     text-align: center;
@@ -282,7 +303,8 @@
     z-index: 1;
     top: 150%;
     left: -50%;
-    margin-left: -60px;
+    // margin-left: -60px;
+    margin-left: -85px;
     // @media (max-width: 767px) {
     //   left: 0;
     //   margin-left: -120px;
@@ -423,10 +445,14 @@
   //  height: calc(100vh - 300px);
   .scrollable {
     padding-right: 25px;
-    height: calc(100vh - 250px);
+    // height: calc(100vh - 250px);
+    height: calc(100vh - 285px); //from me
     overflow-y: auto;
+    // @media (max-width: 1320px) {
+    //   height: calc(100vh - 300px);
+    // }
     @media (max-width: 1024px) {
-      height: calc(100vh - 330px);
+      height: calc(100vh - 350px);
     }
     @media (max-width: 480px) {
       padding-right: 16px;
@@ -613,6 +639,9 @@
     float: left;
     width: 100px;
     margin-top: 12px;
+    @media (max-width:1025px){
+      margin-top: 0;
+    }
   }
 
   &-not {

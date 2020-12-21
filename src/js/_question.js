@@ -23,6 +23,7 @@ Vue.component("right-panel", {
                   </span>
                 </div>
                 <div class="input-box">
+                
                   <select class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
                     <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
                     <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
@@ -54,6 +55,7 @@ Vue.component("right-panel", {
                   </span>
                 </div>
                 <div class="input-box">
+                
                   <select class="cst-form-control numlist-select" @change="handleNumlist(quesIndex,$event)" >
                     <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
                     <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId" :data-input-id="option.textId">                   
@@ -77,7 +79,7 @@ Vue.component("right-panel", {
                     </div>
                   </div>
                   <div class="input-box">
-                    <select id="cars" :dependent-one="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
+                    <select id="cars" :default-placeholder2="question.placeholder2" :default-placeholder3="question.placeholder3" :dependent-one="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
                       <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
                       <option v-for="(option,optionIndex) of question.options" :data-valid="yoman(optionIndex,question.map)" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
                       </option>
@@ -98,10 +100,10 @@ Vue.component("right-panel", {
                   </div>
                 </div>
                 <div class="input-box">
-                  <div class="multiselect" :id="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" >
+                  <div class="multiselect" :id="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" :default-placeholder2="question.placeholder2" :default-placeholder3="question.placeholder3">
                     <div class="multiselectBox-container">
                     <select class="cst-form-control">
-                      <option v-html="question.placeholder"></option>
+                      <option v-html="question.placeholder2"></option>
                     </select>
                     <div class="overSelect"></div>
                       <div id="checkboxes" class="cus-ddd level_1_dd">
@@ -115,10 +117,10 @@ Vue.component("right-panel", {
                <div class="multiselect-row multi-row-3">
                  <div class="text-label">&nbsp;</div>
                   <div class="input-box">
-                    <div class="multiselect" :id="'cars3_'+quesIndex">
+                    <div class="multiselect" :id="'cars3_'+quesIndex" :default-placeholder3="question.placeholder3">
                       <div class="multiselectBox-container">
                       <select class="cst-form-control">
-                        <option v-html="question.placeholder"></option>
+                        <option v-html="question.placeholder3"></option>
                       </select>
                       <div class="overSelect"></div>
                         <div id="checkboxes2" class="cus-ddd level_2_dd">
@@ -134,6 +136,7 @@ Vue.component("right-panel", {
             </div>
           </div>          
         </div>
+   
         <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===2">
           <h2 class="ques-heading" v-html='qType.heading'></h2>
           <div class="question-type2" >
@@ -150,6 +153,7 @@ Vue.component("right-panel", {
                   </span>
                 </div>
                 <div class="input-box">
+          
                   <input v-if="option.type=='num' || option.type=='txt'" type="text" :placeholder="option.placeholder"
                   class="cst-form-control"  :value="option.selectedText" @input="handleInput(option,qType.catType, quesIndex,optionIndex ,$event)">
                   <div  v-if="option.type=='num' || option.type=='txt'" type="text" v-html="option.afterText" class="after-text"></div>
@@ -160,6 +164,7 @@ Vue.component("right-panel", {
                 </div>
               </div>
             </div>
+            
           </div>          
         </div> 
       </div>
@@ -202,31 +207,48 @@ Vue.component("right-panel", {
     $("#checkboxes2").find("label").hide(0);
     $(".multi-row-2").hide(0);
     $(".multi-row-3").hide(0);
+
     $(document).mouseup(function(e){
+      //console.log(e.target)
       var container = $(".multiselect");
+      //console.log(container.is(e.target))
+      //console.log(container.has(e.target).length)
 
       // if the target of the click isn't the container nor a descendant of the container
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        //container.hide();
-        $(".cus-ddd").removeClass("isopened");
+      if (!container.is(e.target) && container.has(e.target).length === 0) 
+      {
+          //container.hide();
+          $(".cus-ddd").removeClass("isopened");
       }
     });
 
-    $(".multiselectBox-container").click(function () {
+    // $(".overSelect").click(function(e){
+    //   $(".cus-ddd").removeClass("isopened");
+    // })
+
+    $(".multiselectBox-container").click(function(){
+      // console.log("called inside")
       //$(".cus-ddd").removeClass("isopened");
 
-      if ($(this).find(".cus-ddd").hasClass("isopened")) {
-        $(this).find(".cus-ddd").removeClass("isopened");
-      } else {
-        $(this).find(".cus-ddd").addClass("isopened");
+      $(".multiselectBox-container").not(this).find(".cus-ddd").removeClass("isopened");
+      //console.log($(this).find(".cus-ddd").hasClass("isopened"))
+
+      if($(this).find(".cus-ddd").hasClass("isopened")){
+        //console.log("if");
+          $(this).find(".cus-ddd").removeClass("isopened");
+      }else{
+        //console.log("else");
+          $(this).find(".cus-ddd").addClass("isopened");
       }
-    });
+    })
 
     $("#cars").change(function(){
       //console.log("called");
         
       var dependednt1Id = $(this).attr("dependent-one");
       var dependednt2Id = $(this).attr("dependent-two");
+      var dependednt1IdPlaceholder = $(this).attr("default-placeholder2");
+      var dependednt2IdPlaceholder = $(this).attr("default-placeholder3");
       var getSelected = $(this).find(":selected").attr("data-valid");
       //console.log("getSelected::"+getSelected);
       var dataValidArr = getSelected.split("|");
@@ -234,31 +256,15 @@ Vue.component("right-panel", {
       //console.log("dataValidArr::"+dataValidArr)
 
       //remove all data
-      $("#" + dependednt1Id + " #checkboxes")
-        .find("label")
-        .hide(0);
-      $("#" + dependednt1Id + " #checkboxes")
-        .find("input")
-        .prop("checked", false);
-      $("#" + dependednt1Id)
-        .find("select")
-        .empty();
-      $("#" + dependednt1Id)
-        .find("select")
-        .append("<option selected disabled>Please select</option>");
+      $("#"+dependednt1Id+" #checkboxes").find("label").hide(0);
+      $("#"+dependednt1Id+" #checkboxes").find("input").prop("checked",false);
+      $("#"+dependednt1Id).find("select").empty();
+      $("#"+dependednt1Id).find("select").append('<option selected disabled>'+dependednt1IdPlaceholder+'</option>');
 
-      $("#" + dependednt2Id + " #checkboxes2")
-        .find("label")
-        .hide(0);
-      $("#" + dependednt2Id + " #checkboxes2")
-        .find("input")
-        .prop("checked", false);
-      $("#" + dependednt2Id)
-        .find("select")
-        .empty();
-      $("#" + dependednt2Id)
-        .find("select")
-        .append("<option selected disabled>Please select</option>");
+      $("#"+dependednt2Id+" #checkboxes2").find("label").hide(0);
+      $("#"+dependednt2Id+" #checkboxes2").find("input").prop("checked",false);
+      $("#"+dependednt2Id).find("select").empty();
+      $("#"+dependednt2Id).find("select").append('<option selected disabled>'+dependednt2IdPlaceholder+'</option>');
 
       //remove from confirmitr as well
 
@@ -280,43 +286,46 @@ Vue.component("right-panel", {
       dataValidArr.forEach(function(value,index){
         //console.log("maps"+value)
         //console.log(dependednt1Id)
-          $("#"+dependednt1Id+" #checkboxes").find("[data-attr=level1-"+value+"]").show(0);
+          $("#"+dependednt1Id+" #checkboxes").find("[data-attr=level1-"+value+"]").css("display","block");
       })
     }else{
       $("#"+dependednt1Id).closest(".multiselect-row").hide(0);
+      $("#"+dependednt2Id).closest(".multiselect-row").hide(0);
     }
   })
 
 
   
 
+  $(".level_1_dd label").click(function(event){
+    event.stopPropagation();
+  })
   $(".level_1_dd input").click(function(event){
+    event.stopPropagation();
+      var allChecked = [];
+      var allCheckedText = [];
+      var dependednt1IdPlaceholder = $(this).closest(".multiselect").attr("default-placeholder2");
+      var dependednt2IdPlaceholder = $(this).closest(".multiselect").attr("default-placeholder3");
+
+      $(this).parent().parent().find("input:checked").each(function(index,value){
+        allChecked.push($(value).prop("id"))
+        allCheckedText.push($(value).parent().text())
+      })
       var getId = $(this).parent().parent().find("input:checked:last").attr("id");
       var getText = $(this).parent().parent().find("input:checked:last").parent().text();
-     // console.log($(this).parent().parent().find("input:checked:last"))
-     // console.log(getText)
       $(this).closest(".multiselect").find("select").empty();
-      if (getId != undefined) {
-        getId = getId.split("_")[1];
-        $(this)
-          .closest(".multiselect")
-          .find("select")
-          .append("<option>" + getText + "</option>");
-        // if($(this).closest(".multiselect").find("select [data-show="+getId+"]").length==0){
-
-        // }
-      } else {
-        $(this)
-          .closest(".multiselect")
-          .find("select")
-          .append("<option>Please select</option>");
+      if(allCheckedText.length != 0){
+          //getId = getId.split("_")[1];
+        $(this).closest(".multiselect").find("select").append('<option>'+allCheckedText+'</option>');
+      }else{
+          $(this).closest(".multiselect").find("select").append('<option>'+dependednt1IdPlaceholder+'</option>');
       }
 
       var dd3 = $(this).closest(".multiselect").attr("dependent-two");
       $("#"+dd3+" #checkboxes2").find("label").hide(0);
       $("#"+dd3+" #checkboxes2").find("input").prop("checked",false);
       $("#"+dd3).find("select").empty();
-      $("#"+dd3).find("select").append('<option>Please select</option>');
+      $("#"+dd3).find("select").append('<option>'+dependednt2IdPlaceholder+'</option>');
 
       checkfornextDD(dd3,$(this).closest(".multiselect").prop("id"));
 
@@ -354,7 +363,7 @@ Vue.component("right-panel", {
     if(uniqueNames.length != 0){
       $("#"+thirdId).closest(".multiselect-row").show(0);
         uniqueNames.forEach(function(el,index){
-        $("#"+thirdId).find("[data-attr=level2-"+el+"]").show(0);
+        $("#"+thirdId).find("[data-attr=level2-"+el+"]").css("display","block");
       })
 
     }else{
@@ -365,36 +374,57 @@ Vue.component("right-panel", {
 
       
   }
+  $(".level_2_dd label").click(function(event){
+    event.stopPropagation();
+  })
 
-  $(".level_2_dd input").click(function(event){
+    $(".level_2_dd input").click(function(event){
+      event.stopPropagation();
+      var dependednt2IdPlaceholder = $(this).closest(".multiselect").attr("default-placeholder3");
 
-    var getId = $(this).parent().parent().find("input:checked:last").attr("id");
-      var getText = $(this).parent().parent().find("input:checked:last").parent().text();
-     // console.log($(this).parent().parent().find("input:checked:last"))
-     // console.log(getText)
+      // var getId = $(this).parent().parent().find("input:checked:last").attr("id");
+      // var getText = $(this).parent().parent().find("input:checked:last").parent().text();
+      // console.log($(this).parent().parent().find("input:checked:last"))
+      // console.log(getText)
       $(this).closest(".multiselect").find("select").empty();
-      if(getId != undefined){
-          getId = getId.split("_")[1];
-          $(this).closest(".multiselect").find("select").append('<option>'+getText+'</option>');
-          // if($(this).closest(".multiselect").find("select [data-show="+getId+"]").length==0){
-             
-          // }
+      // if(getId != undefined){
+      //   getId = getId.split("_")[1];
+      //   $(this).closest(".multiselect").find("select").append('<option>'+getText+'</option>');
+      //   // if($(this).closest(".multiselect").find("select [data-show="+getId+"]").length==0){
+          
+      //   // }
+      // }else{
+      //   $(this).closest(".multiselect").find("select").append('<option>Please select</option>');
+      // }
+
+      var allChecked = [];
+      var allCheckedText = [];
+      $(this).parent().parent().find("input:checked").each(function(index,value){
+        allChecked.push($(value).prop("id"))
+        allCheckedText.push($(value).parent().text())
+      })
+      var getId = $(this).parent().parent().find("input:checked:last").attr("id");
+      var getText = $(this).parent().parent().find("input:checked:last").parent().text();
+      $(this).closest(".multiselect").find("select").empty();
+      if(allCheckedText.length != 0){
+          //getId = getId.split("_")[1];
+        $(this).closest(".multiselect").find("select").append('<option>'+allCheckedText+'</option>');
       }else{
-          $(this).closest(".multiselect").find("select").append('<option>Please select</option>');
+          $(this).closest(".multiselect").find("select").append('<option>'+dependednt2IdPlaceholder+'</option>');
       }
     
-    $(this).parent().find("input").each(function(){
+      $(this).parent().find("input").each(function(){
 
-      var getId = $(this).prop("id").split("-")[1];
+        var getId = $(this).prop("id").split("-")[1];
 
-      if($(this).is(":checked")){
-        $("#"+getId).prop("checked",true);
-      }else{
-        $("#"+getId).prop("checked",false);
-      }
+        if($(this).is(":checked")){
+          $("#"+getId).prop("checked",true);
+        }else{
+          $("#"+getId).prop("checked",false);
+        }
       
+      })
     })
-  })
 
 
     //backpunch for dependednt dropdown
@@ -431,29 +461,20 @@ Vue.component("right-panel", {
     //backpunch for dependednt dropdown
     //All code for dependednt drop down level 2
 
-      console.log(uniqueNames);
-
-      uniqueNames.forEach(function (el, index) {
-        $("#" + thirdId)
-          .find("[data-attr=level2_" + el + "]")
-          .show(0);
-      });
-    }
-    //All code for dependednt drop down level 2
   },
   methods: {
-    yoman: function (optionIndex, mapping) {
+    yoman:function(optionIndex,mapping){
       //console.log(optionIndex)
       //console.log(mapping)
-      var optionIndex = optionIndex + 1; //for making new tab
-      var dependecnyVar = "";
-      mapping.split("|").forEach(function (value, index) {
+      var optionIndex = optionIndex+1; //for making new tab
+      var dependecnyVar="";
+      mapping.split("|").forEach(function(value,index){
         var indexing = value.split(":")[0];
         var dependency = value.split(":")[1];
-        if (Number(optionIndex) == Number(indexing)) {
-          dependecnyVar = dependency.replace(/-/g, "|");
+        if(Number(optionIndex)==Number(indexing)){
+          dependecnyVar =  dependency.replace(/-/g,"|")
         }
-      });
+      })
 
       return dependecnyVar;
       //console.log("yo man called");
@@ -491,7 +512,7 @@ Vue.component("right-panel", {
       this.updateProgressData();
       document.getElementById(e.target.value).click();
     },
-
+    
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
       let { type, maxLength, selectedId } = question;
       let val, valArr;
@@ -516,8 +537,9 @@ Vue.component("right-panel", {
             break;
           }
         }
-
-        valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
+        
+          valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
+        
       }
 
       if (Number(valArr.join("")) > question.maxRange) {
@@ -717,8 +739,9 @@ Vue.component("right-panel", {
       $("#" + dataId).prop("checked", true);
       $(e.target).parent().find("input").attr("data-text", dataText).val("");
       this.rightData[0].questions[quesIndex].selectedId = dataId;
+      
     },
-    numListInput: function (question, quesIndex, e) {
+    numListInput:function(question,quesIndex,e){
       let { type, maxLength, maxRange, minRange } = question;
       let val = e.target.value.trim();
       //console.log(val)
@@ -739,11 +762,11 @@ Vue.component("right-panel", {
       val = valArr.join("");
       //console.log(val)
       this.rightData[0].questions[quesIndex].selectedText = val;
-      var getId = $(e.target).attr("data-text");
+      var getId= $(e.target).attr("data-text");
       e.target.value = val;
-      $("#" + getId).val(val);
+      $("#"+getId).val(val);
       this.updateProgressData();
-    },
+    }
   },
 });
 
@@ -752,12 +775,13 @@ Vue.component("progress-panel", {
   data: function () {
     return {
       submitStatus: false,
-      badgStatus: 0, //0 for not started //1 for in progess and 2 for completed
-      badgeText: "Not started",
+      badgStatus:0, //0 for not started //1 for in progess and 2 for completed
+      badgeText:"Not started"
     };
   },
   template: `<div class='progress-panel'>
         <div class='progress-panel-inner'>
+        <h2 class="ques-heading" v-html='progressData.heading'></h2>
           <div class="badge-status">
             <span class="badge" :class="[badgStatus==0?'badge-not':'',badgStatus==1?'badge-progress':'',badgStatus==2?'badge-completed':'']" v-html="badgeText">Not started</span>
           </div>
@@ -776,8 +800,8 @@ Vue.component("progress-panel", {
                 </div>
             </div>
             <div class='btn-outer'>
-                    <div class='btn-item save' v-html='progressData.saveTxt' @click=savePage()>Save</div>
-                    <div class='btn-item submit' :class="this.submitStatus == false?'disable':''" @click=checkSubmitStatus(this.submitStatus) v-html='progressData.submitTxt' >Submit</div>
+                    <div class='btn-item pre' v-html='progressData.saveTxt' @click=savePage()>Save</div>
+                    <div class='btn-item frw' :class="submitStatus == false?'disable':''" @click=checkSubmitStatus(submitStatus) v-html='progressData.submitTxt' >Submit</div>
             </div>
         </div>
     
@@ -786,10 +810,7 @@ Vue.component("progress-panel", {
   mounted: function () {
     document.querySelector("#ttl-attmpt").value = this.progressData.answrdQues;
     document.querySelector("#cur-prcntge").value = this.progressData.percentge;
-    document.querySelector("#cur-state").value = this.getBadgeIconValue(
-      this.progressData.answrdQues,
-      this.progressData.totalQues
-    );
+    document.querySelector("#cur-state").value = this.getBadgeIconValue(this.progressData.answrdQues,this.progressData.totalQues);
 
     this.updateProgresbar(this.progressData.answrdQues); // this  is called from questions above on every question attempt
   },
@@ -814,21 +835,15 @@ Vue.component("progress-panel", {
 
       document.querySelector("#ttl-attmpt").value = ttlAttempt;
       document.querySelector("#cur-prcntge").value = percentage;
-      document.querySelector("#cur-state").value = this.getBadgeIconValue(
-        Number(ttlAttempt),
-        Number(this.progressData.totalQues)
-      );
+      document.querySelector("#cur-state").value = this.getBadgeIconValue(Number(ttlAttempt),Number(this.progressData.totalQues));
 
-      if (Number(ttlAttempt) == 0) {
-        this.badgeText = this.progressData.notstarted;
-        this.badgStatus = 0;
-      } else if (
-        Number(ttlAttempt) > 0 &&
-        Number(ttlAttempt) < Number(this.progressData.totalQues)
-      ) {
+      if(Number(ttlAttempt) == 0){
+          this.badgeText = this.progressData.notstarted;
+          this.badgStatus = 0;
+      }else if(Number(ttlAttempt) > 0 && Number(ttlAttempt)<Number(this.progressData.totalQues)){
         this.badgeText = this.progressData.inprogress;
         this.badgStatus = 1;
-      } else if (Number(ttlAttempt) == Number(this.progressData.totalQues)) {
+      }else if(Number(ttlAttempt) == Number(this.progressData.totalQues)){
         this.badgeText = this.progressData.complete;
         this.badgStatus = 2;
       }
@@ -846,16 +861,21 @@ Vue.component("progress-panel", {
         this.nextPage(this.progressData.submitVal);
       }
     },
-    getBadgeIconValue: function (initialQAnsd, ttlQAnsd) {
-      if (initialQAnsd == 0) {
+    getBadgeIconValue:function(initialQAnsd,ttlQAnsd){
+
+      if(initialQAnsd == 0){
         return 0;
-      } else if (initialQAnsd > 0 && initialQAnsd < ttlQAnsd) {
+      }
+      else if(initialQAnsd > 0 && initialQAnsd < ttlQAnsd){
         return 1;
-      } else if (initialQAnsd == ttlQAnsd) {
+      }
+      else if(initialQAnsd == ttlQAnsd){
         return 2;
       }
+
     },
-  },
+  }
+
 });
 
 /*{
