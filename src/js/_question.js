@@ -461,6 +461,9 @@ Vue.component("right-panel", {
     //backpunch for dependednt dropdown
     //All code for dependednt drop down level 2
 
+    $(".question-row").eq(0).find(".tooltiptext").addClass("firstrow-desc");
+    $(".question-row").eq(1).find(".tooltiptext").addClass("secondrow-desc");
+
   },
   methods: {
     yoman:function(optionIndex,mapping){

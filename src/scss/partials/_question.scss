@@ -16,7 +16,7 @@
   }
   @media (max-width: 480px) {
     padding: 95px 15px 0px;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 140px);
   }
   @media (max-width: 1279px) {
     padding: 100px 15px 0px;
@@ -45,6 +45,9 @@
   // margin-bottom: 20px;
   padding-bottom:20px; //from me
   overflow: hidden;
+  @media (max-width:1024px){
+    overflow:auto;
+  }
   .ques-heading {
     background-color: #eeeeee;
     color: #2a2a2a;
@@ -347,6 +350,43 @@
         // margin-left: 44px;
       }
     }
+    &.firstrow-desc{
+      @media (max-width: 767px){
+        left: 50%;
+        margin-left: 0;
+        transform: translateX(-50%);
+        bottom: auto;
+        top: 23px;
+        width: 220px;
+      }
+      &::after {
+        @media (max-width: 767px){
+          bottom: auto;
+          top: -12px;
+          transform: rotate(-179deg);
+        }
+    }
+
+    }
+    &.firstrow-desc{
+      @media (min-width: 768px) and (max-width: 1024px) and (orientation : portrait){
+        left: 50%;
+        margin-left: 0;
+        transform: translateX(-50%);
+        bottom: auto;
+        top: 23px;
+        width: 220px;
+      }
+      &::after {
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation : portrait){
+          bottom: auto;
+          top: -12px;
+          transform: rotate(-179deg);
+        }
+    }
+
+    }
+
   }
   &:hover {
     .tooltiptext {
@@ -456,6 +496,7 @@
     }
     @media (max-width: 480px) {
       padding-right: 16px;
+      height: calc(100vh - 400px);
     }
    
   }

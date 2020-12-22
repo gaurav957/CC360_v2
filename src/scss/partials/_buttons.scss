@@ -21,6 +21,9 @@
 }
 .btn-item{
   @extend %btn-property;
+  @media (max-width:1024px){
+    font-size: 0.85em;
+  }
   &.save{  
       color:#2A2A2A;
       border: 1px solid $btn-border;
