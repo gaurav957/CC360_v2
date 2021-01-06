@@ -65,6 +65,24 @@ gulp.task("thankyou", function () {
     .pipe(gulp.dest("./dist/js/production"));
 });
 
+gulp.task("password", function () {
+  return gulp
+    .src([
+      "src/js/_headerLarge.js",
+      "src/js/_password.js",
+      "src/js/_introFooter.js",
+      "src/js/_passwordApp.js",
+    ])
+    .pipe(concat("password.js"))
+    .pipe(
+      babel({
+        presets: ["@babel/env"],
+      })
+    )
+    .pipe(gulp.dest("./dist/js/production"));
+});
+
+
 //////////////////////////////////////////////////////////////////
 
 gulp.task("questionpagecss", function () {
@@ -100,6 +118,24 @@ gulp.task("introductioncss", function () {
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(autoPrefixer({ cascade: false }))
     .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest("./dist/css"));
+});
+
+gulp.task("qualificationcss", function () {
+  return gulp
+    .src(["src/scss/qualification.scss"])
+    .pipe(sourcemaps.init())
+    .pipe(
+      compass({
+        css: "dist/css",
+        sass: "src/scss",
+        sourcemap: true
+      })
+    )
+    .pipe(sourcemaps.write({includeContent: false}))
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(autoPrefixer({ cascade: false }))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest("./dist/css"));
 });
 
@@ -150,8 +186,10 @@ gulp.task("watch", function () {
   gulp.watch("src/js/*.js", gulp.series("questionpage"));
   gulp.watch("src/js/*.js", gulp.series("introduction"));
   gulp.watch("src/js/*.js", gulp.series("thankyou"));
+  gulp.watch("src/js/*.js", gulp.series("password"));
   gulp.watch("src/scss/**/*.scss", gulp.series("questionpagecss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("introductioncss"));
+  gulp.watch("src/scss/**/*.scss", gulp.series("qualificationcss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("thankyoucss"));
 });
 
@@ -161,9 +199,11 @@ gulp.task(
     "questionpage",
     "introduction",
     "thankyou",
+    "password",
     "thankyoucss",
     "questionpagecss",
     "introductioncss",
+    "qualificationcss",
     "copyfonts",
     "copyImages",
     "copyVendorjs",

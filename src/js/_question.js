@@ -132,6 +132,49 @@ Vue.component("right-panel", {
                   </div>
                </div>              
               </div>
+              <div class="question-group" v-if="question.type=='sdd'" :index-attr="quesIndex">
+
+               <div class="multiselect-row">
+                  <div class="text-label">
+                    <div class="tool-wrapper-ddd">
+                      <span v-html='question.optionName'></span> 
+                      <span class="tooltips">
+                          <div class="tooltip">
+                            <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                            <span class="tooltiptext" v-html="question.description"></span>
+                          </div>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="input-box">
+                    <select class="cst-form-control sdd1" @change="handlesdd(qType.catType, quesIndex, null, $event,1)" >
+                      <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
+                      <option v-for="(option,optionIndex) of question.options" v-html="option.ddName" :value="option.ddId" :data-valid="yoman(optionIndex,question.map)" :selected="option.ddId==question.selectedId">                   
+                      </option>
+                    </select>
+                  </div>
+               </div>                          
+               <div class="multiselect-row multiselect-row-2">
+                  <div class="text-label">
+                    <div class="tool-wrapper-ddd">
+                      <span v-html='question.optionName2'></span> 
+                      <span class="tooltips">
+                          <div class="tooltip">
+                            <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                            <span class="tooltiptext" v-html="question.description2"></span>
+                          </div>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="input-box">
+                    <select class="cst-form-control sdd2" @change="handlesdd(qType.catType, quesIndex, null, $event,2)" >
+                      <option  disabled  v-html="question.placeholder2" :selected="question.selectedId2==''" ></option>
+                      <option v-for="(option,optionIndex) of question.options2" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId2">                   
+                      </option>
+                    </select>
+                  </div>
+               </div>                          
+              </div>
             </div>
             </div>
           </div>          
@@ -464,6 +507,23 @@ Vue.component("right-panel", {
     $(".question-row").eq(0).find(".tooltiptext").addClass("firstrow-desc");
     $(".question-row").eq(1).find(".tooltiptext").addClass("secondrow-desc");
 
+
+    //for sdd
+    
+      $(".sdd1").change(function(){
+        $(".sdd2").find("option[value]").hide(0);
+        if($(this).find(":selected").attr("data-valid")==undefined){
+          return false;
+        }
+        var validOptons = $(this).find(":selected").attr("data-valid");
+        var nextEl = $(this).closest(".question-group").find(".sdd2");
+        validOptons.split("|").forEach(function(cv,ind){
+          $(nextEl).find("option[value="+cv+"]").show(0);
+        })
+      })
+      $(".sdd1").trigger("change");
+    //for sdd
+
   },
   methods: {
     yoman:function(optionIndex,mapping){
@@ -509,6 +569,33 @@ Vue.component("right-panel", {
           if (category.catType == 2) {
             category.questions[quesIndex].options[optionIndex].selectedId =
               e.target.value;
+          }
+        });
+      }
+      this.updateProgressData();
+      document.getElementById(e.target.value).click();
+    },
+    handlesdd: function (catType, quesIndex, optionIndex, e,ddIndex) {
+      //dropdown
+      if (ddIndex == 1) {
+        this.rightData.forEach((category) => {
+          if (category.catType == 1) {
+            category.questions[quesIndex].selectedId = e.target.value;
+            category.questions[quesIndex].options2.forEach(function(currentValue, index){
+              $("#"+currentValue["ddId"]).prop("checked",false);
+            })
+            category.questions[quesIndex].selectedId2 = "";
+          }
+        });
+      }
+      if (ddIndex == 2) {
+        this.rightData.forEach((category) => {
+          if (category.catType == 1) {
+            console.log(category.questions[quesIndex].options2);
+            category.questions[quesIndex].options2.forEach(function(currentValue, index){
+              $("#"+currentValue["ddId"]).prop("checked",false);
+            })
+            category.questions[quesIndex].selectedId2 = e.target.value;
           }
         });
       }
@@ -590,6 +677,14 @@ Vue.component("right-panel", {
           data.questions.forEach((question) => {
             if (question.type == "dd"||question.type == "ddd") {
               if (question.selectedId !== "") {
+                totalAttempted++;
+              }
+            }
+            if (question.type == "sdd") {
+              if (question.selectedId !== "") {
+                totalAttempted++;
+              }
+              if (question.selectedId2 !== "") {
                 totalAttempted++;
               }
             }

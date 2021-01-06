@@ -394,7 +394,7 @@
 				"catType": 1,
 				"heading": "General",
 				"scrollPosition": "",
-				"questions": [ {
+				"questions": [{
 					"optionName": "ddd",
 					"optionName2": "Geographic",
 					"type": "ddd",
@@ -441,27 +441,58 @@
 					}],
 					"map": "1:C1_1-D1_1",
 					"map2": "3:A2_1-B3_1"
-				},{
+				}, {
+					"optionName": "option 1",
+					"optionName2": "option 2",
+					"type": "sdd",
+					"placeholder": "Please select",
+					"placeholder2": "Please select2",
+					"description": "option 1",
+					"description2": "option 2",
+					"selectedId": "SA6_1_label",
+					"selectedId2": "",
+					"options": [{
+						"ddName": "STA",
+						"ddId": "SA6_1_label"
+					}, {
+						"ddName": "STB",
+						"ddId": "SA6_2_label"
+					}],
+					"options2": [{
+						"ddName": "STA1",
+						"ddId": "SA1_1"
+					}, {
+						"ddName": "STB1",
+						"ddId": "SB1_1"
+					}, {
+						"ddName": "STC1",
+						"ddId": "SC1_1"
+					}, {
+						"ddName": "STD1",
+						"ddId": "SD1_1"
+					}],
+					"map": "1:SC1_1-SD1_1|2:SA1_1-SB1_1"
+				}, {
 					"optionName": "Geographic",
 					"type": "numlist",
 					"placeholder": "Please select",
 					"description": "Geographical region/ continent",
 					"selectedId": "1",
-					"selectedText": "12",
-					"selectTextId":"A",
+					"selectedText": "",
+					"selectTextId": "",
 					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0,
+					"maxRange": 100,
+					"minRange": 0,
 					"options": [{
 						"ddName": "Africa",
 						"ddId": "1",
-						"textId":"A"
+						"textId": "A"
 					}, {
 						"ddName": "Asia",
 						"ddId": "2",
-						"textId":"B"
+						"textId": "B"
 					}]
-				},{
+				}, {
 					"optionName": "Client name",
 					"type": "txt",
 					"placeholder": "Enter the text",
@@ -1343,8 +1374,15 @@
 	<input type="checkbox" name="checkbox" id="B3_1" />
 	<input type="checkbox" name="checkbox" id="C3_1" />
 	<input type="checkbox" name="checkbox" id="D3_1" />
+	</br>
 	
+	<input type="radio" name="radio" id="SA6_1_label" />
+	<input type="radio" name="radio" id="SA6_2_label" />
 
+	<input type="checkbox" name="checkbox" id="SA1_1" />
+	<input type="checkbox" name="checkbox" id="SB1_1" />
+	<input type="checkbox" name="checkbox" id="SC1_1" />
+	<input type="checkbox" name="checkbox" id="SD1_1" />
 	
 
 </br>
