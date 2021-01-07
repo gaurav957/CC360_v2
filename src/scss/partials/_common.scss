@@ -100,8 +100,7 @@ p {
 }
 
 .cst-container {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
   padding-left: 15px;
   padding-right: 15px;
   @media (max-width: 1024px) {
@@ -143,29 +142,51 @@ p {
     height: calc(100vh - 340px);
   }
 }
+.center-align {
+  width: 63%;
+  margin: 0px auto;
+  @media (max-width: 767px){
+      width: 100%;
+  }
+  
+}
+.email-inner{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .email-url{
+ & > a{
+      color: #0D37D6;
+      font-size: 1em;
+      transition: all 0.1s linear;
+      @media (max-width: 767px){
+          font-size: 0.90em;
+      }
+      &:hover{
+          color: #6283ff;
+        }
+    }
+   
+  }
+}
 .lbl-control {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
   color: $light-black;
 }
-.cst-form-control {
+.cst-form-control{
   width: 100%;
   border: 1px solid $input-bor;
-  height: 36px; /* A_B */
+  height: 44px;
   padding: 6px 12px;
-  font-size: 0.85em; /* A_B */
-  color: $drak-gray;
-  padding-right: 30px;
-  @include box-shadow(0, 1px, 1px, rgba(0, 0, 0, 0.075), inset);
-  @include transition(
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out
-  );
-  &:focus {
-    outline: none;
-    border-color: $lt-blue;
-    @include box-shadow(0, 0, 8px, rgba(102, 175, 233, 0.6));
+  font-size: 1em;
+  color: $drak-gray;  
+ @include box-shadow(0, 1PX, 1PX,  rgba(0,0,0,.075), inset);   
+ @include transition(border-color .15s ease-in-out, box-shadow .15s ease-in-out);
+  &:focus{
+      outline: none;
+      border-color: $lt-blue;        
+      @include box-shadow(0, 0, 8px, rgba(102,175,233,.6));
   }
 }
 .col-50 {
