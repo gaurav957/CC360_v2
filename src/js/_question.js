@@ -524,6 +524,11 @@ Vue.component("right-panel", {
       $(".sdd1").trigger("change");
     //for sdd
 
+    $(".question-row").each(function(index,element){
+      if(index%2==0){
+          $(".question-row:eq("+index+"),.question-row:eq("+[index+1]+")").wrapAll("<div class='questionrow-wrapper'></div>")
+      }
+    })
   },
   methods: {
     yoman:function(optionIndex,mapping){
