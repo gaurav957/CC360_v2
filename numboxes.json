@@ -1,0 +1,13 @@
+{
+    "optionName": "Shrinkage",
+    "description": "Client name",
+    "type": "numboxes",
+    "inputsPlaceholder": ["%","%","%"],
+    "inputsSelectedText": [0,0,0],    
+    "inputsLowerSelectedText": ["vacation","Holidays","Absent"],    
+    "inputIds": ["A1","B1","C1"],
+    "outputPlaceholder":"%",
+    "outputSelectedText": 0,
+    "outputLowerSelectedText":"Total",
+    "outputIds": "D1"
+}

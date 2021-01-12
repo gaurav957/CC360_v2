@@ -7,11 +7,12 @@
 //   clear: both;
 // }
 
-.questionrow-wrapper{
+.questionrow-wrapper:not(:last-child){
   @media (min-width: 768px) {
     border-bottom: 1px solid #dedede;
   }
 }
+
 .right-panel-wrapper {
   width: 100%;
   padding: 100px 30px 0px; /* A_B */
@@ -139,12 +140,12 @@
         }
       }
 
-      &:nth-child(even) {
-        // float: left;
-      }
-      &:nth-child(odd) {
-        // float: right;
-      }
+      // &:nth-child(even) {
+      //   // float: left;
+      // }
+      // &:nth-child(odd) {
+      //   // float: right;
+      // }
     }
     @media (max-width: 768px) {
       .question-row {
