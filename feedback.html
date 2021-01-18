@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="dist/css/feedback.css">
+    <link rel="stylesheet" href="https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/OverlayScrollbars.css">
+
+</head>
+<body>
+    <span id="jsonData" style="display: none;">
+        {
+            "logo":"https://e2eresearch.com/swteam/McKinsey/Assessment-app/mck-logo.svg",
+            "title":"Contact Center Walkthrough",
+            "heading":"Intorduction",
+            "banner":"https://e2eresearch.com/swteam/McKinsey/Assessment-app/intro-banner.png",
+            "frdBtnTxt":"Show Result",
+            "footerLogo":"https://e2eresearch.com/swteam/McKinsey/Assessment-app/mck-logo-footer.png",
+            "footerContent":"© 1996-2019 McKinsey & Company",
+            "contentImg":"https://e2eresearch.com/swteam/McKinsey/Assessment-app/intro-banner.png",
+            "content":"Please share your feedback"
+        } 
+    </span>
+
+    <div id="main-wrapper">
+        <header-large :json-data="jsonData"></header-large>
+        <feedback-content :json-data="jsonData"></feedback-content>
+        <intro-footer :json-data="jsonData"></intro-footer>
+    </div>
+    
+    <input type="submit" id="forwardbutton" style="display: none;" name="__fwd" tabindex="9998" class="navbutton confirmit-nav" onclick=" if(typeof wix=='object') {wix.nav(event, 'p1862356818');} " value="  >>  "></div>
+
+    <script src="https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/vue.js"></script>
+    <script src="https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/OverlayScrollbars.min.js"></script>
+    <script src="dist/js/production/feedback.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+         

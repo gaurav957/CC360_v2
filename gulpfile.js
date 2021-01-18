@@ -64,6 +64,22 @@ gulp.task("thankyou", function () {
     )
     .pipe(gulp.dest("./dist/js/production"));
 });
+gulp.task("feedback", function () {
+  return gulp
+    .src([
+      "src/js/_headerLarge.js",
+      "src/js/_feedbackContent.js",
+      "src/js/_introFooter.js",
+      "src/js/_feedbackApp.js",
+    ])
+    .pipe(concat("feedback.js"))
+    .pipe(
+      babel({
+        presets: ["@babel/env"],
+      })
+    )
+    .pipe(gulp.dest("./dist/js/production"));
+});
 
 gulp.task("password", function () {
   return gulp
@@ -157,6 +173,24 @@ gulp.task("thankyoucss", function () {
     .pipe(gulp.dest("./dist/css"));
 });
 
+gulp.task("feedbackcss", function () {
+  return gulp
+    .src(["src/scss/feedback.scss"])
+    .pipe(sourcemaps.init())
+    .pipe(
+      compass({
+        css: "dist/css",
+        sass: "src/scss",
+        sourcemap: true,
+      })
+    )
+    .pipe(sourcemaps.write({ includeContent: false }))
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(autoPrefixer({ cascade: false }))
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest("./dist/css"));
+});
+
 gulp.task("copyfonts", function () {
   gulp.src("./fonts/*").pipe(gulp.dest("./dist/css"));
 });
@@ -187,10 +221,12 @@ gulp.task("watch", function () {
   gulp.watch("src/js/*.js", gulp.series("introduction"));
   gulp.watch("src/js/*.js", gulp.series("thankyou"));
   gulp.watch("src/js/*.js", gulp.series("password"));
+  gulp.watch("src/js/*.js", gulp.series("feedback"));
   gulp.watch("src/scss/**/*.scss", gulp.series("questionpagecss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("introductioncss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("qualificationcss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("thankyoucss"));
+  gulp.watch("src/scss/**/*.scss", gulp.series("feedbackcss"));
 });
 
 gulp.task(
@@ -199,8 +235,10 @@ gulp.task(
     "questionpage",
     "introduction",
     "thankyou",
+    "feedback",
     "password",
     "thankyoucss",
+    "feedbackcss",
     "questionpagecss",
     "introductioncss",
     "qualificationcss",

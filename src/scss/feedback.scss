@@ -1,0 +1,65 @@
+@import "partials/variables";
+@import "./partials/mixin";
+@import "./partials/base64";
+@import "partials/common";
+@import "partials/buttons";
+@import "./partials/header";
+@import "partials/all.min";
+
+.feedback-banner {
+  text-align: center;
+  .img {
+    @extend %result;
+    width: 200px;
+    height: 190px;
+    margin: 0 auto;
+    background-size: 100% 100%;
+  }
+  .star-icon-block {
+    width: 300px;
+    margin: 15px auto;
+    svg {
+      width: 200px;
+    }
+  }
+  .feedback-block {
+    width: 300px;
+    margin: 5px auto 15px auto;
+    .feedback-input {
+      width: 100%;
+      resize: none;
+      padding: 10px;
+    }
+  }
+  .feedback-submit-block {
+    width: 300px;
+    margin: 5px auto 15px auto;
+    .btn_submit-now {
+      width: 150px;
+      cursor: pointer;
+      padding: 10px;
+      text-align: center;
+      margin: 0px auto;
+      background: #2251ff;
+      color: #fff;
+    }
+  }
+}
+
+.feedback-content {
+  margin: 40px auto 30px;
+  h3,
+  h2,
+  h4 {
+    font-weight: 500;
+  }
+  p {
+    font-size: 1em;
+  }
+}
+.st0 {
+  fill: #ffffff;
+  stroke: #aaacb4;
+  stroke-width: 1.5;
+  cursor: pointer;
+}
