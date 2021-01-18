@@ -198,7 +198,7 @@ Vue.component("right-panel", {
                 </div>
                 <div>=</div>
                 <div class="input-box final">
-                  <input :unique-id="quesIndex+'_3'" type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" />
+                  <input :unique-id="quesIndex+'_3'" type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotal(question,quesIndex+'_3', question.inputIds[2],$event)" />
                   <div v-html="question.outputLowerText"></div>
                 </div>
                 <div v-html="question.afterText" class="after-text"></div>
@@ -726,9 +726,58 @@ Vue.component("right-panel", {
       val = valArr.join("");
 
       this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
+
+      var totalSum = this.numBoxesTotal(quesIndex);
+
+      if(totalSum>maxRange){
+        valArr.pop();
+      }
+      val = valArr.join("");
+
+      this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
+      totalSum = this.numBoxesTotal(quesIndex);
+      this.rightData[0].questions[quesIndex].outputSelectedText = totalSum;
+      var totalPunch = this.rightData[0].questions[quesIndex].outputId;
       e.target.value = val;
       $("#"+punchId).val(val);
+      $("#"+totalPunch).val(totalSum);
       this.updateProgressData();
+    },
+
+    handleInputBoxesTotal:function(question, boxUnique, punchId,e){
+      let uniqueBox = boxUnique;
+      let boxIndex =  uniqueBox.split("_")[1];
+      let quesIndex = uniqueBox.split("_")[0];
+      var punchId = punchId;
+      console.log(quesIndex);
+      console.log(this.rightData[0].questions[quesIndex].inputsSelectedText[2]);
+      this.rightData[0].questions[quesIndex].inputsSelectedText[0] = 0;
+      this.rightData[0].questions[quesIndex].inputsSelectedText[1] = 0;
+      this.rightData[0].questions[quesIndex].inputsSelectedText[2]= 0;
+      console.log(this.rightData[0].questions[quesIndex].inputsSelectedText[2]);
+
+      let { maxLength, maxRange, minRange } = question;
+      let val = e.target.value.trim();
+    
+      let valArr = val.split("");
+      if (isNaN(val)) {
+        valArr = valArr.filter((ch) => !isNaN(ch));
+      }
+      if (Number(valArr.join("")) > question.maxRange) {
+        valArr.pop();
+      }
+      if (valArr.length > maxLength) {
+        if (valArr[valArr.length - 1] == " ") {
+          valArr = valArr.join("").trim().split("");
+        } else {
+          valArr.pop();
+        }
+      }
+      val = valArr.join("");
+    },
+
+    numBoxesTotal:function(quesIndex){
+      return Number(this.rightData[0].questions[quesIndex].inputsSelectedText[0])+Number(this.rightData[0].questions[quesIndex].inputsSelectedText[1])+Number(this.rightData[0].questions[quesIndex].inputsSelectedText[2]);
     },
     updateProgressData: function () {
       //console.log("progress data");
