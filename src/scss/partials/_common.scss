@@ -132,7 +132,7 @@ p {
   height: calc(100vh - 300px);
   padding-right: 15px;
   overflow-y: auto;
-  @media (min-width: 768px) and (max-width:1024px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     height: calc(100vh - 360px);
   }
   @media (max-width: 767px) {
@@ -145,48 +145,63 @@ p {
 .center-align {
   width: 63%;
   margin: 0px auto;
-  @media (max-width: 767px){
-      width: 100%;
+  @media (max-width: 767px) {
+    width: 100%;
   }
-  
 }
-.email-inner{
+.email-inner {
   margin-top: 10px;
   margin-bottom: 10px;
-  .email-url{
- & > a{
-      color: #0D37D6;
+  .email-url {
+    & > a {
+      color: #0d37d6;
       font-size: 1em;
       transition: all 0.1s linear;
-      @media (max-width: 767px){
-          font-size: 0.90em;
+      @media (max-width: 767px) {
+        font-size: 0.9em;
       }
-      &:hover{
-          color: #6283ff;
-        }
+      &:hover {
+        color: #6283ff;
+      }
     }
-   
   }
 }
+
+.offering-inner-block {
+  width: 100%;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #e7e8ea;
+  margin-top: 20px;
+  .offering-head {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+}
+
 .lbl-control {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
   color: $light-black;
 }
-.cst-form-control{
+.cst-form-control {
   width: 100%;
   border: 1px solid $input-bor;
   height: 44px;
   padding: 6px 12px;
   font-size: 1em;
-  color: $drak-gray;  
- @include box-shadow(0, 1PX, 1PX,  rgba(0,0,0,.075), inset);   
- @include transition(border-color .15s ease-in-out, box-shadow .15s ease-in-out);
-  &:focus{
-      outline: none;
-      border-color: $lt-blue;        
-      @include box-shadow(0, 0, 8px, rgba(102,175,233,.6));
+  color: $drak-gray;
+  @include box-shadow(0, 1px, 1px, rgba(0, 0, 0, 0.075), inset);
+  @include transition(
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out
+  );
+  &:focus {
+    outline: none;
+    border-color: $lt-blue;
+    @include box-shadow(0, 0, 8px, rgba(102, 175, 233, 0.6));
   }
 }
 .col-50 {
@@ -462,27 +477,26 @@ input[type="number"] {
   padding: 6px 8px;
   transition: background-color 0.3s linear;
 
-  & input{
+  & input {
     vertical-align: middle;
   }
 }
 .cus-ddd.isopened label > span {
   font-size: 0.85em;
   color: #2a2a2a;
-  padding-left:5px;
-  
+  padding-left: 5px;
 }
 .multiselect-row {
   display: table;
   width: 100%;
 }
 .multiselect-row {
-  .tool-wrapper-ddd{
-    & > span{
-      &:first-child{
+  .tool-wrapper-ddd {
+    & > span {
+      &:first-child {
         padding-right: 28px;
         display: inline-block;
-       }
+      }
     }
   }
 }
@@ -490,4 +504,3 @@ input[type="number"] {
 .multiselect-row-2 {
   margin-top: 5px;
 }
-
