@@ -1287,10 +1287,10 @@
 					"optionName": "Shrinkage",
 					"description": "Client name",
 					"type": "numboxes",
-					"inputsPlaceholder": ["%","%","%"],
-					"inputsSelectedText": ["","",""],
-					"inputsLowerText": ["vacation","Holidays","Absent"],   
-					"inputIds": ["A1","B1","C1"],
+					"inputsPlaceholder": ["%","%","%","%"],
+					"inputsSelectedText": ["","","",""],
+					"inputsLowerText": ["vacation","Holidays","Absent","super"],   
+					"inputIds": ["A1","B1","C1","E1"],
 					"outputPlaceholder":"%",
 					"outputSelectedText": 0,
 					"outputLowerText":"Total",
@@ -1299,6 +1299,41 @@
 					"maxRange":100,
 					"minRange":0
 				   
+				},{
+					"type": "2Dnumboxes",
+					"maxLength": 10,
+					"maxRange":100,
+					"minRange":0,
+					"totalOptionName": "Shrinkage",
+					"totalDescription": "Client name",
+					"totalOutputPlaceholder":"%",
+					"totalOutputSelectedText": 0,
+					"totalOutputLowerText":"Total",
+					"totalOutputId": "D1",
+					"totalbottomText":"Total is calculated value as the sum of it's components but in case user doesn't has the break-up user should also be able to fill the total value",
+					"rows":[{
+						"optionName": "Shrinkage",
+						"description": "Client name",
+						"inputsPlaceholder": ["%","%","%","%"],
+						"inputsSelectedText": ["","","",""],
+						"inputsLowerText": ["vacation","Holidays","Absent","super"],   
+						"inputIds": ["A1","B1","C1","E1"],
+						"outputPlaceholder":"%",
+						"outputSelectedText": 0,
+						"outputLowerText":"Total",
+						"outputId": "D1"
+					},{
+						"optionName": "Shrinkage2",
+						"description": "Client name2",
+						"inputsPlaceholder": ["%","%","%","%"],
+						"inputsSelectedText": ["","","",""],
+						"inputsLowerText": ["vacation","Holidays","Absent","super"],   
+						"inputIds": ["A1","B1","C1","E1"],
+						"outputPlaceholder":"%",
+						"outputSelectedText": 0,
+						"outputLowerText":"Total",
+						"outputId": "D1"
+					}]
 				}]
 			}],
 			"progressData": {
@@ -1392,6 +1427,7 @@
 	<input type="text" id="A1" />
 	<input type="text" id="B1" />
 	<input type="text" id="C1" />
+	<input type="text" id="E1" />
 	<input type="text" id="D1" />
 	
 
