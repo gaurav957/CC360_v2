@@ -192,40 +192,55 @@ Vue.component("right-panel", {
                   </template>
                 <span class="equal-sign">=</span>
                 <div class="input-box final">
-                  <input type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotal(question,quesIndex+'_3', question.outputId,$event)" />
+                  <input type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotal(question,quesIndex, question.outputId,$event)" />
                   <div v-html="question.outputLowerText"></div>
                 </div>
                 <div v-html="question.afterText" class="after-text"></div>
               </div>
               <div class="question-group" v-if="question.type=='2Dnumboxes'">
-              <div v-for="(row,rowIndex) in question.rows" >
-                  <div class="text-label"><span v-html="row.optionName"></span>
-                    <span class="tooltips">
-                      <div class="tooltip">
-                        <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                        <span class="tooltiptext" v-html="row.description"></span>
-                      </div>
-                    </span>
-                  </div>
-                  <template v-for="(item,index) in row.inputsPlaceholder">
+                <div class='2drowtable' style="display:table" v-for="(row,rowIndex) in question.rows" >
+                    <div class="text-label"><span v-html="row.optionName"></span>
+                      <span class="tooltips">
+                        <div class="tooltip">
+                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                          <span class="tooltiptext" v-html="row.description"></span>
+                        </div>
+                      </span>
+                    </div>
+                    <template v-for="(item,index) in row.inputsPlaceholder">
+                      <div class="input-box">
+                      <input :unique-id="quesIndex+'_'+rowIndex+'_'+index" type="text" class="cst-form-control" :placeholder="row.inputsPlaceholder[index]"  :value="row.inputsSelectedText[index]" @input="handle2DInputBoxes(row,quesIndex+'_'+rowIndex+'_'+index, row.inputIds[index],$event)" />
+                      <div v-html="row.inputsLowerText[index]"></div>
+                    </div>
+                    </template>
+                    <span class="equal-sign">=</span>
+                    <div class="input-box final">
+                      <input type="text" class="cst-form-control" :placeholder="row.outputPlaceholder"  :value="row.outputSelectedText" @input="handleInputBoxesTotal2D(question,quesIndex,rowIndex, row.outputId,$event)" />
+                      <div v-html="row.outputLowerText"></div>
+                    </div>
+                    <div v-html="row.afterText" class="after-text"></div>
+                </div>
+                <div class='2drowtable' style="display:table;width:100%" >
+                    <div class="text-label"><span v-html="question.totalOptionName"></span>
+                      <span class="tooltips">
+                        <div class="tooltip">
+                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                          <span class="tooltiptext" v-html="question.totalDescription"></span>
+                        </div>
+                      </span>
+                    </div>
                     <div class="input-box">
-                    <input :unique-id="quesIndex+'_'+index" type="text" class="cst-form-control" :placeholder="row.inputsPlaceholder[index]"  :value="row.inputsSelectedText[index]" @input="handle2DInputBoxes(question,quesIndex+'_'+index, question.inputIds[index],$event)" />
-                    <div v-html="row.inputsLowerText[index]"></div>
-                  </div>
-                  </template>
-                  <span class="equal-sign">=</span>
-                  <div class="input-box final">
-                    <input type="text" class="cst-form-control" :placeholder="row.outputPlaceholder"  :value="row.outputSelectedText" @input="handleInputBoxesTotal(question,quesIndex+'_3', question.outputId,$event)" />
-                    <div v-html="row.outputLowerText"></div>
-                  </div>
-                  <div v-html="row.afterText" class="after-text"></div>
-              </div>
+                      <input type="text" class="cst-form-control" :placeholder="question.totalOutputPlaceholder"  :value="question.totalOutputSelectedText" @input="handleInputBoxesTotalTotal2D(question,quesIndex,question.totalOutputId,$event)" />
+                      <div v-html="question.totalOutputLowerText"></div>
+                    </div>
+                    <div v-html="question.afterText" class="after-text"></div>
+                </div>
               </div>
             </div>
             </div>
           </div>          
         </div>
-   
+  
         <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===2">
           <h2 class="ques-heading" v-html='qType.heading'></h2>
           <div class="question-type2" >
@@ -242,7 +257,6 @@ Vue.component("right-panel", {
                   </span>
                 </div>
                 <div class="input-box">
-          
                   <input v-if="option.type=='num' || option.type=='txt'" type="text" :placeholder="option.placeholder"
                   class="cst-form-control"  :value="option.selectedText" @input="handleInput(option,qType.catType, quesIndex,optionIndex ,$event)">
                   <div  v-if="option.type=='num' || option.type=='txt'" type="text" v-html="option.afterText" class="after-text"></div>
@@ -253,13 +267,12 @@ Vue.component("right-panel", {
                 </div>
               </div>
             </div>
-            
           </div>          
         </div> 
       </div>
     </div>
   </div>
-  </div>
+</div>
   `,
   mounted: function () {
     // this.setHeight();
@@ -749,11 +762,8 @@ Vue.component("right-panel", {
       this.updateProgressData();
     },
 
-    handleInputBoxesTotal:function(question, boxUnique, punchId,e){
+    handleInputBoxesTotal:function(question, quesIndex, punchId,e){
       var vueThis = this;
-      let uniqueBox = boxUnique;
-      let boxIndex =  uniqueBox.split("_")[1];
-      let quesIndex = uniqueBox.split("_")[0];
       var punchId = punchId;
       var allidsArr = this.rightData[0].questions[quesIndex].inputIds;
       allidsArr.forEach(function(cv,index){
@@ -773,6 +783,28 @@ Vue.component("right-panel", {
       this.updateProgressData();
     },
 
+    handleInputBoxesTotal2D:function(question, quesIndex,rowIndex, punchId,e){
+      var vueThis = this;
+      var punchId = punchId;
+      var allidsArr = this.rightData[0].questions[quesIndex].rows[rowIndex].inputIds;
+
+      allidsArr.forEach(function(cv,index){
+        vueThis.rightData[0].questions[quesIndex].rows[rowIndex].inputsSelectedText[index] = '';
+        $("[unique-id="+quesIndex+'_'+[rowIndex]+'_'+[index]+"]").val('');
+        $("#"+cv).val('');
+      })
+     
+
+      let { maxLength, maxRange, minRange } = this.rightData[0].questions[quesIndex];;
+      let val = e.target.value.trim();
+
+      val = this.numBoxesFilter(val,maxRange,maxLength);
+
+      e.target.value = val;
+      $("#"+punchId).val(val);
+      this.updateProgressData();
+    },
+
     numBoxesTotal:function(quesIndex){
       var total = 0;
       this.rightData[0].questions[quesIndex].inputsSelectedText.forEach(function(cv){
@@ -781,21 +813,29 @@ Vue.component("right-panel", {
 
       return total;
     },
-    handle2DInputBoxes: function (question, boxUnique, punchId,e) {
+    numBoxesTotal2D:function(quesIndex,rowIndex){
+      var total = 0;
+      this.rightData[0].questions[quesIndex].rows[rowIndex].inputsSelectedText.forEach(function(cv){
+        total += Number(cv);
+      })
 
+      return total;
+    },
+    handle2DInputBoxes: function (question, boxUnique, punchId,e) {
       let uniqueBox = boxUnique;
-      let boxIndex =  uniqueBox.split("_")[1];
       let quesIndex = uniqueBox.split("_")[0];
+      let rowIndex =  uniqueBox.split("_")[1];
+      let boxIndex =  uniqueBox.split("_")[2];
       var punchId = punchId;
 
-      let { maxLength, maxRange, minRange } = question;
+      let { maxLength, maxRange, minRange } = this.rightData[0].questions[quesIndex];
       let val = e.target.value.trim();
 
-      val = this.numBoxesFilter(val,question.maxRange,maxLength);
+      val = this.numBoxesFilter(val,maxRange,maxLength);
 
-      this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
+      this.rightData[0].questions[quesIndex].rows[rowIndex].inputsSelectedText[boxIndex] = val;
 
-      var totalSum = this.numBoxesTotal(quesIndex);
+      var totalSum = this.numBoxesTotal2D(quesIndex,rowIndex);
 
       let valArr = val.split("");
       if(totalSum>maxRange){
@@ -803,14 +843,46 @@ Vue.component("right-panel", {
       }
       val = valArr.join("");
 
-      this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
-      totalSum = this.numBoxesTotal(quesIndex);
-      this.rightData[0].questions[quesIndex].outputSelectedText = totalSum;
-      var totalPunch = this.rightData[0].questions[quesIndex].outputId;
+      this.rightData[0].questions[quesIndex].rows[rowIndex].inputsSelectedText[boxIndex] = val;
+      totalSum = this.numBoxesTotal2D(quesIndex,rowIndex);
+      this.rightData[0].questions[quesIndex].rows[rowIndex].outputSelectedText = totalSum;
+      var totalPunch = this.rightData[0].questions[quesIndex].rows[rowIndex].outputId;
       e.target.value = val;
       $("#"+punchId).val(val);
       $("#"+totalPunch).val(totalSum);
+      this.updateNumbbox2dTotaltotal(quesIndex);
       this.updateProgressData();
+    },
+    updateNumbbox2dTotaltotal:function(quesIndex){
+      let total = 0;
+      this.rightData[0].questions[quesIndex].rows.forEach(function(cv){
+        total += Number(cv.outputSelectedText)
+      })
+      this.rightData[0].questions[quesIndex].totalOutputSelectedText = total;
+    },
+
+    handleInputBoxesTotalTotal2D:function(question,quesIndex,punchId,e){
+      let allidsArr = question.rows;
+      allidsArr.forEach(function(cv,index){
+        // console.log(cv['inputsSelectedText'])
+        cv['inputsSelectedText'].forEach(function(cv2,index2){
+          cv.inputsSelectedText[index2] = "";
+          $("[unique-id="+quesIndex+'_'+[index]+'_'+[index2]+"]").val('');
+          $("#"+cv["inputIds"][index2]).val('');
+          console.log($("#"+cv["inputIds"][index2]));
+        })
+        
+      })
+
+      let { maxLength, maxRange, minRange } = question;
+      let val = e.target.value.trim();
+
+      val = this.numBoxesFilter(val,maxRange,maxLength);
+
+      e.target.value = val;
+      $("#"+punchId).val(val);
+      this.updateProgressData();
+
     },
     updateProgressData: function () {
       //console.log("progress data");
