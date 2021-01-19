@@ -180,10 +180,15 @@ p {
   padding: 10px;
   border: 1px solid #e7e8ea;
   margin-top: 20px;
+  min-height: 130px;
   .offering-head {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 10px;
+  }
+  ul {
+    display: block;
+    padding-left: 30px;
   }
 }
 
