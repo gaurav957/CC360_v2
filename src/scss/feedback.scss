@@ -57,9 +57,19 @@
     font-size: 1em;
   }
 }
-.st0 {
+.iconstar {
   fill: #ffffff;
   stroke: #aaacb4;
   stroke-width: 1.5;
   cursor: pointer;
+}
+.iconstar.rated {
+  fill: #2251ff;
+  stroke: #2251ff;
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+.rating .iconstar.to_rate {
+  fill: #708efe;
+  stroke: #708efe;
 }
