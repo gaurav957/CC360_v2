@@ -8,6 +8,9 @@
 
 .feedback-banner {
   text-align: center;
+  .validated-error {
+    padding-left: 0px;
+  }
   .img {
     @extend %result;
     width: 200px;

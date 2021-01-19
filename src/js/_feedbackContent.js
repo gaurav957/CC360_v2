@@ -10,7 +10,8 @@ Vue.component('feedback-content', {
                <div class="cst-container">  
                     <div class="survey-intro">
                         <div class="feedback-banner">
-                            <div v-html="JsonData.content" class="feedbacks-content"></div>
+                            <div class="validated-error" v-html="JsonData.feedbackError"></div>
+                            <div v-html="JsonData.content" class="feedbacks-content"></div>                            
                             <div class="star-icon-block rating">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     viewBox="0 0 203 38.8" style="enable-background:new 0 0 203 38.8;" xml:space="preserve">
