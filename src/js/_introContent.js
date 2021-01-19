@@ -7,6 +7,7 @@ Vue.component('intro-content', {
                     </div>
                     <div class="intro-panel" v-html="JsonData.content"></div>
                     <div class="offering-panel">
+                        <div class="offerHead" v-html="JsonData.offeringHead">sddd</div>
                         <div class="col-3" v-for="offer of JsonData.offerings">
                             <div class="offering-inner-block">
                                 <div class="offering-head" v-html="offer.offeringHeading">offering</div>
