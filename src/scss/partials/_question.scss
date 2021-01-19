@@ -146,6 +146,43 @@
       // &:nth-child(odd) {
       //   // float: right;
       // }
+      &.numboxes{
+        width:100%;
+        background-color: $ee-clr;
+       
+         .question-group{
+           .text-label{
+            width: 23.2%;
+            @media (max-width:1280px) and (max-width:1600px){
+              width: 22.3%;
+            }
+            @media (max-width:767px){
+              width:50.3%;;
+            }
+           }
+           .input-box{
+             width: 24%;
+             padding-right: 5px;
+              input {
+                & + div{
+                    font-size: 0.85em;
+                }
+              }
+             @media (max-width:767px){
+              width: 87%;
+            }
+           }
+
+          
+         }
+         .equal-sign{
+          padding-top: 10px;
+          padding-right: 5px;
+          height: 43px;
+          display: table-cell;
+          float: left;
+         }
+      }
     }
     @media (max-width: 768px) {
       .question-row {
