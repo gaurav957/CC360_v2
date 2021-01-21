@@ -4,13 +4,14 @@ Vue.component('feedback-content', {
         return {
         ratedValue: "",
         inputVal : "",
+        errorStr:""
         };
     },
     template:`<div class="assessment-intro">  
                <div class="cst-container">  
                     <div class="survey-intro">
                         <div class="feedback-banner">
-                            <div class="validated-error" v-html="JsonData.feedbackError"></div>
+                            <div class="validated-error" v-html="errorStr"></div>
                             <div v-html="JsonData.content" class="feedbacks-content"></div>                            
                             <div class="star-icon-block rating">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -61,6 +62,8 @@ Vue.component('feedback-content', {
         //console.log(this.isInvalid);
         //ratedValue="";
         this.feedbackrating();
+        this.errorStr=document.getElementById("globalerror_error").innerText
+        console.log(this.errorStr)
       },
       methods: { 
         feedbackrating: function(){
@@ -80,25 +83,28 @@ Vue.component('feedback-content', {
                     vuethis.ratedValue = $(this).attr("id").split("_")[1];
                     var propVal =$(this).attr("data-info");
                     $("#"+propVal).prop("checked", true);
+                    vuethis.errorStr=""
                     //console.log(vuethis.ratedValue)
               });
 
 
         },       
         handleForward: function () {
+            //console.log(this.errorStr)
             //console.log(this.ratedValue)
-          if(this.ratedValue != ""){
-            console.log("filled")
+          //if(this.ratedValue != ""){
+            //console.log("filled")
             document.getElementById("forwardbutton").click();
-          }else{
+          //}else{
             //this.isInvalid = true;
-            console.log("error")
-          }
+            //console.log("error")
+          //}
     
         },
         handleInput:function(id, e){
             
             document.getElementById(id).value = e.target.value;
+            
             //this.JsonData.inputFields[index].inputVal = e.target.value;
         }
       },

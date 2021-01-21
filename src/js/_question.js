@@ -12,7 +12,7 @@ Vue.component("right-panel", {
             <h4 class="sub-heading" v-html='qType.subheading'></h4>
             <p class="question-line" v-html='qType.categoryHeading'></p>
             <div class="q-gutter">
-            <div class="question-row" :class="[question.type=='numboxes'?'numboxes':'',question.type=='2Dnumboxes'?'numboxes':'']"  v-for="(question,quesIndex) of qType.questions">
+            <div class="question-row" :class="[question.type=='numboxes'?'numboxes':'',question.type=='2Dnumboxes'?'numboxes':'',question.type=='NPS'?'numboxes':'']"  v-for="(question,quesIndex) of qType.questions">
               <div class="question-group" v-if="question.type=='dd'">
                 <div class="text-label"><span v-html='question.optionName'></span> 
                   <span class="tooltips">
@@ -213,7 +213,7 @@ Vue.component("right-panel", {
                 <div class="middle-inputbox-wrapper clearfix">
                   <template v-for="(item,index) in question.inputsPlaceholder">
                     <div class="middle-inputbox">
-                    <input :unique-id="quesIndex+'_'+index" type="text" class="cst-form-control" :placeholder="question.inputsPlaceholder[index]"  :value="question.inputsSelectedText[index]" @input="handleInputBoxes(question,quesIndex+'_'+index, question.inputIds[index],$event)" />
+                    <input :unique-id="quesIndex+'_'+index" type="text" class="cst-form-control yohoney" :placeholder="question.inputsPlaceholder[index]"  :value="question.inputsSelectedText[index]" @input="handleInputBoxesNPS(question,quesIndex+'_'+index, question.inputIds[index],$event)" />
                     <div v-html="question.inputsLowerText[index]"></div>
                   </div>
                   </template>
@@ -766,6 +766,43 @@ Vue.component("right-panel", {
     },
     handleInputBoxes: function (question, boxUnique, punchId,e) {
       console.log("hello 7");
+
+      let uniqueBox = boxUnique;
+      let boxIndex =  uniqueBox.split("_")[1];
+      let quesIndex = uniqueBox.split("_")[0];
+      var punchId = punchId;
+
+      let { maxLength, maxRange, minRange } = question;
+      let val = e.target.value.trim();
+
+      val = this.numBoxesFilter(val,question.maxRange,maxLength);
+
+      this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
+
+      var totalSum = this.numBoxesTotal(quesIndex);
+
+      let valArr = val.split("");
+      if(totalSum>maxRange){
+        valArr.pop();
+      }
+      val = valArr.join("");
+
+      this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
+      totalSum = this.numBoxesTotal(quesIndex);
+      this.rightData[0].questions[quesIndex].outputSelectedText = totalSum;
+      var totalPunch = this.rightData[0].questions[quesIndex].outputId;
+      e.target.value = val;
+      $("#"+punchId).val(val);
+      $("#"+totalPunch).val(totalSum);
+      this.updateProgressData();
+    },
+
+    handleInputBoxesNPS: function (question, boxUnique, punchId,e) {
+      console.log("NPS handle");
+
+      console.log(question)
+      console.log(boxUnique)
+      console.log(punchId)
 
       let uniqueBox = boxUnique;
       let boxIndex =  uniqueBox.split("_")[1];
