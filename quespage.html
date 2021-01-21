@@ -1287,10 +1287,10 @@
 					"optionName": "Shrinkage",
 					"description": "Client name",
 					"type": "numboxes",
-					"inputsPlaceholder": ["%","%","%","%"],
-					"inputsSelectedText": ["","","",""],
-					"inputsLowerText": ["vacation","Holidays","Absent","super"],   
-					"inputIds": ["A1","B1","C1","E1"],
+					"inputsPlaceholder": ["%","%","%","%","%","%","%","%","%","%","%"],
+					"inputsSelectedText": ["","","","","","","","","","",""],
+					"inputsLowerText": ["vacation","Holidays","Absent","super","super","super","super","super","super","super","super"],   
+					"inputIds": ["A1","B1","C1","E1","E1"],
 					"outputPlaceholder":"%",
 					"outputSelectedText": 0,
 					"outputLowerText":"Total",
@@ -1298,6 +1298,25 @@
 					"maxLength": 10,
 					"maxRange":100,
 					"minRange":0
+				   
+				},{
+					"optionName": "Shrinkage",
+					"description": "Client name",
+					"type": "numboxes",
+					"inputsPlaceholder": ["%","%"],
+					"inputsSelectedText": ["",""],
+					"inputsLowerText": ["vacation","Holidays"],
+					"minRange":[0,0],   
+					"maxRange":[100,100],   
+					"maxLength":[3,3],   
+					"inputIds": ["A1","B1"],
+					"outputPlaceholder":"%",
+					"outputSelectedText": 0,
+					"outputLowerText":"Total",
+					"outputId": "D1",
+					"outputMaxLength": 3,
+					"outputMaxRange":100,
+					"outputMinRange":-100
 				   
 				},{
 					"type": "2Dnumboxes",
@@ -1309,7 +1328,7 @@
 					"totalOutputPlaceholder":"%",
 					"totalOutputSelectedText": 0,
 					"totalOutputLowerText":"Total*",
-					"totalOutputId": "D1",
+					"totalOutputId": "E18",
 					"totalbottomText":"Total is calculated value as the sum of it's components but in case user doesn't has the break-up user should also be able to fill the total value",
 					"rows":[{
 						"optionName": "Shrinkage",
@@ -1362,7 +1381,8 @@
 			}
 		}
 
-    </span>
+	</span>
+	
 
 
 
@@ -1429,6 +1449,7 @@
 	<input type="text" id="C1" />
 	<input type="text" id="E1" />
 	<input type="text" id="D1" />
+	<input type="text" id="E18" />
 	
 
 </br>

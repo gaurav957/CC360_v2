@@ -152,9 +152,9 @@
        
          .question-group{
            .text-label{
-            width: 23.2%;
+            width: 24%;
             @media (max-width:1280px) and (max-width:1600px){
-              width: 22.3%;
+              width: 24%;
             }
             @media (max-width:767px){
               width:50.3%;;
@@ -170,6 +170,38 @@
               }
              @media (max-width:767px){
               width: 87%;
+            }
+           }
+           .middle-inputbox-wrapper{
+             width: 55%;
+            padding-right: 5px;
+            display: table-cell;
+              input {
+                & + div{
+                    font-size: 0.85em;
+                    padding-bottom:5px;
+                }
+              }
+             @media (max-width:767px){
+              width: 87%;
+            }
+           }
+           .middle-inputbox{
+             width:33%;
+             display: inline-table;
+           }
+           .total-inputbox{
+            display: table-cell;
+            width: 20%;
+            vertical-align: middle;
+            .final{
+              display:table-cell;
+              input {
+                & + div{
+                    font-size: 0.85em;
+                    padding-bottom:5px;
+                }
+              }
             }
            }
 
