@@ -175,7 +175,7 @@ Vue.component("right-panel", {
                   </div>
                </div>                          
               </div>
-              <div class="question-group" v-if="question.type=='numboxes'">
+              <div class="question-group mb-block" v-if="question.type=='numboxes'">
                 <div class="text-label"><span v-html="question.optionName"></span>
                   <span class="tooltips">
                     <div class="tooltip">
@@ -201,7 +201,7 @@ Vue.component("right-panel", {
                 </div>
                 <div v-html="question.afterText" class="after-text"></div>
               </div>
-              <div class="question-group" v-if="question.type=='NPS'">
+              <div class="question-group mb-block" v-if="question.type=='NPS'">
                 <div class="text-label"><span v-html="question.optionName"></span>
                   <span class="tooltips">
                     <div class="tooltip">
@@ -227,8 +227,8 @@ Vue.component("right-panel", {
                 </div>
                 <div v-html="question.afterText" class="after-text"></div>
               </div>
-              <div class="question-group" v-if="question.type=='2Dnumboxes'">
-                <div class='2drowtable' style="display:table" v-for="(row,rowIndex) in question.rows" >
+              <div class="question-group mb-block" v-if="question.type=='2Dnumboxes'">
+                <div class='twodrowtable' style="" v-for="(row,rowIndex) in question.rows" >
                     <div class="text-label"><span v-html="row.optionName"></span>
                       <span class="tooltips">
                         <div class="tooltip">
@@ -254,7 +254,7 @@ Vue.component("right-panel", {
                     </div>
                     <div v-html="row.afterText" class="after-text"></div>
                 </div>
-                <div class='2drowtable' style="display:table;width:100%" >
+                <div class='twodrowtable' style="" >
                     <div class="text-label"><span v-html="question.totalOptionName"></span>
                       <span class="tooltips">
                         <div class="tooltip">
