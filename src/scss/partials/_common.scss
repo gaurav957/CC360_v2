@@ -173,7 +173,22 @@ p {
   font-size: 18px;
   font-weight: 600;
 }
-
+.offering-panel{
+  @media (max-width:1024px){
+    .col-3{
+        width: 50%;
+    }
+  }
+  @media (max-width:599px){
+    .col-3{
+        width: 100%;
+        margin-bottom: 10px;
+        &:last-child{
+          margin-bottom: 0px;
+        }
+    }
+  }
+}
 .offering-inner-block {
   width: 100%;
   display: inline-block;

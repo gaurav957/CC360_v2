@@ -151,7 +151,16 @@
         background-color: $ee-clr;       
          .question-group{
            .text-label{
-            width: 22.6%;
+            width: 22.1%;
+            @media (min-width:1025px) and (max-width:1280px){
+              width: 21.8%;
+            }
+
+             @media (min-width:768px){
+               .tooltips{
+                top: 15px !important;
+               }
+             }
             @media (min-width:1471px) and (max-width:1600px){
               width: 22.9%;
             }
@@ -159,7 +168,7 @@
               width: 23.3%;
             }
             @media (min-width:1921px){
-              width: 23.8%;
+              width: 23.2%;
             }
             @media (max-width:767px){
               width:50.3%;;
@@ -221,6 +230,10 @@
           height: 43px;
           display: table-cell;
           float: left;
+          @media (max-width:767px){
+            display: block;
+           float: none;
+          }
          }
       }
     }
@@ -846,8 +859,11 @@
 }
 .total-inputbox{
   .final{
-    display: table!important;
-    width: 94%;
+    @media (max-width:767px){
+      display: table!important;
+      width: 99%;
+    }
+   
   }
 } 
 .tooltips{
@@ -870,6 +886,6 @@
     }
    
   }
-}
+    }
   }
 }
