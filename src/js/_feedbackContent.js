@@ -47,7 +47,7 @@ Vue.component('feedback-content', {
                             </div>
 
                             <div class="feedback-block">
-                                <textarea id="feedback_comment" name="feedback_comment" :data-info="JsonData.feedbackID" @input="handleInput(JsonData.feedbackID, $event)" class="feedback-input" rows="4" cols="20"></textarea>
+                                <textarea id="feedback_comment" name="feedback_comment" :data-info="JsonData.feedbackID" @input="handleInput(JsonData.feedbackID, $event)" class="feedback-input" rows="4" cols="20">{{JsonData.feedbackValue}}</textarea>
                             </div>
 
                             <div class="feedback-submit-block">
@@ -104,7 +104,7 @@ Vue.component('feedback-content', {
         handleInput:function(id, e){
             
             document.getElementById(id).value = e.target.value;
-            
+
             //this.JsonData.inputFields[index].inputVal = e.target.value;
         }
       },
