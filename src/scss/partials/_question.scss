@@ -137,6 +137,10 @@
           position: absolute;
           right: 0;
           top: 10px; /* A_B */
+          &.static-tooltips{
+            float:left;
+            position:static;
+          }
         }
       }
 

@@ -219,9 +219,15 @@ Vue.component("right-panel", {
                   </template>
                   </div>
                 <div class="total-inputbox clearfix">
+                  <span class="tooltips static-tooltips">
+                    <div class="tooltip">
+                      <span class="custom-infoicon"></span>
+                      <span class="tooltiptext" v-html="question.outputdescription"></span>
+                    </div>
+                  </span>
                 <span class="equal-sign">=</span>
                 <div class="final">
-                  <input type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotal(question,quesIndex, question.outputId,$event)" />
+                  <input type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotalNPS(question,quesIndex, question.outputId,$event)" />
                   <div v-html="question.outputLowerText"></div>
                 </div>
                 </div>
@@ -798,39 +804,59 @@ Vue.component("right-panel", {
     },
 
     handleInputBoxesNPS: function (question, boxUnique, punchId,e) {
-      console.log("NPS handle");
-
-      console.log(question)
-      console.log(boxUnique)
-      console.log(punchId)
 
       let uniqueBox = boxUnique;
       let boxIndex =  uniqueBox.split("_")[1];
       let quesIndex = uniqueBox.split("_")[0];
       var punchId = punchId;
 
-      let { maxLength, maxRange, minRange } = question;
+      let maxLength = question.maxLength[boxIndex];
+      let maxRange = question.maxRange[boxIndex];
+      let minRange = question.minRange[boxIndex];
+
       let val = e.target.value.trim();
 
-      val = this.numBoxesFilter(val,question.maxRange,maxLength);
+      val = this.numBoxesFilter(val,maxRange,maxLength);
 
-      this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
+      // this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
 
-      var totalSum = this.numBoxesTotal(quesIndex);
+      Vue.set(question.inputsSelectedText, boxIndex, val);
 
-      let valArr = val.split("");
-      if(totalSum>maxRange){
-        valArr.pop();
-      }
-      val = valArr.join("");
+      var totalDifference = question.inputsSelectedText[0] - question.inputsSelectedText[1];
+      question.outputSelectedText = totalDifference;
 
-      this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
-      totalSum = this.numBoxesTotal(quesIndex);
-      this.rightData[0].questions[quesIndex].outputSelectedText = totalSum;
-      var totalPunch = this.rightData[0].questions[quesIndex].outputId;
-      e.target.value = val;
       $("#"+punchId).val(val);
-      $("#"+totalPunch).val(totalSum);
+      $("#"+question.outputId).val(totalDifference);
+      this.updateProgressData();
+    },
+
+    handleInputBoxesTotalNPS: function (question, questionIndex, punchId,e) {
+      //this field can hold negative values as well
+      var punchId = punchId;
+
+      Vue.set(question.inputsSelectedText, 0, '');
+      Vue.set(question.inputsSelectedText, 1, '');
+
+      let maxLength = question.outputMaxLength;
+      let maxRange = question.outputMaxRange;
+      let minRange = question.outputMinRange;
+
+      let val = e.target.value.trim();
+
+      if(val=='-'){
+        question.outputSelectedText = '-';
+        return false;
+      }
+
+      val = this.numBoxesFilter(val,maxRange,maxLength,minRange);
+
+      // this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
+
+  
+
+      question.outputSelectedText = val;
+
+      $("#"+punchId).val(val);
       this.updateProgressData();
     },
 
@@ -1249,14 +1275,25 @@ Vue.component("right-panel", {
       $("#"+getId).val(val);
       this.updateProgressData();
     },
-    numBoxesFilter:function(val,maxRange,maxLength){
+    numBoxesFilter:function(val,maxRange,maxLength,minRange){
       let valArr = val.split("");
+
         if (isNaN(val)) {
           valArr = valArr.filter((ch) => !isNaN(ch));
         }
-        if (Number(valArr.join("")) > maxRange) {
-          valArr.pop();
-        }
+        // if (Number(valArr.join("")) > maxRange) {
+          while(Number(valArr.join("")) > maxRange){
+            valArr.pop();
+          }
+
+          if(minRange){
+            while(Number(valArr.join("")) < minRange){
+              valArr.pop();
+            }
+          }
+          
+          
+        // }
         if (valArr.length > maxLength) {
           if (valArr[valArr.length - 1] == " ") {
             valArr = valArr.join("").trim().split("");
