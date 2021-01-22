@@ -838,8 +838,11 @@
       }
     }
 .middle-inputbox{
-  width: 100% !important;
-  display: block !important;
+  @media (max-width:767px){
+    width: 100% !important;
+    display: block !important;
+  }
+  
 }
 .total-inputbox{
   .final{
@@ -848,15 +851,24 @@
   }
 } 
 .tooltips{
-  left: 49px;
-  top: -19px!important;
+  @media (max-width:767px){
+    left: 49px;
+    top: -19px!important;
+  }
+ 
   .tooltiptext{
-    width: 132px !important;
+    @media (max-width:767px){
+      width: 132px !important;
+    }
+   
   }
 }
 .twodrowtable{
   .totalfinal{
-    width: 100% !important;
+    @media (max-width:767px){
+      width: 100% !important;
+    }
+   
   }
 }
   }
