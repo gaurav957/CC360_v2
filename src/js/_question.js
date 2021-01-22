@@ -218,8 +218,8 @@ Vue.component("right-panel", {
                   </div>
                   </template>
                   </div>
-                <div class="total-inputbox clearfix">
-                  <span class="tooltips static-tooltips">
+                <div class="total-inputbox for-static-tooltip clearfix">
+                  <span class="tooltips">
                     <div class="tooltip">
                       <span class="custom-infoicon"></span>
                       <span class="tooltiptext" v-html="question.outputdescription"></span>
@@ -837,6 +837,9 @@ Vue.component("right-panel", {
       Vue.set(question.inputsSelectedText, 0, '');
       Vue.set(question.inputsSelectedText, 1, '');
 
+      $("#"+question.inputIds[0]).val('');
+      $("#"+question.inputIds[1]).val('');
+
       let maxLength = question.outputMaxLength;
       let maxRange = question.outputMaxRange;
       let minRange = question.outputMinRange;
@@ -845,14 +848,12 @@ Vue.component("right-panel", {
 
       if(val=='-'){
         question.outputSelectedText = '-';
+        $("#"+punchId).val('-');
+        this.updateProgressData();
         return false;
       }
 
       val = this.numBoxesFilter(val,maxRange,maxLength,minRange);
-
-      // this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
-
-  
 
       question.outputSelectedText = val;
 
@@ -1095,6 +1096,11 @@ Vue.component("right-panel", {
               console.log(question.outputSelectedText);
               if(question.outputSelectedText != "" && Number(question.outputSelectedText) != 0){
                 console.log("aur inside")
+                totalAttempted++;
+              }
+            }
+            if(question.type=="NPS"){
+              if(question.outputSelectedText !== "" && question.outputSelectedText !== "-"){
                 totalAttempted++;
               }
             }

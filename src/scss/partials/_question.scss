@@ -137,10 +137,6 @@
           position: absolute;
           right: 0;
           top: 10px; /* A_B */
-          &.static-tooltips{
-            float:left;
-            position:static;
-          }
         }
       }
 
@@ -221,6 +217,15 @@
                     padding-bottom:5px;
                 }
               }
+            }
+            &.for-static-tooltip{
+              position:relative;
+                .tooltips{
+                  left:-28px;
+                  top:18px;
+                  width:25px;
+
+                }
             }
            }
           .twodrowtable{
