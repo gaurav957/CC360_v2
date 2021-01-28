@@ -348,7 +348,7 @@
     font-size: 90%; /* A_B */
     color: #666; /* A_B */
     .perc-data {
-      width: 200px;
+      width: 285px;
       display: inline-block;
       @media (max-width: 1024px) {
         width: 100%;
@@ -357,7 +357,7 @@
       }
     }
     .progress-bar {
-      width: calc(80% - 200px);
+      width: calc(85% - 285px);
       display: inline-block;
       @media (max-width: 1024px) {
         width: 100%;
