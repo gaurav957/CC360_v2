@@ -37,17 +37,26 @@
       padding: 10px;
     }
   }
-  .feedback-submit-block {
-    width: 100%;
-    margin: 5px auto 15px auto;
-    .btn_submit-now {
-      width: 150px;
-      cursor: pointer;
-      padding: 10px;
-      text-align: center;
-      margin: 0px auto;
-      background: #2251ff;
-      color: #fff;
+  
+}
+
+.feedback-submit-block {
+  width: 100%;  
+  text-align: center;
+  .btn_submit-now {
+    display: inline-block;
+    width: 150px;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    margin: 0px auto;
+    background: #2251ff;
+    color: #fff;
+    @media (max-width: 480px){
+        width: 115px;
+      }
+    &:first-child{
+      margin-right: 10px;
     }
   }
 }

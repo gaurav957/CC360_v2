@@ -49,13 +49,14 @@ Vue.component('feedback-content', {
                             <div class="feedback-block">
                                 <textarea id="feedback_comment" name="feedback_comment" :data-info="JsonData.feedbackID" @input="handleInput(JsonData.feedbackID, $event)" class="feedback-input" rows="4" cols="20">{{JsonData.feedbackValue}}</textarea>
                             </div>
-                            <div class="feedback-submit-block">
-                            <div class="btn_submit-now" @click="handleBackward(JsonData.preBtnVal)" v-html="JsonData.preBtnTxt">Submit</div>
-                            <div class="btn_submit-now" @click="handleForward(JsonData.frdBtnVal)" v-html="JsonData.frdBtnTxt">Submit</div>
-                        </div>
+                            
                         </div>
                         
 
+                    </div>
+                    <div class="feedback-submit-block">
+                        <div class="btn_submit-now" @click="handleBackward(JsonData.preBtnVal)" v-html="JsonData.preBtnTxt">Submit</div>
+                        <div class="btn_submit-now" @click="handleForward(JsonData.frdBtnVal)" v-html="JsonData.frdBtnTxt">Submit</div>
                     </div>
                     
                 </div>
