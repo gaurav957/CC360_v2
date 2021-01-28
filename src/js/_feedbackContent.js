@@ -4,14 +4,14 @@ Vue.component('feedback-content', {
         return {
         ratedValue: "",
         inputVal : "",
-        errorStr:""
+        errorShow:false
         };
     },
     template:`<div class="assessment-intro">  
                <div class="cst-container">  
                     <div class="survey-intro">
                         <div class="feedback-banner">
-                            <div class="validated-error" v-html="errorStr"></div>
+                            <div class="validated-error" v-html="JsonData.errString" v-if="errorShow"></div>
                             <div v-html="JsonData.content" class="feedbacks-content"></div>                            
                             <div class="star-icon-block rating">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -49,12 +49,15 @@ Vue.component('feedback-content', {
                             <div class="feedback-block">
                                 <textarea id="feedback_comment" name="feedback_comment" :data-info="JsonData.feedbackID" @input="handleInput(JsonData.feedbackID, $event)" class="feedback-input" rows="4" cols="20">{{JsonData.feedbackValue}}</textarea>
                             </div>
-
                             <div class="feedback-submit-block">
-                                <div class="btn_submit-now" @click="handleForward">Submit</div>
-                            </div>
+                            <div class="btn_submit-now" @click="handleBackward(JsonData.preBtnVal)" v-html="JsonData.preBtnTxt">Submit</div>
+                            <div class="btn_submit-now" @click="handleForward(JsonData.frdBtnVal)" v-html="JsonData.frdBtnTxt">Submit</div>
                         </div>
+                        </div>
+                        
+
                     </div>
+                    
                 </div>
             </div>    
     `,
@@ -62,8 +65,8 @@ Vue.component('feedback-content', {
         //console.log(this.isInvalid);
         //ratedValue="";
         this.feedbackrating();
-        this.errorStr=document.getElementById("globalerror_error").innerText
-        console.log(this.errorStr)
+        // this.errorStr=document.getElementById("globalerror_error").innerText
+        // console.log(this.errorStr)
       },
       methods: { 
         feedbackrating: function(){
@@ -83,23 +86,29 @@ Vue.component('feedback-content', {
                     vuethis.ratedValue = $(this).attr("id").split("_")[1];
                     var propVal =$(this).attr("data-info");
                     $("#"+propVal).prop("checked", true);
-                    vuethis.errorStr=""
+                    vuethis.errorShow=false;
                     //console.log(vuethis.ratedValue)
               });
 
 
         },       
-        handleForward: function () {
+        handleForward: function (value) {
             //console.log(this.errorStr)
             //console.log(this.ratedValue)
-          //if(this.ratedValue != ""){
+          if(this.ratedValue != ""){
             //console.log("filled")
+            document.getElementById('navText').value = value;
             document.getElementById("forwardbutton").click();
-          //}else{
-            //this.isInvalid = true;
+          }
+          else{
+            this.errorShow = true;
             //console.log("error")
-          //}
+          }
     
+        },
+        handleBackward:function(value){
+            document.getElementById('navText').value = value;
+            document.getElementById("forwardbutton").click();
         },
         handleInput:function(id, e){
             

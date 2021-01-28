@@ -708,11 +708,13 @@ Vue.component("right-panel", {
     },
     
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
+      console.log("handle input called")
       let { type, maxLength, selectedId } = question;
       let val, valArr;
 
       if (type == "num"||type == "numboxes") {
         val = e.target.value.trim();
+        console.log(val)
         valArr = val.split("");
         if (isNaN(val)) {
           valArr = valArr.filter((ch) => !isNaN(ch));
@@ -736,7 +738,10 @@ Vue.component("right-panel", {
         
       }
 
-      if (Number(valArr.join("")) > question.maxRange) {
+      // if (Number(valArr.join("")) > question.maxRange) {
+      //   valArr.pop();
+      // }
+      while(Number(valArr.join("")) > question.maxRange){
         valArr.pop();
       }
       if (valArr.length > maxLength) {
