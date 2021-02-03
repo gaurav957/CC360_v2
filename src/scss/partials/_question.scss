@@ -231,8 +231,11 @@
           .twodrowtable{
             width: 100%;
             display: table;
-            border-bottom: 1px solid #bbb9b9;
-    margin-bottom: 10px;
+            border-bottom: 1px solid #dadada;
+            margin-bottom: 10px;
+            &:last-child{
+              border-bottom:none;
+            }
           }
          }
          .equal-sign{
