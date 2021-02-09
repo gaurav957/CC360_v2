@@ -2,159 +2,100 @@ Vue.component("right-panel", {
   props: ["rightData", "progressData", "leftData"],
   template: `
   <div class="right-panel-wrapper">
-  <div class="right-panel clearfix">
-    <progress-panel ref="prsPanel" :progress-data="progressData"></progress-panel>
-    <div class="survey-wrapper"> 
-      <div class="scrollable">
-      <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===1">
-          <h2 class="ques-heading" v-html='qType.heading'></h2>
-          <div class="question-type1">
-            <h4 class="sub-heading" v-html='qType.subheading'></h4>
-            <p class="question-line" v-html='qType.categoryHeading'></p>
-            <div class="q-gutter">
-            <div class="question-row" :class="[question.type=='numboxes'?'numboxes':'',question.type=='2Dnumboxes'?'numboxes':'',question.type=='NPS'?'numboxes':'']"  v-for="(question,quesIndex) of qType.questions">
-              <div class="question-group" v-if="question.type=='dd'">
-                <div class="text-label"><span v-html='question.optionName'></span> 
-                  <span class="tooltips">
-                      <div class="tooltip">
-                        <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                        <span class="tooltiptext" v-html="question.description"></span>
-                      </div>
-                  </span>
-                </div>
-                <div class="input-box">
-                
-                  <select class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
-                    <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
-                    <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="question-group" v-if="question.type=='txt' || question.type=='num'">
-                <div class="text-label"><span v-html="question.optionName"></span>
-                  <span class="tooltips">
-                    <div class="tooltip">
-                      <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                      <span class="tooltiptext" v-html="question.description"></span>
-                    </div>
-                  </span>
-                </div>
-                <div class="input-box">
-                  <input type="text" class="cst-form-control" :placeholder="question.placeholder" @input="handleInput(question,qType.catType,quesIndex,null ,$event)" :value="question.selectedText" />
-                </div>
-                <div v-html="question.afterText" class="after-text"></div>
-              </div>
-              <div class="question-group" v-if="question.type=='numlist'">
-                <div class="text-label"><span v-html='question.optionName'></span> 
-                  <span class="tooltips">
-                      <div class="tooltip">
-                        <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                        <span class="tooltiptext" v-html="question.description"></span>
-                      </div>
-                  </span>
-                </div>
-                <div class="input-box">
-                
-                  <select class="cst-form-control numlist-select" @change="handleNumlist(quesIndex,$event)" >
-                    <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
-                    <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId" :data-input-id="option.textId">                   
-                    </option>
-                  </select>
-                  <input type="text" :disabled="question.selectedId==''" class="numlist-input cst-form-control" :value="question.selectedText" :data-text="question.selectTextId" placeholder="%" @input="numListInput(question,quesIndex,$event)" />
-                </div>
-              </div>
-              <div class="question-group cus-ddd cus-ddd-wrapper" v-if="question.type=='ddd'" :index-attr="quesIndex">
-  
-               <div class="multiselect-row multi-row-1">
-                  <div class="text-label">
-                    <div class="tool-wrapper-ddd">
-                      <span v-html='question.optionName'></span> 
-                      <span class="tooltips">
-                          <div class="tooltip">
-                            <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                            <span class="tooltiptext" v-html="question.description"></span>
-                          </div>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="input-box">
-                    <select id="cars" :default-placeholder2="question.placeholder2" :default-placeholder3="question.placeholder3" :dependent-one="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
-                      <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
-                      <option v-for="(option,optionIndex) of question.options" :data-valid="yoman(optionIndex,question.map)" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
-                      </option>
-                    </select>
-                  </div>
-               </div>
-  
-               <div class="multiselect-row multi-row-2">
-                <div class="text-label">
-                  <div class="tool-wrapper-ddd">
-                    <span v-html='question.optionName2'></span> 
+    <div class="right-panel clearfix">
+      <progress-panel ref="prsPanel" :progress-data="progressData"></progress-panel>
+      <div class="survey-wrapper"> 
+        <div class="scrollable">
+        <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===1">
+            <h2 class="ques-heading" v-html='qType.heading'></h2>
+            <div class="question-type1">
+              <h4 class="sub-heading" v-html='qType.subheading'></h4>
+              <p class="question-line" v-html='qType.categoryHeading'></p>
+              <div class="q-gutter">
+              <div class="question-row" :class="[question.type=='numboxes'?'numboxes':'',question.type=='2Dnumboxes'?'numboxes':'',question.type=='NPS'?'numboxes':'']"  v-for="(question,quesIndex) of qType.questions">
+              <template v-if="question.type=='dd'">
+              <div class='validated-error-question' v-html="getError(question.error_id)" v-if="getError(question.error_id)"></div>
+                <div class="question-group" >
+                  <div class="text-label"><span v-html='question.optionName'></span> 
                     <span class="tooltips">
                         <div class="tooltip">
                           <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                          <span class="tooltiptext" v-html="question.description2"></span>
+                          <span class="tooltiptext" v-html="question.description"></span>
                         </div>
                     </span>
                   </div>
-                </div>
-                <div class="input-box">
-                  <div class="multiselect" :id="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" :default-placeholder2="question.placeholder2" :default-placeholder3="question.placeholder3">
-                    <div class="multiselectBox-container">
-                    <select class="cst-form-control">
-                      <option v-html="question.placeholder2"></option>
-                    </select>
-                    <div class="overSelect"></div>
-                      <div id="checkboxes" class="cus-ddd level_1_dd">
-                        <label v-for="(option,optionIndex) of question.options2" :for="'level1-'+option.ddId" :data-attr="'level1-'+option.ddId">
-                          <input type="checkbox" :id="'level1-'+option.ddId" :data-valid="yoman(optionIndex,question.map2)"/><span v-html="option.ddName">First checkbox</span></label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-               </div>
-               <div class="multiselect-row multi-row-3">
-                 <div class="text-label">&nbsp;</div>
                   <div class="input-box">
-                    <div class="multiselect" :id="'cars3_'+quesIndex" :default-placeholder3="question.placeholder3">
-                      <div class="multiselectBox-container">
-                      <select class="cst-form-control">
-                        <option v-html="question.placeholder3"></option>
-                      </select>
-                      <div class="overSelect"></div>
-                        <div id="checkboxes2" class="cus-ddd level_2_dd">
-                          <label v-for="(option,optionIndex) of question.options3" :for="'level2-'+option.ddId" :data-attr="'level2-'+option.ddId">
-                            <input type="checkbox" :id="'level2-'+option.ddId"  /><span v-html="option.ddName">First checkbox</span></label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-               </div>              
-              </div>
-              <div class="question-group" v-if="question.type=='sdd'" :index-attr="quesIndex">
-  
-               <div class="multiselect-row">
-                  <div class="text-label">
-                    <div class="tool-wrapper-ddd">
-                      <span v-html='question.optionName'></span> 
-                      <span class="tooltips">
-                          <div class="tooltip">
-                            <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                            <span class="tooltiptext" v-html="question.description"></span>
-                          </div>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="input-box">
-                    <select class="cst-form-control sdd1" @change="handlesdd(qType.catType, quesIndex, null, $event,1)" >
+                  
+                    <select class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
                       <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
-                      <option v-for="(option,optionIndex) of question.options" v-html="option.ddName" :value="option.ddId" :data-valid="yoman(optionIndex,question.map)" :selected="option.ddId==question.selectedId">                   
+                      <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
                       </option>
                     </select>
                   </div>
-               </div>                          
-               <div class="multiselect-row multiselect-row-2">
+                </div>
+                </template>
+                <template v-if="question.type=='txt' || question.type=='num'">
+                  <div class='validated-error-question' v-html="getError(question.selectedId)" v-if="getError(question.selectedId)"></div>
+                  <div class="question-group" >
+                    <div class="text-label"><span v-html="question.optionName"></span>
+                      <span class="tooltips">
+                        <div class="tooltip">
+                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                          <span class="tooltiptext" v-html="question.description"></span>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="input-box">
+                      <input type="text" class="cst-form-control" :placeholder="question.placeholder" @input="handleInput(question,qType.catType,quesIndex,null ,$event)" :value="question.selectedText" />
+                    </div>
+                    <div v-html="question.afterText" class="after-text"></div>
+                  </div>
+                </template>
+                <div class="question-group" v-if="question.type=='numlist'">
+                  <div class="text-label"><span v-html='question.optionName'></span> 
+                    <span class="tooltips">
+                        <div class="tooltip">
+                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                          <span class="tooltiptext" v-html="question.description"></span>
+                        </div>
+                    </span>
+                  </div>
+                  <div class="input-box">
+                  
+                    <select class="cst-form-control numlist-select" @change="handleNumlist(quesIndex,$event)" >
+                      <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
+                      <option v-for="option of question.options" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId" :data-input-id="option.textId">                   
+                      </option>
+                    </select>
+                    <input type="text" :disabled="question.selectedId==''" class="numlist-input cst-form-control" :value="question.selectedText" :data-text="question.selectTextId" placeholder="%" @input="numListInput(question,quesIndex,$event)" />
+                  </div>
+                </div>
+                <template v-if="question.type=='ddd'">
+                <div class='validated-error-question' v-html="getError(question.error_id)" v-if="getError(question.error_id)"></div>
+                <div class="question-group cus-ddd cus-ddd-wrapper"  :index-attr="quesIndex">
+    
+                 <div class="multiselect-row multi-row-1">
+                    <div class="text-label">
+                      <div class="tool-wrapper-ddd">
+                        <span v-html='question.optionName'></span> 
+                        <span class="tooltips">
+                            <div class="tooltip">
+                              <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                              <span class="tooltiptext" v-html="question.description"></span>
+                            </div>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="input-box">
+                      <select id="cars" :default-placeholder2="question.placeholder2" :default-placeholder3="question.placeholder3" :dependent-one="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" class="cst-form-control" @change="handleSelect(qType.catType, quesIndex, null, $event)" >
+                        <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
+                        <option v-for="(option,optionIndex) of question.options" :data-valid="yoman(optionIndex,question.map)" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId">                   
+                        </option>
+                      </select>
+                    </div>
+                 </div>
+    
+                 <div class="multiselect-row multi-row-2">
                   <div class="text-label">
                     <div class="tool-wrapper-ddd">
                       <span v-html='question.optionName2'></span> 
@@ -167,152 +108,229 @@ Vue.component("right-panel", {
                     </div>
                   </div>
                   <div class="input-box">
-                    <select class="cst-form-control sdd2" @change="handlesdd(qType.catType, quesIndex, null, $event,2)" >
-                      <option  disabled  v-html="question.placeholder2" :selected="question.selectedId2==''" ></option>
-                      <option v-for="(option,optionIndex) of question.options2" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId2">                   
-                      </option>
-                    </select>
-                  </div>
-               </div>                          
-              </div>
-              <div class="question-group mb-block" v-if="question.type=='numboxes'">
-                <div class="text-label"><span v-html="question.optionName"></span>
-                  <span class="tooltips">
-                    <div class="tooltip">
-                      <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                      <span class="tooltiptext" v-html="question.description"></span>
-                    </div>
-                  </span>
-                </div>
-                <div class="middle-inputbox-wrapper clearfix">
-                  <template v-for="(item,index) in question.inputsPlaceholder">
-                    <div class="middle-inputbox">
-                    <input :unique-id="quesIndex+'_'+index" type="text" class="cst-form-control" :placeholder="question.inputsPlaceholder[index]"  :value="question.inputsSelectedText[index]" @input="handleInputBoxes(question,quesIndex+'_'+index, question.inputIds[index],$event)" />
-                    <div v-html="question.inputsLowerText[index]"></div>
-                  </div>
-                  </template>
-                  </div>
-                <div class="total-inputbox clearfix">
-                <span class="equal-sign">=</span>
-                <div class="final">
-                  <input type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotal(question,quesIndex, question.outputId,$event)" />
-                  <div v-html="question.outputLowerText"></div>
-                </div>
-                </div>
-                <div v-html="question.afterText" class="after-text"></div>
-              </div>
-              <div class="question-group mb-block" v-if="question.type=='NPS'">
-                <div class="text-label"><span v-html="question.optionName"></span>
-                  <span class="tooltips">
-                    <div class="tooltip">
-                      <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                      <span class="tooltiptext" v-html="question.description"></span>
-                    </div>
-                  </span>
-                </div>
-                <div class="middle-inputbox-wrapper clearfix">
-                  <template v-for="(item,index) in question.inputsPlaceholder">
-                    <div class="middle-inputbox">
-                    <input :unique-id="quesIndex+'_'+index" type="text" class="cst-form-control yohoney" :placeholder="question.inputsPlaceholder[index]"  :value="question.inputsSelectedText[index]" @input="handleInputBoxesNPS(question,quesIndex+'_'+index, question.inputIds[index],$event)" />
-                    <div v-html="question.inputsLowerText[index]"></div>
-                  </div>
-                  </template>
-                  </div>
-                <div class="total-inputbox for-static-tooltip clearfix">
-                  <span class="tooltips">
-                    <div class="tooltip">
-                      <span class="custom-infoicon"></span>
-                      <span class="tooltiptext" v-html="question.outputdescription"></span>
-                    </div>
-                  </span>
-                <span class="equal-sign">=</span>
-                <div class="final">
-                  <input type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotalNPS(question,quesIndex, question.outputId,$event)" />
-                  <div v-html="question.outputLowerText"></div>
-                </div>
-                </div>
-                <div v-html="question.afterText" class="after-text"></div>
-              </div>
-              <div class="question-group mb-block" v-if="question.type=='2Dnumboxes'">
-                <div class='twodrowtable' style="" v-for="(row,rowIndex) in question.rows" >
-                    <div class="text-label"><span v-html="row.optionName"></span>
-                      <span class="tooltips">
-                        <div class="tooltip">
-                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                          <span class="tooltiptext" v-html="row.description"></span>
+                    <div class="multiselect" :id="'cars2_'+quesIndex" :dependent-two="'cars3_'+quesIndex" :default-placeholder2="question.placeholder2" :default-placeholder3="question.placeholder3">
+                      <div class="multiselectBox-container">
+                      <select class="cst-form-control">
+                        <option v-html="question.placeholder2"></option>
+                      </select>
+                      <div class="overSelect"></div>
+                        <div id="checkboxes" class="cus-ddd level_1_dd">
+                          <label v-for="(option,optionIndex) of question.options2" :for="'level1-'+option.ddId" :data-attr="'level1-'+option.ddId">
+                            <input type="checkbox" :id="'level1-'+option.ddId" :data-valid="yoman(optionIndex,question.map2)"/><span v-html="option.ddName">First checkbox</span></label>
                         </div>
-                      </span>
-                    </div>
-                    <div class="middle-inputbox-wrapper clearfix">
-                      <template v-for="(item,index) in row.inputsPlaceholder">
-                        <div class="middle-inputbox">
-                        <input :unique-id="quesIndex+'_'+rowIndex+'_'+index" type="text" class="cst-form-control" :placeholder="row.inputsPlaceholder[index]"  :value="row.inputsSelectedText[index]" @input="handle2DInputBoxes(row,quesIndex+'_'+rowIndex+'_'+index, row.inputIds[index],$event)" />
-                        <div v-html="row.inputsLowerText[index]"></div>
-                      </div>
-                      </template>
-                    </div>
-                    <div class="total-inputbox clearfix">
-                      <span class="equal-sign">=</span>
-                      <div class="final">
-                        <input type="text" class="cst-form-control" :placeholder="row.outputPlaceholder"  :value="row.outputSelectedText" @input="handleInputBoxesTotal2D(question,quesIndex,rowIndex, row.outputId,$event)" />
-                        <div v-html="row.outputLowerText"></div>
                       </div>
                     </div>
-                    <div v-html="row.afterText" class="after-text"></div>
-                </div>
-                <div class='twodrowtable' style="" >
-                    <div class="text-label"><span v-html="question.totalOptionName"></span>
-                      <span class="tooltips">
-                        <div class="tooltip">
-                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                          <span class="tooltiptext" v-html="question.totalDescription"></span>
+                  </div>
+                 </div>
+                 <div class="multiselect-row multi-row-3">
+                   <div class="text-label">&nbsp;</div>
+                    <div class="input-box">
+                      <div class="multiselect" :id="'cars3_'+quesIndex" :default-placeholder3="question.placeholder3">
+                        <div class="multiselectBox-container">
+                        <select class="cst-form-control">
+                          <option v-html="question.placeholder3"></option>
+                        </select>
+                        <div class="overSelect"></div>
+                          <div id="checkboxes2" class="cus-ddd level_2_dd">
+                            <label v-for="(option,optionIndex) of question.options3" :for="'level2-'+option.ddId" :data-attr="'level2-'+option.ddId">
+                              <input type="checkbox" :id="'level2-'+option.ddId"  /><span v-html="option.ddName">First checkbox</span></label>
+                          </div>
                         </div>
-                      </span>
+                      </div>
                     </div>
-                    <div class="input-box totalfinal">
-                      <input type="text" class="cst-form-control" :placeholder="question.totalOutputPlaceholder"  :value="question.totalOutputSelectedText" @input="handleInputBoxesTotalTotal2D(question,quesIndex,question.totalOutputId,$event)" />
-                      <div v-html="question.totalOutputLowerText"></div>
-                    </div>
-                    <div v-html="question.afterText" class="after-text"></div>
+                 </div>              
                 </div>
-              </div>
-            </div>
-            </div>
-          </div>          
-        </div>
-  
-        <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===2">
-          <h2 class="ques-heading" v-html='qType.heading'></h2>
-          <div class="question-type2" >
-            <h4 class="sub-heading" v-html='qType.subheading'></h4>           
-            <div class="question-row"  v-for="(question,quesIndex) of qType.questions" :class="{'wide': question.quesLength>1 }">                          
-            <div class="question-line" v-html='question.questionHeading'></div>
-              <div class="question-group" v-for="(option,optionIndex) of question.options">
-                <div class="text-label"><span v-html='option.optionName'></span>
-                  <span class="tooltips">
+                </template>
+                <template v-if="question.type=='sdd'">
+                <div class='validated-error-question' v-html="getError(question.error_id)" v-if="getError(question.error_id)"></div>
+                <div class="question-group"  :index-attr="quesIndex">
+    
+                 <div class="multiselect-row">
+                    <div class="text-label">
+                      <div class="tool-wrapper-ddd">
+                        <span v-html='question.optionName'></span> 
+                        <span class="tooltips">
+                            <div class="tooltip">
+                              <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                              <span class="tooltiptext" v-html="question.description"></span>
+                            </div>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="input-box">
+                      <select class="cst-form-control sdd1" @change="handlesdd(qType.catType, quesIndex, null, $event,1)" >
+                        <option  disabled  v-html="question.placeholder" :selected="question.selectedId==''" ></option>
+                        <option v-for="(option,optionIndex) of question.options" v-html="option.ddName" :value="option.ddId" :data-valid="yoman(optionIndex,question.map)" :selected="option.ddId==question.selectedId">                   
+                        </option>
+                      </select>
+                    </div>
+                 </div>                          
+                 <div class="multiselect-row multiselect-row-2">
+                    <div class="text-label">
+                      <div class="tool-wrapper-ddd">
+                        <span v-html='question.optionName2'></span> 
+                        <span class="tooltips">
+                            <div class="tooltip">
+                              <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                              <span class="tooltiptext" v-html="question.description2"></span>
+                            </div>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="input-box">
+                      <select class="cst-form-control sdd2" @change="handlesdd(qType.catType, quesIndex, null, $event,2)" >
+                        <option  disabled  v-html="question.placeholder2" :selected="question.selectedId2==''" ></option>
+                        <option v-for="(option,optionIndex) of question.options2" v-html="option.ddName" :value="option.ddId" :selected="option.ddId==question.selectedId2">                   
+                        </option>
+                      </select>
+                    </div>
+                 </div>                          
+                </div>
+                </template>
+                <template v-if="question.type=='numboxes'">
+                <div class='validated-error-question' v-html="getError(question.outputId)" v-if="getError(question.outputId)"></div>
+                <div class="question-group mb-block" >
+                  <div class="text-label"><span v-html="question.optionName"></span>
+                    <span class="tooltips">
                       <div class="tooltip">
                         <span class="custom-infoicon"  @click="toltiptoggle"></span>
-                        <span class="tooltiptext" v-html="option.description"></span>
+                        <span class="tooltiptext" v-html="question.description"></span>
                       </div>
-                  </span>
+                    </span>
+                  </div>
+                  <div class="middle-inputbox-wrapper clearfix">
+                    <template v-for="(item,index) in question.inputsPlaceholder">
+                      <div class="middle-inputbox">
+                      <input :unique-id="quesIndex+'_'+index" type="text" class="cst-form-control" :placeholder="question.inputsPlaceholder[index]"  :value="question.inputsSelectedText[index]" @input="handleInputBoxes(question,quesIndex+'_'+index, question.inputIds[index],$event)" />
+                      <div v-html="question.inputsLowerText[index]"></div>
+                    </div>
+                    </template>
+                    </div>
+                  <div class="total-inputbox clearfix">
+                  <span class="equal-sign">=</span>
+                  <div class="final">
+                    <input type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotal(question,quesIndex, question.outputId,$event)" />
+                    <div v-html="question.outputLowerText"></div>
+                  </div>
+                  </div>
+                  <div v-html="question.afterText" class="after-text"></div>
                 </div>
-                <div class="input-box">
-                  <input v-if="option.type=='num' || option.type=='txt'" type="text" :placeholder="option.placeholder"
-                  class="cst-form-control"  :value="option.selectedText" @input="handleInput(option,qType.catType, quesIndex,optionIndex ,$event)">
-                  <div  v-if="option.type=='num' || option.type=='txt'" type="text" v-html="option.afterText" class="after-text"></div>
-                  <select v-if="option.type=='dd' " class="cst-form-control" @change="handleSelect(qType.catType, quesIndex,optionIndex,$event)" >
-                      <option disabled v-html="option.placeholder" :selected="option.selectedId==''"></option>
-                      <option v-for="quesOption of option.options" v-html="quesOption.ddName" :value="quesOption.ddId" :selected="option.selectedId==quesOption.ddId"></option>
-                    </select>
+                </template>
+                <div class="question-group mb-block" v-if="question.type=='NPS'">
+                  <div class="text-label"><span v-html="question.optionName"></span>
+                    <span class="tooltips">
+                      <div class="tooltip">
+                        <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                        <span class="tooltiptext" v-html="question.description"></span>
+                      </div>
+                    </span>
+                  </div>
+                  <div class="middle-inputbox-wrapper clearfix">
+                    <template v-for="(item,index) in question.inputsPlaceholder">
+                      <div class="middle-inputbox">
+                      <input :unique-id="quesIndex+'_'+index" type="text" class="cst-form-control yohoney" :placeholder="question.inputsPlaceholder[index]"  :value="question.inputsSelectedText[index]" @input="handleInputBoxesNPS(question,quesIndex+'_'+index, question.inputIds[index],$event)" />
+                      <div v-html="question.inputsLowerText[index]"></div>
+                    </div>
+                    </template>
+                    </div>
+                  <div class="total-inputbox for-static-tooltip clearfix">
+                    <span class="tooltips">
+                      <div class="tooltip">
+                        <span class="custom-infoicon"></span>
+                        <span class="tooltiptext" v-html="question.outputdescription"></span>
+                      </div>
+                    </span>
+                  <span class="equal-sign">=</span>
+                  <div class="final">
+                    <input type="text" class="cst-form-control" :placeholder="question.outputPlaceholder"  :value="question.outputSelectedText" @input="handleInputBoxesTotalNPS(question,quesIndex, question.outputId,$event)" />
+                    <div v-html="question.outputLowerText"></div>
+                  </div>
+                  </div>
+                  <div v-html="question.afterText" class="after-text"></div>
+                </div>
+                <template v-if="question.type=='2Dnumboxes'">
+                <div class='validated-error-question' v-html="getError(question.totalOutputId)" v-if="getError(question.totalOutputId)"></div>
+                    <div class="question-group mb-block" >
+                    <div class='twodrowtable' style="" v-for="(row,rowIndex) in question.rows" >
+                        <div class="text-label"><span v-html="row.optionName"></span>
+                            <span class="tooltips">
+                            <div class="tooltip">
+                                <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                                <span class="tooltiptext" v-html="row.description"></span>
+                            </div>
+                            </span>
+                        </div>
+                        <div class="middle-inputbox-wrapper clearfix">
+                            <template v-for="(item,index) in row.inputsPlaceholder">
+                            <div class="middle-inputbox">
+                            <input :unique-id="quesIndex+'_'+rowIndex+'_'+index" type="text" class="cst-form-control" :placeholder="row.inputsPlaceholder[index]"  :value="row.inputsSelectedText[index]" @input="handle2DInputBoxes(row,quesIndex+'_'+rowIndex+'_'+index, row.inputIds[index],$event)" />
+                            <div v-html="row.inputsLowerText[index]"></div>
+                            </div>
+                            </template>
+                        </div>
+                        <div class="total-inputbox clearfix">
+                            <span class="equal-sign">=</span>
+                            <div class="final">
+                            <input type="text" class="cst-form-control" :placeholder="row.outputPlaceholder"  :value="row.outputSelectedText" @input="handleInputBoxesTotal2D(question,quesIndex,rowIndex, row.outputId,$event)" />
+                            <div v-html="row.outputLowerText"></div>
+                            </div>
+                        </div>
+                        <div v-html="row.afterText" class="after-text"></div>
+                    </div>
+                    <div class='twodrowtable' style="" >
+                        <div class="text-label"><span v-html="question.totalOptionName"></span>
+                            <span class="tooltips">
+                            <div class="tooltip">
+                                <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                                <span class="tooltiptext" v-html="question.totalDescription"></span>
+                            </div>
+                            </span>
+                        </div>
+                        <div class="input-box totalfinal">
+                            <input type="text" class="cst-form-control" :placeholder="question.totalOutputPlaceholder"  :value="question.totalOutputSelectedText" @input="handleInputBoxesTotalTotal2D(question,quesIndex,question.totalOutputId,$event)" />
+                            <div v-html="question.totalOutputLowerText"></div>
+                        </div>
+                        <div v-html="question.afterText" class="after-text"></div>
+                    </div>
+                    </div>
+                </template>
+              </div>
+              </div>
+            </div>          
+          </div>
+    
+          <div class="questions-inner" v-for="qType of rightData" v-if="qType.catType ===2">
+            <h2 class="ques-heading" v-html='qType.heading'></h2>
+            <div class="question-type2" >
+              <h4 class="sub-heading" v-html='qType.subheading'></h4>           
+              <div class="question-row"  v-for="(question,quesIndex) of qType.questions" :class="{'wide': question.quesLength>1 }">                          
+              <div class="question-line" v-html='question.questionHeading'></div>
+                <div class="question-group" v-for="(option,optionIndex) of question.options">
+                  <div class="text-label"><span v-html='option.optionName'></span>
+                    <span class="tooltips">
+                        <div class="tooltip">
+                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                          <span class="tooltiptext" v-html="option.description"></span>
+                        </div>
+                    </span>
+                  </div>
+                  <div class="input-box">
+                    <input v-if="option.type=='num' || option.type=='txt'" type="text" :placeholder="option.placeholder"
+                    class="cst-form-control"  :value="option.selectedText" @input="handleInput(option,qType.catType, quesIndex,optionIndex ,$event)">
+                    <div  v-if="option.type=='num' || option.type=='txt'" type="text" v-html="option.afterText" class="after-text"></div>
+                    <select v-if="option.type=='dd' " class="cst-form-control" @change="handleSelect(qType.catType, quesIndex,optionIndex,$event)" >
+                        <option disabled v-html="option.placeholder" :selected="option.selectedId==''"></option>
+                        <option v-for="quesOption of option.options" v-html="quesOption.ddName" :value="quesOption.ddId" :selected="option.selectedId==quesOption.ddId"></option>
+                      </select>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>          
-        </div> 
+            </div>          
+          </div> 
+        </div>
       </div>
     </div>
   </div>
-</div>
   `,
   mounted: function () {
     // this.setHeight();
@@ -630,6 +648,9 @@ Vue.component("right-panel", {
     })
   },
   methods: {
+    getError:function(getId){
+      return $("#"+getId+"_error").text();
+    },
     yoman:function(optionIndex,mapping){
       //console.log(optionIndex)
       //console.log(mapping)
@@ -695,7 +716,6 @@ Vue.component("right-panel", {
       if (ddIndex == 2) {
         this.rightData.forEach((category) => {
           if (category.catType == 1) {
-            console.log(category.questions[quesIndex].options2);
             category.questions[quesIndex].options2.forEach(function(currentValue, index){
               $("#"+currentValue["ddId"]).prop("checked",false);
             })
@@ -708,13 +728,11 @@ Vue.component("right-panel", {
     },
     
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
-      console.log("handle input called")
       let { type, maxLength, selectedId } = question;
       let val, valArr;
 
       if (type == "num"||type == "numboxes") {
         val = e.target.value.trim();
-        console.log(val)
         valArr = val.split("");
         if (isNaN(val)) {
           valArr = valArr.filter((ch) => !isNaN(ch));
@@ -776,7 +794,6 @@ Vue.component("right-panel", {
       document.getElementById(selectedId).value = val;
     },
     handleInputBoxes: function (question, boxUnique, punchId,e) {
-      console.log("hello 7");
 
       let uniqueBox = boxUnique;
       let boxIndex =  uniqueBox.split("_")[1];
@@ -867,7 +884,6 @@ Vue.component("right-panel", {
     },
 
     handleInputBoxesTotal:function(question, quesIndex, punchId,e){
-      console.log("hello 6");
       var vueThis = this;
       var punchId = punchId;
       var allidsArr = this.rightData[0].questions[quesIndex].inputIds;
@@ -890,7 +906,6 @@ Vue.component("right-panel", {
     },
 
     handleInputBoxesTotal2D:function(question, quesIndex,rowIndex, punchId,e){
-      console.log("hello 5");
       var vueThis = this;
       var punchId = punchId;
       var allidsArr = this.rightData[0].questions[quesIndex].rows[rowIndex].inputIds;
@@ -908,8 +923,6 @@ Vue.component("right-panel", {
       val = this.numBoxesFilter(val,maxRange,maxLength);
       //now check with other rows final data
         let finalTotal = this.numBoxesFinalTotalTotal2D(quesIndex,rowIndex);
-        console.log("finaltotal:"+finalTotal);
-        console.log(finalTotal+val)
         if(Number(finalTotal)+Number(val)>maxRange){
           let valArr = val.split("");
           valArr.pop();
@@ -924,7 +937,6 @@ Vue.component("right-panel", {
     },
 
     numBoxesTotal:function(quesIndex){
-      console.log("hello 4");
       var total = 0;
       this.rightData[0].questions[quesIndex].inputsSelectedText.forEach(function(cv){
         total += Number(cv);
@@ -958,7 +970,6 @@ Vue.component("right-panel", {
     },
     numBoxesTotalTotal2D:function(quesIndex,rowIndex){
       var vueThis = this;
-      console.log("hello 3");
       var total = 0;
       this.rightData[0].questions[quesIndex].rows.forEach(function(cv,cvIndex){
         if(cvIndex==rowIndex){
@@ -987,7 +998,6 @@ Vue.component("right-panel", {
 
     },
     handle2DInputBoxes: function (question, boxUnique, punchId,e) {
-      console.log("hello 2");
       let uniqueBox = boxUnique;
       let quesIndex = uniqueBox.split("_")[0];
       let rowIndex =  uniqueBox.split("_")[1];
@@ -1003,16 +1013,12 @@ Vue.component("right-panel", {
 
       var totalSum = this.numBoxesTotal2D(quesIndex,rowIndex);
       var finalTotalSum = this.numBoxesTotalTotal2D(quesIndex,rowIndex);
-      console.log("totalSum::"+totalSum);
-      console.log(Number(totalSum)>Number(maxRange));
 
       let valArr = val.split("");
       if(finalTotalSum>maxRange){
-        console.log("inside maxrange issue")
         valArr.pop();
       }
       else if(totalSum>maxRange){
-        console.log("inside maxrange issue")
         valArr.pop();
       }
       
@@ -1029,7 +1035,6 @@ Vue.component("right-panel", {
       this.updateProgressData();
     },
     updateNumbbox2dTotaltotal:function(quesIndex){
-      console.log("hello 1");
       let total = 0;
       this.rightData[0].questions[quesIndex].rows.forEach(function(cv){
         total += Number(cv.outputSelectedText)
@@ -1037,7 +1042,6 @@ Vue.component("right-panel", {
       this.rightData[0].questions[quesIndex].totalOutputSelectedText = total;
 
       var punchId = this.rightData[0].questions[quesIndex].totalOutputId;
-      console.log(total)
       $("#"+punchId).val(total);
     },
 
@@ -1059,9 +1063,7 @@ Vue.component("right-panel", {
 
       let { maxLength, maxRange, minRange } = question;
       let val = e.target.value.trim();
-      console.log(val);
       val = this.numBoxesFilter(val,maxRange,maxLength);
-      console.log(val);
 
       question["totalOutputSelectedText"]=val;
       e.target.value = val;
@@ -1097,10 +1099,7 @@ Vue.component("right-panel", {
               }
             }
             if(question.type=="numboxes"){
-              console.log("inside");
-              console.log(question.outputSelectedText);
               if(question.outputSelectedText != "" && Number(question.outputSelectedText) != 0){
-                console.log("aur inside")
                 totalAttempted++;
               }
             }
