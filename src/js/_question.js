@@ -817,6 +817,9 @@ Vue.component("right-panel", {
 
       this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
       totalSum = this.numBoxesTotal(quesIndex);
+      if(totalSum.toString().indexOf('.') && totalSum.toString().split(".")[1].length >10){
+        totalSum = totalSum.toFixed(10);
+      }
       this.rightData[0].questions[quesIndex].outputSelectedText = totalSum;
       var totalPunch = this.rightData[0].questions[quesIndex].outputId;
       e.target.value = val;
