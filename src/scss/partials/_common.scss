@@ -42,16 +42,62 @@ body {
   clear: both;
   display: table;
 }
+.lbl-control{
+  &:empty{
+      @media (min-width:1025px) and (max-width:1279px){
+        display: none;
+          }
+      @media (min-width:1280px) and (max-width:1365px){
+          display: none;
+      } 
+      @media (min-width:1366px) and (max-width:1560px){
+          display: none;
+      } 
+  }
+  
+}
 .validated-error {
   font-size: 14px;
   margin-top: 10px;
   margin-bottom: 10px;
   color: $red;
   padding-left: 15px;
+  @media (min-width:1025px) and (max-width:1279px){
+    font-size: 0.60em;
+  }   
+  @media (min-width:1280px) and (max-width:1365px){
+    font-size: 0.60em;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    font-size:0.60em;
+  }      
+}
+.validated-error-question{
+  font-size: 14px;  
+  color: $red; 
+  margin-top: 5px;
+  @media (min-width:1025px) and (max-width:1279px){
+    font-size: 0.60em;
+  }   
+  @media (min-width:1280px) and (max-width:1365px){
+    font-size: 0.60em;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    font-size:0.60em;
+  } 
 }
 
 p {
   color: $black;
+  @media (min-width:1025px) and (max-width:1279px){
+    font-size: 0.60em;
+  }
+   @media (min-width:1280px) and (max-width:1365px){
+    font-size: 0.60em;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    font-size: 0.60em;
+  }
 }
 .wrapper {
   .inner-container {
@@ -68,6 +114,21 @@ p {
         padding-left: 280px;
       }
     }
+    @media (min-width:1025px) and (max-width:1279px){
+      .inner-container{
+          padding-left:190px;
+        }
+      }
+    @media (min-width:1280px) and (max-width:1365px){
+      .inner-container{
+          padding-left:190px;
+        }
+     }
+     @media (min-width:1366px) and (max-width:1560px){
+      .inner-container{
+          padding-left:190px;
+        }
+     }
   }
 }
 .survey-row {
@@ -113,6 +174,15 @@ p {
   @media (max-width: 481px) {
     padding-top: 95px;
   }
+  @media (min-width:1025px) and (max-width:1279px){
+    padding-top: 35px;
+   }
+ @media (min-width: 1280px) and (max-width: 1365px){
+        padding-top: 35px;
+     }
+ @media (min-width:1366px) and (max-width:1560px){
+        padding-top: 35px;
+  }
   .introduction-title {
     font-size: 1.25em;
     font-weight: bold;
@@ -120,6 +190,15 @@ p {
     margin-bottom: 10px;
     @media (max-width: 481px) {
       font-size: 0.9em;
+    }
+    @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.70em;
+    }
+    @media (min-width:1280px) and (max-width:1365px){
+      font-size:0.70em;
+    }
+    @media (min-width:1366px) and (max-width:1560px){
+      font-size:0.70em;
     }
   }
   .intro-panel {
@@ -140,6 +219,56 @@ p {
   }
   @media (max-width: 480px) {
     height: calc(100vh - 340px);
+  }
+  &.thnk-you{
+    height:calc(100vh - 350px);
+    @media (max-width:1024px){
+        height:calc(100vh - 340px);  
+      }
+      @media (min-width:1280px) and (max-width:1366px){
+        // height:calc(100vh - 292px);  
+        height:calc(100vh - 330px); 
+      }
+      @media (max-width:1023px) and (orientation: landscape){
+        // height:calc(100vh - 238px);
+        height:calc(100vh - 390px);
+      }
+      @media (max-width:768px){
+        // height:calc(100vh - 238px);
+        height:calc(100vh - 390px);
+      }
+      @media (max-width:480px){
+        // height:calc(100vh - 238px);
+        height:calc(100vh - 360px);
+      }
+      @media (max-width:400px){
+        // height:calc(100vh - 238px);
+        height:calc(100vh - 385px);
+      }
+  }
+  @media (min-width:600px) and (max-width:767px){       
+    height:calc(100vh - 370px) !important; 
+  }
+@media (min-width:1025px) and (max-width:1279px){
+    height:calc(100vh - 155px);        
+  }
+@media (min-width:1280px) and (max-width:1365px){
+    height:calc(100vh - 160px);        
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    height:calc(100vh - 160px);        
+  }
+@media (min-width:1561px) and (max-width:1600px){
+    height:calc(100vh - 320px);        
+  }
+  @media (min-width:1601px) and (max-width:1920px){
+    height:calc(100vh - 350px); 
+  }
+  @media (min-width:1921px) and (max-width:2048px){
+    height:calc(100vh - 370px);            
+  }
+  @media (min-width:2049px){
+    height:calc(100vh - 420px);      
   }
 }
 .center-align {
@@ -172,6 +301,15 @@ p {
   margin-top: 20px;
   font-size: 18px;
   font-weight: 600;
+  @media (min-width:1025px) and (max-width:1279px){
+    font-size: 0.70em;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+    font-size:0.70em;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    font-size:0.70em;
+  }
 }
 .offering-panel{
   @media (max-width:1024px){
@@ -200,6 +338,15 @@ p {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 10px;
+    @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.70em;
+    }
+    @media (min-width:1280px) and (max-width:1365px){
+      font-size:0.70em;
+    }
+    @media (min-width:1366px) and (max-width:1560px){
+      font-size:0.70em;
+    }
   }
   ul {
     display: block;
@@ -229,6 +376,30 @@ p {
     outline: none;
     border-color: $lt-blue;
     @include box-shadow(0, 0, 8px, rgba(102, 175, 233, 0.6));
+  }
+  @media (min-width:1025px) and (max-width:1279px){
+    height: 24px;
+    font-size: 0.60em;
+}
+@media (min-width:1280px) and (max-width:1365px){
+    height:24px;
+    font-size: 0.60em;
+    padding: 6px;
+}
+@media (min-width:1366px) and (max-width:1560px){
+    height:24px;
+    font-size: 0.55em;
+    padding: 6px;
+} 
+}
+.validated-error-question{
+  & + .question-group{
+    .input-box{
+      .cst-form-control{
+        background-color: $red-light;
+        border-color:$red-accent;
+       }
+    }
   }
 }
 .col-50 {
@@ -302,6 +473,26 @@ select {
   &::-ms-expand {
     display: none;
   }
+  &.cst-form-control{
+    @media (min-width:1025px) and (max-width:1279px){
+        height: 25px;
+        font-size: 0.60em; 
+        background-position: top 3px right 7px;
+        padding-right: 22px !important;
+    }
+    @media (min-width:1280px) and (max-width:1365px){
+        height: 24px;
+        font-size: 0.55em;  
+        background-position: top 3px right 7px;
+        padding-right: 22px !important;
+    }
+    @media (min-width:1366px) and (max-width:1560px){
+        height: 24px;
+        font-size: 0.55em;  
+        background-position: top 5px right 7px;
+        padding-right: 25px !important;
+    }
+} 
 }
 
 .col-4 {
@@ -331,7 +522,6 @@ select {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: $light-gray;
-
   @media (max-width: 1024px) {
     display: none;
   }
@@ -344,8 +534,26 @@ select {
       font-size: 0.9em;
       color: $black;
       font-weight: bold;
-    }
+      @media (min-width:1025px) and (max-width:1279px){
+        font-size: 0.70em;
+        }
+       @media (min-width:1280px) and (max-width:1365px){
+        font-size: 0.70em;
+        }
+       @media (min-width:1366px) and (max-width:1560px){
+         font-size: 0.70em;
+        }
+     }
   }
+  @media (min-width:1025px) and (max-width:1279px){
+    padding-top: 0px;
+    }
+  @media (min-width:1280px) and (max-width:1365px){
+    padding-top: 0px;
+   }  
+   @media (min-width:1366px) and (max-width:1560px){
+    padding-top: 0px;
+   }
 }
 .module {
   .catg-row {
@@ -376,6 +584,15 @@ select {
     .title-module {
       padding-top: 10px;
       padding-bottom: 10px;
+      @media (min-width:1025px) and (max-width:1279px){
+        font-size: 0.60em;
+        }
+      @media (min-width:1280px) and (max-width:1365px){
+        font-size: 0.60em;
+       }
+       @media (min-width:1366px) and (max-width:1560px){
+        font-size: 0.60em;
+       }
     }
     .col-4,
     .col-8 {
@@ -398,7 +615,19 @@ select {
         }
       }
     }
-  }
+    @media (min-width:1025px) and (max-width:1279px){
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  @media (min-width:1280px) and (max-width:1365px){
+      padding-top: 5px;
+      padding-bottom: 5px;
+   }
+  @media (min-width:1366px) and (max-width:1560px){
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+ }
   .m-thead {
     .col {
       &:last-child {
@@ -449,6 +678,15 @@ input[type="number"] {
       padding-bottom: 6px;
     }
   }
+  @media (min-width:1025px) and (max-width:1279px){
+    padding-top: 18px;
+    }
+  @media (min-width:1280px) and (max-width:1365px){
+    padding-top: 18px;
+   }
+   @media (min-width:1366px) and (max-width:1560px){
+    padding-top: 18px;
+   }
 }
 .ctrl-sm-chk {
   margin-top: 20px;
@@ -530,4 +768,62 @@ input[type="number"] {
 
 .multiselect-row-2 {
   margin-top: 5px;
+}
+.email-inner{
+  font-size:1em;
+  @media (max-width: 767px){
+      font-size: 0.90em;
+  }
+  @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.60em;
+    }
+    @media (min-width:1280px) and (max-width:1365px){
+      font-size: 0.60em;
+    }
+    @media (min-width:1366px) and (max-width:1560px){
+      font-size: 0.60em;
+    }
+}
+.info-div{
+  font-style: italic;
+  font-size: 0.90em;
+  color: $light-black;
+  @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.60em;
+      }
+    @media (min-width:1280px) and (max-width:1365px){
+      font-size: 0.60em;
+     } 
+     @media (min-width:1366px) and (max-width:1560px){
+      font-size: 0.60em;
+     }
+}
+.assessment-intro{
+  .row-for-multi{
+    .cst-form-control{
+         @media (min-width:1025px) and (max-width:1279px){
+            font-size: 0.60em;
+            }
+          @media (min-width:1280px) and (max-width:1365px){
+            font-size: 0.70em;
+            height: 27px;
+           }
+           @media (min-width:1366px) and (max-width:1560px){
+            font-size: 0.70em;
+            height: 28px;
+            padding-right: 25px;
+           }
+      }
+  }
+}
+.os-theme-dark > .os-scrollbar-vertical, .os-theme-light > .os-scrollbar-vertical{
+  @media (min-width:1025px) and (max-width:1279px){
+    width: 9px;
+    }
+  @media (min-width:1280px) and (max-width:1365px){
+    width: 9px;
+   }
+   @media (min-width:1366px) and (max-width:1560px){
+    width: 9px;
+   }
 }

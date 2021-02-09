@@ -160,6 +160,21 @@
         background-color: $f6-clr;
         padding: 10px;
         margin-bottom: 15px;
+        @media (min-width:1025px) and (max-width:1279px){
+            font-size: 0.60em;
+            padding: 4px 10px;
+            margin-bottom: 10px;
+            }
+          @media (min-width:1280px) and (max-width:1365px){
+            font-size: 0.70em;
+            padding: 4px 10px;
+            margin-bottom: 10px;
+           }
+           @media (min-width:1366px) and (max-width:1560px){
+            font-size: 0.70em;
+            padding: 4px 10px;
+            margin-bottom: 10px;
+           }
     }
     table{
         width: 100%;
@@ -177,6 +192,15 @@
                   @media (max-width:1024px){
                     font-size: 0.85em;
                   }
+                  @media (min-width:1025px) and (max-width:1279px){
+                    font-size: 0.60em;                            
+                    }
+                  @media (min-width:1280px) and (max-width:1365px){
+                    font-size: 0.70em;                             
+                   } 
+                   @media (min-width:1366px) and (max-width:1560px){
+                    font-size: 0.70em;                             
+                   }  
               }
             .key-info{
                 color:$bl-39;
@@ -195,6 +219,15 @@
                 margin: 0 auto;
                 padding-left: 15px;
                 padding-right: 15px;
+                @media (min-width:1025px) and (max-width:1279px){
+                    font-size: 0.55em;                            
+                    }
+                  @media (min-width:1280px) and (max-width:1365px){
+                    font-size: 0.60em;                             
+                   } 
+                   @media (min-width:1366px) and (max-width:1560px){
+                    font-size: 0.60em;                             
+                   } 
             }
         }
       
@@ -225,6 +258,18 @@
                 @media (max-width:1024px){
                     font-size: 0.85em;
                 }
+                @media (min-width:1025px) and (max-width:1279px){
+                    font-size: 0.60em;
+                    padding: 4px 10px;                  
+                    }
+                  @media (min-width:1280px) and (max-width:1365px){
+                    font-size: 0.70em;
+                    padding: 4px 10px;                   
+                   } 
+                   @media (min-width:1366px) and (max-width:1560px){
+                    font-size: 0.70em;
+                    padding: 4px 10px;                   
+                   }
                  
               }
           }
@@ -241,7 +286,19 @@
                     }  
                     @media (min-width:1024px){
                         font-size: 0.90em;
-                    }                
+                    } 
+                    @media (min-width:1025px) and (max-width:1279px){
+                        font-size: 0.55em;
+                        padding: 4px 10px;                  
+                        }
+                      @media (min-width:1280px) and (max-width:1365px){
+                        font-size: 0.60em;
+                        padding: 4px 10px;                   
+                       } 
+                       @media (min-width:1366px) and (max-width:1560px){
+                        font-size: 0.60em;
+                        padding: 4px 10px;                   
+                       }                 
                  }
                  &:not(:last-child){
                      td{
@@ -267,6 +324,19 @@
         padding: 15px;
         margin-top: 30px;
         margin-bottom: 15px;
+        @media (min-width:1025px) and (max-width:1279px){
+            font-size: 0.55em;
+            padding: 4px 10px;
+            }
+          @media (min-width:1280px) and (max-width:1365px){
+            font-size: 0.60em;
+            padding: 4px 10px;
+           }
+           @media (min-width:1366px) and (max-width:1560px){
+            font-size: 0.60em;
+            padding: 4px 10px;
+           }
+
     }
     .nob {
         width: 400%;
@@ -338,6 +408,15 @@
         display: inline-block;          
         font-size: 1em;
         color: $bl-39;
+        @media (min-width:1025px) and (max-width:1279px){
+            font-size: 0.60em;                            
+            }
+          @media (min-width:1280px) and (max-width:1365px){
+            font-size: 0.60em;                             
+           }
+           @media (min-width:1366px) and (max-width:1560px){
+            font-size: 0.60em;                             
+           }
        }
     }
     .avg{

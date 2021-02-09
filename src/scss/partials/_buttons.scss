@@ -15,8 +15,22 @@
 
   }
   @media (max-width:767px){
-    font-size: 0.90em;
-    
+    font-size: 0.90em;    
+  }
+  @media (max-width:480px){
+    width: 115px;
+  }
+  @media (min-width:1025px) and (max-width:1279px){
+    width: 95px;
+    font-size: 0.50em;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+    width: 95px;
+    font-size: 0.60em;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    width: 95px;
+    font-size: 0.60em;
   }
 }
 .btn-item{
@@ -67,17 +81,24 @@
  
 }
 
-.survey-begin{
+.survey-begin, .feedback-submit-block{
   position: fixed;
-    bottom: 35px;
-    width: 100%;
-    left: 0;
-    @media (max-width:1024px){
-      bottom: 47px;
-    }
-
+  bottom: 35px;
+  width: 100%;
+  left: 0;
+@media (max-width:1024px){
+  bottom: 47px;
 }
-
+@media (min-width:1025px) and (max-width:1279px){
+  bottom: 16px;
+  }
+@media (min-width:1280px) and (max-width:1365px){
+  bottom: 16px;
+ }
+ @media (min-width:1366px) and (max-width:1560px){
+  bottom: 16px;
+ }
+}
 // .btn-item {
  
 //     &.save{
@@ -97,3 +118,8 @@
 //         background-color: $bg-d9;
 //     }
 // }
+.right-panel{
+  .btn-item{
+    padding: 5px 0;    
+  }
+}
