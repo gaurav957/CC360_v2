@@ -253,10 +253,10 @@ p {
     height:calc(100vh - 155px);        
   }
 @media (min-width:1280px) and (max-width:1365px){
-    height:calc(100vh - 160px);        
+    height:calc(100vh - 162px);        
   }
   @media (min-width:1366px) and (max-width:1560px){
-    height:calc(100vh - 160px);        
+    height:calc(100vh - 164px);        
   }
 @media (min-width:1561px) and (max-width:1600px){
     height:calc(100vh - 320px);        
@@ -391,6 +391,7 @@ p {
     font-size: 0.55em;
     padding: 6px;
 } 
+
 }
 .validated-error-question{
   & + .question-group{
@@ -474,6 +475,11 @@ select {
     display: none;
   }
   &.cst-form-control{
+    padding-right: 25px;
+    @media (max-width:1024px){
+      font-size: 0.80em;
+          background-position: top 14px right 6px;
+    }
     @media (min-width:1025px) and (max-width:1279px){
         height: 25px;
         font-size: 0.60em; 
@@ -750,6 +756,16 @@ input[type="number"] {
   font-size: 0.85em;
   color: #2a2a2a;
   padding-left: 5px;
+  cursor: pointer;
+  @media (min-width:1025px) and (max-width:1279px){
+    font-size: 0.60em;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+    font-size:0.70em;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    font-size:0.70em;
+  }
 }
 .multiselect-row {
   display: table;

@@ -18,7 +18,7 @@
     font-size: 0.90em;    
   }
   @media (max-width:480px){
-    width: 115px;
+    width: 118px;
   }
   @media (min-width:1025px) and (max-width:1279px){
     width: 95px;
@@ -36,7 +36,7 @@
 .btn-item{
   @extend %btn-property;
   @media (max-width:1024px){
-    font-size: 0.85em;
+    font-size: 0.80em;
   }
   &.save{  
       color:#2A2A2A;
