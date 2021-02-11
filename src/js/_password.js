@@ -2,7 +2,6 @@ Vue.component("password", {
   props: ["JsonData"],
   data: function () {
     return {
-      isInvalid: false,
       inputVal : ""
     };
   },
@@ -12,11 +11,11 @@ Vue.component("password", {
    <div class="introduction-title" v-html="JsonData.heading"></div>   
         <div class="intro-panel" v-html="JsonData.content"></div>
               <div class="password-inner clearfix">
-              <div :style="[isInvalid==true ?{'visibility':'visible'}:{'visibility':'hidden'}]" class="validated-error"  v-html="JsonData.Error">There is an error</div>
+              <div :style="[JsonData.isInvalid==true ?{'visibility':'visible'}:{'visibility':'hidden'}]" class="validated-error"  v-html="JsonData.Error">There is an error</div>
                  <div v-for="(input, index) in JsonData.inputFields" class="">                
                    <label class="lbl-control" :for="'qual_'+ index" v-html="input.label"></label> 
                    <input class="cst-form-control" v-if="input.inputType=='text'" :id="'qual_'+ index"
-                     @input="handleInput(input.inputId,index, $event)" 
+                     @input="handleInput(input.inputId,index, $event)"
                    :placeholder="input.placeholder" type="password"/>                    
                    </div>
               </div>
@@ -39,8 +38,8 @@ Vue.component("password", {
   },
   methods: {
     handleSelect: function (index, e) {
-      this.JsonData.inputFields[index].selectedId = e.target.value;
-      document.querySelector("#" + e.target.value).click();
+      // this.JsonData.inputFields[index].selectedId = e.target.value;
+      // document.querySelector("#" + e.target.value).click();
     },
     handleForward: function () {
       // this.isInvalid = false;
@@ -60,14 +59,14 @@ Vue.component("password", {
       //   document.getElementById("forwardbutton").click();
       // }
 
-      if(this.JsonData.inputFields[0].inputVal == this.inputVal){
-        this.isInvalid = false;
-        console.log("filled")
+      // if(this.JsonData.inputFields[0].inputVal == this.inputVal){
+      //   this.JsonData.isInvalid = false;
+        //console.log("filled")
         document.getElementById("forwardbutton").click();
-      }else{
-        this.isInvalid = true;
-        console.log("error")
-      }
+      // }else{
+      //   this.JsonData.isInvalid = true;
+      //   //console.log("error")
+      // }
 
     },
     handleInput: function (id, index, e) {
@@ -76,11 +75,11 @@ Vue.component("password", {
       //   valArr.pop();
       //   e.target.value = valArr.join("");
       // }
-      // document.getElementById(id).value = e.target.value;
+      document.getElementById(id).value = e.target.value;
       // this.JsonData.inputFields[index].inputVal = e.target.value;
 
-      this.inputVal = e.target.value;
-      console.log(this.inputVal)
-    },
+      //this.inputVal = e.target.value;
+      //console.log(this.inputVal)
+    }
   },
 });

@@ -216,7 +216,9 @@ Vue.component("right-panel", {
                   <div v-html="question.afterText" class="after-text"></div>
                 </div>
                 </template>
-                <div class="question-group mb-block" v-if="question.type=='NPS'">
+                <template v-if="question.type=='NPS'">
+                <div class='validated-error-question' v-html="getError(question.outputId)" v-if="getError(question.outputId)"></div>
+                <div class="question-group mb-block" >
                   <div class="text-label"><span v-html="question.optionName"></span>
                     <span class="tooltips">
                       <div class="tooltip">
@@ -248,6 +250,7 @@ Vue.component("right-panel", {
                   </div>
                   <div v-html="question.afterText" class="after-text"></div>
                 </div>
+                </template>
                 <template v-if="question.type=='2Dnumboxes'">
                 <div class='validated-error-question' v-html="getError(question.totalOutputId)" v-if="getError(question.totalOutputId)"></div>
                     <div class="question-group mb-block" >
@@ -728,15 +731,40 @@ Vue.component("right-panel", {
     },
     
     handleInput: function (question, catType, quesIndex, optionIndex, e) {
+      console.log("hello");
       let { type, maxLength, selectedId } = question;
       let val, valArr;
 
       if (type == "num"||type == "numboxes") {
         val = e.target.value.trim();
         valArr = val.split("");
+
         if (isNaN(val)) {
+          console.log("is NAN");
           valArr = valArr.filter((ch) => !isNaN(ch));
         }
+
+        while(Number(valArr.join("")) > question.maxRange){
+          valArr.pop();
+        }
+
+        if (valArr.length > maxLength) {
+          if (valArr[valArr.length - 1] == " ") {
+            valArr = valArr.join("").trim().split("");
+          } else {
+            valArr.pop();
+          }
+        }
+       
+        if(valArr.join("").indexOf(".")!= -1){
+          if(valArr.join("").split(".")[1].length > 10){
+            var valJoin = valArr.join("");
+            valJoin = Number(valJoin);
+            valArr = valJoin.toFixed(10).toString().split('');
+          }
+          
+        }
+
       }
 
       if (type == "txt") {
@@ -754,20 +782,6 @@ Vue.component("right-panel", {
         
           valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
         
-      }
-
-      // if (Number(valArr.join("")) > question.maxRange) {
-      //   valArr.pop();
-      // }
-      while(Number(valArr.join("")) > question.maxRange){
-        valArr.pop();
-      }
-      if (valArr.length > maxLength) {
-        if (valArr[valArr.length - 1] == " ") {
-          valArr = valArr.join("").trim().split("");
-        } else {
-          valArr.pop();
-        }
       }
 
       val = valArr.join("");
@@ -788,6 +802,7 @@ Vue.component("right-panel", {
           }
         });
       }
+
       this.updateProgressData();
       e.target.value = val;
 
@@ -817,8 +832,11 @@ Vue.component("right-panel", {
 
       this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
       totalSum = this.numBoxesTotal(quesIndex);
-      if(totalSum.toString().indexOf('.') && totalSum.toString().split(".")[1].length >10){
-        totalSum = totalSum.toFixed(10);
+      console.log(totalSum);
+      if(totalSum.toString().indexOf('.') != -1){
+        if(totalSum.toString().split(".")[1].length >10){
+          totalSum = totalSum.toFixed(10);
+        }
       }
       this.rightData[0].questions[quesIndex].outputSelectedText = totalSum;
       var totalPunch = this.rightData[0].questions[quesIndex].outputId;
@@ -848,6 +866,13 @@ Vue.component("right-panel", {
       Vue.set(question.inputsSelectedText, boxIndex, val);
 
       var totalDifference = question.inputsSelectedText[0] - question.inputsSelectedText[1];
+
+      if(totalDifference.toString().indexOf('.') != -1){
+        if(totalDifference.toString().split(".")[1].length >10){
+          totalDifference = totalDifference.toFixed(10);
+        }
+      }
+
       question.outputSelectedText = totalDifference;
 
       $("#"+punchId).val(val);
@@ -964,6 +989,12 @@ Vue.component("right-panel", {
       this.rightData[0].questions[quesIndex].rows[rowIndex].inputsSelectedText.forEach(function(cv2){
             total += Number(cv2);
       })
+
+      if(total.toString().indexOf('.') != -1){
+        if(total.toString().split(".")[1].length >10){
+          total = total.toFixed(10);
+        }
+      }
     
       // this.rightData[0].questions[quesIndex].rows.forEach(function(cv){
       //   total += Number(cv);
@@ -984,6 +1015,12 @@ Vue.component("right-panel", {
         }
       })
 
+      if(total.toString().indexOf('.') != -1){
+        if(total.toString().split(".")[1].length >10){
+          total = total.toFixed(10);
+        }
+      }
+
       return total;
 
     },
@@ -1001,6 +1038,7 @@ Vue.component("right-panel", {
 
     },
     handle2DInputBoxes: function (question, boxUnique, punchId,e) {
+      console.log("pasted called");
       let uniqueBox = boxUnique;
       let quesIndex = uniqueBox.split("_")[0];
       let rowIndex =  uniqueBox.split("_")[1];
@@ -1019,11 +1057,30 @@ Vue.component("right-panel", {
 
       let valArr = val.split("");
       if(finalTotalSum>maxRange){
-        valArr.pop();
+        while(finalTotalSum>maxRange){
+          if(valArr.length == 0){
+            break;
+          }
+          
+          valArr.pop();
+        }
+        
       }
       else if(totalSum>maxRange){
-        valArr.pop();
+        while(totalSum>maxRange){
+          if(valArr.length == 0){
+            break;
+          }
+          valArr.pop();
+        }
+        
       }
+
+      // if(totalSum.toString().indexOf('.') != -1){
+      //   if(totalSum.toString().split(".")[1].length >10){
+      //     totalSum = totalSum.toFixed(10);
+      //   }
+      // }
       
       val = valArr.join("");
 
@@ -1314,6 +1371,17 @@ Vue.component("right-panel", {
             valArr.pop();
           }
         }
+
+        if(valArr.join("").indexOf(".")!= -1){
+          if(valArr.join("").split(".")[1].length > 10){
+            var valJoin = valArr.join("");
+            valJoin = Number(valJoin);
+            valArr = valJoin.toFixed(10).toString().split('');
+          }
+          
+        }
+
+        console.log("cal called"+val);
         val = valArr.join("");
   
         return val;

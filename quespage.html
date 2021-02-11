@@ -1299,11 +1299,11 @@
 					"selectedText": "",
 					"selectedId": "CID_OTHER_INPNU",
 					"afterText": "%",
-					"maxLength": 3,
-					"maxRange":100,
+					"maxLength": 28,
+					"maxRange":9999999999999999,
 					"minRange":0
 				},{
-					"optionName": "Shrinkage",
+					"optionName": "Shrinkage2a",
 					"description": "Client name",
 					"type": "numboxes",
 					"inputsPlaceholder": ["%","%","%","%","%","%","%","%","%","%","%"],
@@ -1314,8 +1314,8 @@
 					"outputSelectedText": 0,
 					"outputLowerText":"Total",
 					"outputId": "D1",
-					"maxLength": 10,
-					"maxRange":100,
+					"maxLength": 28,
+					"maxRange":9999999999999999,
 					"minRange":0
 				   
 				},{
@@ -1340,40 +1340,77 @@
 				   
 				},{
 					"type": "2Dnumboxes",
-					"maxLength": 10,
-					"maxRange":100,
-					"minRange":0,
+					"maxLength": 15,
+					"maxRange": 100,
+					"minRange": 0,
 					"totalOptionName": "Total Shrinkage",
-					"totalDescription": "Client name total shrinkage",
-					"totalOutputPlaceholder":"%",
-					"totalOutputSelectedText": 0,
-					"totalOutputLowerText":"Total*",
+					"totalDescription": "Total time dedicated to shrinkage elements [(out of office: vacation, holiday, sick etc. +  in-office: paid breaks, training, meeting, coaching etc.)]/Agent paid time",
+					"totalOutputPlaceholder": "%",
+					"totalOutputSelectedText": "",
+					"totalOutputLowerText": "Total",
 					"totalOutputId": "E18",
-					"totalbottomText":"Total is calculated value as the sum of it's components but in case user doesn't has the break-up user should also be able to fill the total value",
-					"rows":[{
-						"optionName": "Shrinkage",
-						"description": "Client name",
-						"inputsPlaceholder": ["%","%","%","%"],
-						"inputsSelectedText": ["","","",""],
-						"inputsLowerText": ["vacation","Holidays","Absent","super"],   
-						"inputIds": ["A1","B1","C1","E1"],
-						"outputPlaceholder":"%",
-						"outputSelectedText": 0,
-						"outputLowerText":"Total",
-						"outputId": "D1"
-					},{
-						"optionName": "Shrinkage2",
-						"description": "Client name2",
-						"inputsPlaceholder": ["%","%","%","%"],
-						"inputsSelectedText": ["","","",""],
-						"inputsLowerText": ["vacation","Holidays","Absent","super"],   
-						"inputIds": ["A1","B1","C1","E1"],
-						"outputPlaceholder":"%",
-						"outputSelectedText": 0,
-						"outputLowerText":"Total",
-						"outputId": "D1"
+					"totalbottomText": "Total is calculated value as the sum of it's components but in case user doesn't has the break-up user should also be able to fill the total value",
+					"rows": [{
+						"optionName": "Shrinkage-Out of office",
+						"description": "% of paid time when agent is not in office due to vacation, holidays, absenteeism (incl. sick, late arrival, unexplained leaves, emergency)",
+						"inputsPlaceholder": ["%", "%", "%"],
+						"inputsSelectedText": ["", "", ""],
+						"inputsLowerText": ["Vacation", "Holidays", "Absenteeism"],
+						"inputIds": ["E9", "E10", "E11"],
+						"outputPlaceholder": "%",
+						"outputSelectedText": "",
+						"outputLowerText": "Total",
+						"outputId": "Total_OUT"
+					}, {
+						"optionName": "Shrinkage-in office",
+						"description": " % of paid time when agent is in office and not working due to paid breaks, training, meetings, coaching, time spent on back office activities etc",
+						"inputsPlaceholder": ["%", "%", "%", "%", "%", "%"],
+						"inputsSelectedText": ["", "", "", "", "", ""],
+						"inputsLowerText": ["Paid breaks", "Training", "Meetings", "Coaching", "Back office", "Other in office"],
+						"inputIds": ["E12", "E13", "E14", "E15", "E16", "E17"],
+						"outputPlaceholder": "%",
+						"outputSelectedText": "",
+						"outputLowerText": "Total",
+						"outputId": "Total_IN"
 					}]
-				}]
+				},
+				{
+					"optionName": "Confirmit shrinkage",
+					"type": "numboxes",
+					"inputsPlaceholder": ["seconds", "seconds", "seconds"],
+					"inputsSelectedText": ["", "", ""],
+					"inputsLowerText": ["Talk Time", "Hold Time", "Wrap Time"],
+					"inputIds": ["E1", "E2", "E3"],
+					"outputPlaceholder": "seconds",
+					"outputSelectedText": "",
+					"outputLowerText": "Total",
+					"outputDescription": "",
+					"outputId": "E4",
+					"maxLength": 28,
+					"maxRange": 999999999999999,
+					"minRange": 0
+        		},
+				{
+					"optionName": "NPS (Promotors, detractors)",
+					"description": "% of promoters customer (rating 9,10) - %of detractors customers (rating 1 to 6)",
+					"type": "NPS",
+					"inputsPlaceholder": ["%", "%"],
+					"inputsSelectedText": ["", ""],
+					"inputsLowerText": ["Promotors", "Detractors"],
+					"minRange": [0, 0],
+					"maxRange": [100, 100],
+					"maxLength": [15, 15],
+					"inputIds": ["F13", "F14"],
+					"outputPlaceholder": "%",
+					"outputSelectedText": "",
+					"outputdescription": "NPS score will be auto calculated in case break-up is available else user can also enter NPS score value manually",
+					"outputLowerText": "",
+					"outputId": "F15",
+					"outputMaxLength": 3,
+					"outputMaxRange": 100,
+					"outputMinRange": -100
+				}
+				]
 			}],
 			"progressData": {
 				"answerTxt": "Answered",
@@ -1464,19 +1501,21 @@
 	<input type="checkbox" name="checkbox" id="SC1_1" />
 	<input type="checkbox" name="checkbox" id="SD1_1" /> -->
 
-	<input type="text" id="A1" />
+	<input type="text" id="A4" />
 	<input type="text" id="B1" />
 	<input type="text" id="C1" />
 	<input type="text" id="E1" />
 	<input type="text" id="D1" />
 	<input type="text" id="E18" />
+	<input type="text" id="CID_OTHER_INPNU" />
 
-	<!-- <div id="CID_OTHER_INPNU_error">Yeh kya ho rha hain</div> -->
+	<div id="CID_OTHER_INPNU_error">Yeh kya ho rha hain</div>
 	<!-- <div id="D1_error">Yeh kya ho rha hain</div> -->
 	<div id="E18_error">Yeh kya ho rha hain</div>
 	<div id="A2_error">This is error</div>
 	<div id="A4_error">This is error</div>
 	<div id="A3_error">This is error</div>
+	<div id="F15_error">This is error</div>
 	
 
 </br>
