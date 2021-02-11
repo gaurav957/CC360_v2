@@ -11,7 +11,24 @@
   @media (max-width:1024px){
     border-top: 1px solid rgba(192, 192, 192, 0.3);
   }
-
+  @media (min-width:1025px) and (max-width:1279px){
+    width: 190px;
+    top: 40px;
+    left: -190px;
+    height: calc(100vh - 40px);
+    }
+  @media (min-width:1280px) and (max-width:1365px){
+    width: 190px;
+    top: 50px;
+    left: -190px;
+    height: calc(100vh - 40px);
+   }
+   @media (min-width:1366px) and (max-width:1560px){
+    width: 190px;
+    top: 50px;
+    left: -190px;
+    height: calc(100vh - 40px);
+   }
   .side-nav-scroll{
     overflow-y: auto;
     height:calc(100vh - 118px);    
@@ -52,6 +69,15 @@
               font-weight: bold;
             }
           }
+          @media (min-width:1025px) and (max-width:1279px){
+            top: 10px;
+            }
+          @media (min-width:1280px) and (max-width:1365px){
+            top: 10px;
+           }
+           @media (min-width:1366px) and (max-width:1560px){
+            top: 10px;
+           }
        }
        &.open{
          .rt-prgs{
@@ -92,6 +118,15 @@
       .nav-item{
         font-size: 0.85em!important;    
         padding-left: 30px!important;
+        @media (min-width:1025px) and (max-width:1279px){
+          font-size: 0.55em!important;  
+          }
+        @media (min-width:1280px) and (max-width:1365px){
+          font-size: 0.55em !important;  
+         }
+         @media (min-width:1366px) and (max-width:1560px){
+          font-size: 0.55em !important;  
+         }
       }
       &.selected{
         color: $selectd;
@@ -107,6 +142,18 @@
     border-left: 5px solid transparent;
     cursor: pointer;
     position:relative;
+    @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.55em;
+      padding: 10px 15px;
+      }
+    @media (min-width:1280px) and (max-width:1365px){
+      font-size: 0.60em;     
+      padding: 10px 15px;
+     }
+     @media (min-width:1366px) and (max-width:1560px){
+      font-size: 0.60em;
+      padding: 10px 15px;
+     }
     &.selected {
       color: $selectd;
       border-color: #2251FF;
@@ -139,5 +186,23 @@
     }
     &.com{
       background-color:#3aa537;
+    }
+    @media (min-width:1025px) and (max-width:1279px){   
+      height: 6px;
+      width: 6px;
+      right: 44px;
+      top: 12px;
+  }
+  @media (min-width:1280px) and (max-width:1365px){     
+    height: 6px;
+    width: 6px;
+    right: 44px;
+    top: 12px;
+  }
+  @media (min-width:1366px) and (max-width:1560px){    
+    height: 6px;
+    width: 6px;
+    right: 44px;
+    top: 12px;
     }
   }

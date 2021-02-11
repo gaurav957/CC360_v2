@@ -15,19 +15,49 @@
 
 .right-panel-wrapper {
   width: 100%;
-  padding: 100px 30px 0px; /* A_B */
+  padding: 100px 30px 0px; 
   height: calc(100vh - 94px);
+  @media (max-width: 1279px) {
+    padding: 100px 15px 0px;
+  }
+  @media (min-width:1025px) and (max-width:1279px){
+    height: calc(100vh - 60px);
+    padding: 45px 10px 0px;
+}
+@media (min-width:1280px) and (max-width:1365px){
+    height: calc(100vh - 60px);
+    padding: 55px 10px 0px;
+}
+@media (min-width:1366px) and (max-width:1560px){
+    height: calc(100vh - 60px);
+    padding: 55px 10px 0px;
+}
   @media (max-width: 1024px) {
     padding: 95px 15px 0px;
     height: calc(100vh - 155px);
   }
-  @media (max-width: 480px) {
+  @media (max-width:1023px) and (orientation: landscape){
+    // height:calc(100vh - 238px);
+    height:calc(100vh - 180px);
+  }
+  @media (max-width:767px){
     padding: 95px 15px 0px;
-    height: calc(100vh - 140px);
+    height: calc(100vh - 180px);
   }
-  @media (max-width: 1279px) {
-    padding: 100px 15px 0px;
+  @media (max-width:767px) and (orientation: landscape){
+    padding: 95px 15px 0px;
+    height: calc(100vh - 100px);
   }
+  @media (max-width:480px){
+    padding: 95px 6px 0px;
+    height: calc(100vh - 155px);
+  }
+  @media (max-width:400px){
+    // height:calc(100vh - 238px);
+    height:calc(100vh - 190px);
+  }
+
+
 }
 
 .ques-heading {
@@ -38,9 +68,30 @@
   font-weight: normal;
   border: 1px solid #eeeeee;
   // cursor: pointer;
-  font-size: 1.18em; /* A_B */
+  font-size: 1.18em; 
   position: relative;
   margin-bottom:10px;
+  @media (min-width:1025px) and (max-width:1279px){
+    font-size: 0.65em;
+    margin-bottom: 5px;
+    padding: 2px 15px;
+    }
+  @media (min-width:1280px) and (max-width:1365px){
+    font-size: 0.70em;
+    margin-bottom: 5px;
+    padding: 2px 15px;
+   }
+   @media (min-width:1366px) and (max-width:1560px){
+    font-size: 0.70em;
+    margin-bottom: 5px;
+    padding: 2px 15px;
+   }
+   @media (max-width:1024px){
+    padding: 3px 15px;
+     font-size: 1em;
+    line-height: 19px;
+    
+   }
 }
 
 .questions-inner {
@@ -72,6 +123,17 @@
     display: table;
     width: 100%;
     clear: both;   
+    @media (min-width:1025px) and (max-width:1279px){
+      padding: 3px 10px;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+     padding: 3px 10px;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+     padding: 3px 10px;
+  }
+    
+
     .sub-heading {
       display: block;
       padding: 0px 0px 18px 0px;
@@ -83,12 +145,15 @@
       font-weight: normal;
       // border-bottom: 1px solid #d3d3d3;/* A_B */
       padding-bottom: 10px;
+      &:empty{
+        display:none;
+      }
     }
     .question-row {
       width: 50%;
       // float: left;
       display: inline-block;
-      vertical-align: middle;
+      vertical-align: top;
       padding-left: 60px;
       padding-right: 60px;
       @media (min-width:1025px) and (max-width:1279px){
@@ -119,6 +184,15 @@
           vertical-align: middle;
           position: relative;
           font-size: 0.85em;
+          @media (min-width:1025px) and (max-width:1279px){
+              font-size: 0.60em;
+          }
+          @media (min-width:1280px) and (max-width:1365px){
+              font-size: 0.70em;
+          }
+          @media (min-width:1366px) and (max-width:1560px){
+            font-size: 0.70em;
+          }
           & > span {
             &:first-child {
               padding-right: 27px;
@@ -137,6 +211,18 @@
           position: absolute;
           right: 0;
           top: 10px; /* A_B */
+          @media (min-width:1025px) and (max-width:1279px){
+            top: 6px; 
+            margin-right: 5px;
+          }
+          @media (min-width:1280px) and (max-width:1365px){
+            top:7px; 
+            margin-right: 5px;
+        }
+        @media (min-width:1366px) and (max-width:1560px){
+            top:7px; 
+            margin-right: 5px;
+        }
         }
       }
 
@@ -161,6 +247,21 @@
                 top: 15px !important;
                }
              }
+             @media (min-width:1025px) and (max-width:1279px){
+              .tooltips{
+                top: 9px !important;
+               }
+            }
+            @media (min-width:1280px) and (max-width:1365px){
+              .tooltips{
+                top: 9px !important;
+               }
+            }
+            @media (min-width:1366px) and (max-width:1560px){
+              .tooltips{
+                top: 9px !important;
+               }
+            }
             @media (min-width:1471px) and (max-width:1600px){
               width: 22.9%;
             }
@@ -180,6 +281,15 @@
               input {
                 & + div{
                     font-size: 0.85em;
+                    @media (min-width:1025px) and (max-width:1279px){
+                      font-size: 0.60em;
+                    }
+                    @media (min-width:1280px) and (max-width:1365px){
+                      font-size:0.70em;
+                    }
+                    @media (min-width:1366px) and (max-width:1560px){
+                      font-size:0.70em;
+                    }
                 }
               }
              @media (max-width:767px){
@@ -194,6 +304,15 @@
                 & + div{
                     font-size: 0.85em;
                     padding-bottom:5px;
+                    @media (min-width:1025px) and (max-width:1279px){
+                      font-size: 0.60em;
+                    }
+                    @media (min-width:1280px) and (max-width:1365px){
+                      font-size: 0.70em;
+                    }
+                   @media (min-width:1366px) and (max-width:1560px){
+                    font-size: 0.70em;
+                  }
                 }
               }
              @media (max-width:767px){
@@ -215,6 +334,15 @@
                 & + div{
                     font-size: 0.85em;
                     padding-bottom:5px;
+                    @media (min-width:1025px) and (max-width:1279px){
+                      font-size: 0.60em;
+                    }
+                    @media (min-width:1280px) and (max-width:1365px){
+                      font-size: 0.70em;
+                    }
+                   @media (min-width:1366px) and (max-width:1560px){
+                    font-size: 0.70em;
+                  }
                 }
               }
             }
@@ -224,6 +352,15 @@
                   left:-28px;
                   top:18px;
                   width:25px;
+                  @media (min-width:1025px) and (max-width:1279px){
+                    top:2px;
+                  }
+                  @media (min-width:1280px) and (max-width:1365px){
+                    top:6px;
+                  }
+                  @media (min-width:1366px) and (max-width:1560px){
+                    top:8px;
+                  }
 
                 }
             }
@@ -247,6 +384,15 @@
           @media (max-width:767px){
             display: block;
            float: none;
+          }
+          @media (min-width:1025px) and (max-width:1279px){
+           padding-top: 2px;
+          }
+          @media (min-width:1280px) and (max-width:1365px){
+            padding-top: 5px;
+          }
+          @media (min-width:1366px) and (max-width:1560px){
+            padding-top: 5px;
           }
          }
       }
@@ -349,9 +495,9 @@
     width: calc(100% - 435px);
     float: left;
     margin-top: 12px;
-    font-weight: bold; /* A_B */
-    font-size: 90%; /* A_B */
-    color: #666; /* A_B */
+    font-weight: bold; 
+    font-size: 90%;
+    color: #666; 
     .perc-data {
       width: 285px;
       display: inline-block;
@@ -359,7 +505,21 @@
         width: 100%;
         display: block;
         margin-bottom: 10px;
+        font-size: 0.68em;
       }
+      @media (min-width:1025px) and (max-width:1279px){
+        font-size: 0.55em;
+        width: 175px;
+     }
+     @media (min-width:1280px) and (max-width:1365px){
+        font-size: 0.65em;
+        width: 195px;
+      }
+      @media (min-width:1366px) and (max-width:1560px){
+        font-size: 0.65em;
+        width: 195px;
+      }
+
     }
     .progress-bar {
       width: calc(85% - 285px);
@@ -368,32 +528,81 @@
         width: 100%;
         display: block;
       }
+      @media (min-width:1025px) and (max-width:1279px){
+        width: calc(85% - 180px);
+        }
+      @media (min-width:1280px) and (max-width:1365px){
+        width: calc(85% - 180px);
+       }
+       @media (min-width:1366px) and (max-width:1560px){
+        width: calc(85% - 180px);
+       }
     }
     #myProgress {
       height: 10px;
       width: 100%;
       background-color: $f7-clr;
+      @media (min-width:1025px) and (max-width:1279px){
+        height: 6px;
+        }
+      @media (min-width:1280px) and (max-width:1365px){
+        height: 6px;
+       }
+       @media (min-width:1366px) and (max-width:1560px){
+        height: 6px;
+       }
     }
     #myBar {
       height: 10px;
       width: 0px;
       background-color: $ff52-clr; //variable
+      @media (min-width:1025px) and (max-width:1279px){
+        height: 6px;
+        }
+      @media (min-width:1280px) and (max-width:1365px){
+        height: 6px;
+       }
+       @media (min-width:1366px) and (max-width:1560px){
+        height: 6px;
+       }
     }
     @media (max-width: 1024px) {
       width: 100%;
       float: none;
     }
+    @media (min-width:1025px) and (max-width:1279px){
+      width: calc(100% - 345px);
+      margin-top: 5px;
+      }
+    @media (min-width:1280px) and (max-width:1365px){
+      width: calc(100% - 375px);
+      margin-top: 2px;
+     }
+   @media (min-width:1366px) and (max-width:1560px){
+      width: calc(100% - 375px);
+      margin-top: 2px;
+     }
+
   }
 
   .progress-panel-inner {
-    // border-bottom: 1px solid $light-gray;/* A_B */
-    padding-bottom: 5px; /* A_B */
+    // border-bottom: 1px solid $light-gray;
+    padding-bottom: 5px; 
+    @media (min-width:1025px) and (max-width:1279px){
+      padding-bottom: 3px;
+     }
+     @media (min-width:1280px) and (max-width:1365px){
+      padding-bottom: 3px;
+    }
+    @media (min-width:1366px) and (max-width:1560px){
+      padding-bottom: 3px;
+    }
   }
 }
 
 .tooltip {
-  width: 15px; /* A_B */
-  height: 15px; /* A_B */
+  width: 15px; 
+  height: 15px;
   position: relative;
   display: inline-block;
   border-radius: 50px;
@@ -404,6 +613,18 @@
   display: inline-block;
   cursor: pointer;
   @include border-radius(50px);
+  @media (min-width:1025px) and (max-width:1279px){
+    width: 10px;
+    height: 10px; 
+}
+@media (min-width:1280px) and (max-width:1365px){
+    width: 10px;
+    height: 10px;
+}
+@media (min-width:1366px) and (max-width:1560px){
+    width: 12px;
+    height: 12px;
+}
   .tooltiptext {
     visibility: hidden;
     // width: 160px;
@@ -437,7 +658,18 @@
       top: auto;
       width: 220px;
     }
-
+    @media (min-width:1025px) and (max-width:1279px){
+      margin-left: -90px;
+      z-index: 2;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+      margin-left: -90px;
+      z-index: 2;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+      margin-left: -90px;
+      z-index: 2;
+  }
     &::after {
       content: "";
       position: absolute;
@@ -533,6 +765,21 @@
     background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNC4zLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA2NCA2NCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjQgNjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiMwRDM3RDY7fQ0KPC9zdHlsZT4NCjxwYXRoIGlkPSJfQ29tcG91bmRfUGF0aF8iIGNsYXNzPSJzdDAiIGQ9Ik02NCwzMkM2NCwxNC4zLDQ5LjcsMCwzMiwwUzAsMTQuMywwLDMyczE0LjMsMzIsMzIsMzJTNjQsNDkuNyw2NCwzMnogTTU4LjQsMzINCgljMCwxNC42LTExLjgsMjYuNC0yNi40LDI2LjRTNS42LDQ2LjYsNS42LDMyQzUuNiwxNy40LDE3LjQsNS42LDMyLDUuNmwwLDBDNDYuNiw1LjYsNTguNCwxNy40LDU4LjQsMzJ6Ii8+DQo8cmVjdCB4PSIyOC41IiB5PSIxMi4yIiBjbGFzcz0ic3QwIiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+DQo8cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjM1LjUsNDQuNCAzNS41LDMwLjkgMzUuNSwyMy45IDI4LjksMjMuOSAyNS42LDIzLjkgMjUuNiwzMC45IDI4LjksMzAuOSAyOC45LDQ0LjQgMjUuNiw0NC40IA0KCTI1LjYsNTEuMyAyOC45LDUxLjMgMzUuNSw1MS4zIDM4LjMsNTEuMyAzOC4zLDQ0LjQgIi8+DQo8L3N2Zz4NCg==");
     background-size: 17px; /* A_B */
     background-repeat: no-repeat; /* A_B */
+    @media (min-width:1025px) and (max-width:1279px){
+      width: 10px;
+      height: 10px;
+      background-size: 10px;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+      width: 10px;
+      height: 10px;
+      background-size: 10px;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+      width: 12px;
+      height: 12px;
+      background-size: 12px;
+  }
   }
   &.tooltip-show {
     .tooltiptext {
@@ -543,8 +790,10 @@
   }
 }
 .accordion {
-  background-color: $ee-clr;
-  color: $drak-gray;
+  // background-color: $ee-clr;
+  // color: $drak-gray;
+  background-color: $bg-color;    
+  color: $white;
   padding: 6px 15px;
   margin: 0;
   font-weight: normal;
@@ -555,22 +804,43 @@
   @media (max-width: 767px) {
     font-size: 0.9em;
   }
+  @media (min-width:1025px) and (max-width:1279px){
+    font-size: 0.50em;
+    }
+  @media (min-width:1280px) and (max-width:1365px){
+    font-size: 0.65em;
+   }
+   @media (min-width:1366px) and (max-width:1560px){
+    font-size: 0.65em;
+   }
 }
 .accordian-inner {
   margin-bottom: 20px;
   .accordion-resize {
     padding: 25px 15px;
   }
+  @media (min-width:1025px) and (max-width:1279px){
+    margin-bottom:5px;
+    }
+  @media (min-width:1280px) and (max-width:1365px){
+    margin-bottom:5px;
+   }
+   @media (min-width:1366px) and (max-width:1560px){
+    margin-bottom:5px;
+   }
 }
 .active,
 .accordion {
   &:hover {
-    background-color: $f6-clr;
-    color: $black;
+    // background-color: $f6-clr;
+    // color: $black;
+    background-color: $bg-color-accent;
+    color: $white;  
   }
   &::after {
     content: "\002B";
-    color: $bl47-clr;
+    // color: $bl47-clr;
+    color: $white;
     font-size: 1.25em;
     font-weight: bold;
     top: 2px;
@@ -581,7 +851,8 @@
 .active {
   &::after {
     content: "\2212";
-    color: $bl47-clr;
+    // color: $bl47-clr;
+    color:$white;
     font-size: 1.25em;
   }
 }
@@ -602,10 +873,55 @@
     &:empty {
       display: none;
     }
+    @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.40em;
+      margin-bottom: 0px;
+      }
+    @media (min-width:1280px) and (max-width:1365px){
+      // font-size: 0.70em;
+      font-size: 0.55em;
+      margin-bottom: 2px;
+     }
+     @media (min-width:1366px) and (max-width:1560px){
+      // font-size: 0.70em;
+      font-size: 0.55em;
+      margin-bottom: 2px;
+     }
   }
   .survey-info-messg {
     color: $drak-gray;
     font-size: 1em;
+     @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.45em !important;
+      }
+     @media (min-width:1280px) and (max-width:1365px){
+      font-size: 0.55em !important;
+     }
+     @media (min-width:1366px) and (max-width:1560px){
+      font-size: 0.55em !important;
+     }
+     & + span{
+      @media (min-width:1025px) and (max-width:1279px){
+          font-size: 0.50em;
+          }
+        @media (min-width:1280px) and (max-width:1365px){
+          font-size: 0.55em;
+         }
+         @media (min-width:1366px) and (max-width:1560px){
+          font-size: 0.55em;
+         }
+         & + span{
+          @media (min-width:1025px) and (max-width:1279px){
+              font-size: 0.45em;
+              }
+          @media (min-width:1280px) and (max-width:1365px){
+          font-size: 0.60em;
+          }
+          @media (min-width:1366px) and (max-width:1560px){
+          font-size: 0.60em;
+          }
+        }
+     }
   }
 }
 
@@ -625,11 +941,38 @@
     @media (max-width: 1024px) {
       height: calc(100vh - 350px);
     }
-    @media (max-width: 480px) {
-      padding-right: 16px;
-      height: calc(100vh - 400px);
-    }
-   
+
+       @media (max-width:1023px) and (orientation: landscape){
+            // height:calc(100vh - 238px);
+            height:calc(100vh - 375px);
+        }
+        @media (max-width:768px) and (orientation: portrait){
+            // height:calc(100vh - 238px);
+            height:calc(100vh - 375px);
+        }
+        @media (max-width:768px) and (orientation: landscape){
+            // height:calc(100vh - 238px);
+            height:calc(100vh - 310px);
+        }
+        @media (max-width:480px){
+            padding-right: 16px;
+            height: calc(100vh - 375px);
+        }
+        @media (max-width:400px){
+            padding-right: 16px;
+            height: calc(100vh - 415px);
+        }
+    @media (min-width:1025px) and (max-width:1279px){
+      height: calc(100vh - 133px);
+
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+      height: calc(100vh - 150px);
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+      height: calc(100vh - 150px);
+  }
+
   }
 }
 
@@ -679,6 +1022,15 @@
       }
     }
   }
+  @media (min-width:1025px) and (max-width:1279px){
+    margin-bottom: 3px;
+}
+@media (min-width:1280px) and (max-width:1365px){
+    margin-bottom: 3px;
+}
+@media (min-width:1366px) and (max-width:1560px){
+    margin-bottom: 3px;
+}
 }
 
 .survey-card {
@@ -713,6 +1065,18 @@
     @media (max-width: 767px) {
       font-size: 0.9em;
     }
+    @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.40em;
+      padding: 4px 10px;
+      }
+    @media (min-width:1280px) and (max-width:1365px){
+      font-size: 0.60em;
+      padding: 4px 10px;
+     }
+     @media (min-width:1366px) and (max-width:1560px){
+       font-size: 0.60em;
+       padding: 4px 10px;
+   }
   }
   .s-crad-body {
     padding: 15px;
@@ -721,6 +1085,21 @@
     min-height: 230px;
     font-size: 0.87em;
     line-height: 20px;
+    @media (min-width:1025px) and (max-width:1279px){
+      font-size: 0.40em;
+      line-height: 9px;
+      padding: 10px;
+      }
+    @media (min-width:1280px) and (max-width:1365px){
+      font-size: 0.55em;
+      line-height: 12px;
+      padding: 10px;
+     }  
+     @media (min-width:1366px) and (max-width:1560px){
+      font-size: 0.55em;
+      line-height: 12px;
+      padding: 10px;
+     } 
   }
   .survey-type-overlay {
     position: absolute;
@@ -733,6 +1112,18 @@
 }
 .survey-info {
   margin-bottom: 15px;
+  @media (min-width:1025px) and (max-width:1279px){
+    margin-bottom: 5px;
+    line-height: 7px;
+}
+@media (min-width:1280px) and (max-width:1365px){
+    margin-bottom: 5px;
+    line-height: 9px;
+}
+@media (min-width:1366px) and (max-width:1560px){
+    margin-bottom: 5px;
+    line-height: 9px;
+}
 }
 .other-type-row {
   margin-top: 15px;
@@ -766,7 +1157,38 @@
       border-color: $lt-blue;
       @include box-shadow(0, 0, 8px, rgba(102, 175, 233, 0.6));
     }
+    @media (min-width:1025px) and (max-width:1279px){
+      height: 18px;
+      font-size: 0.40em;
+      padding: 7px;
+      margin-bottom: 0px;
   }
+  @media (min-width:1280px) and (max-width:1365px){
+      height:24px;
+      font-size: 0.55em;
+      padding: 6px;
+      margin-bottom: 0px;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+      height:24px;
+      font-size: 0.55em;
+      padding: 6px;
+      margin-bottom: 0px;
+    }
+  }
+  @media (min-width:1025px) and (max-width:1279px){
+    margin-top: 5px;
+    margin-bottom:2px;
+}
+@media (min-width:1280px) and (max-width:1365px){
+    margin-top:5px;
+    margin-bottom:5px;
+}
+@media (min-width:1366px) and (max-width:1560px){
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
 }
 
 .selectedsurvey {
@@ -794,6 +1216,18 @@
   @media (min-width: 481px) {
     margin-right: 10px;
   }
+  @media (min-width:1025px) and (max-width:1279px){      
+    font-size: 0.55em;
+    padding: 5px 15px;
+}
+@media (min-width:1280px) and (max-width:1365px){       
+    font-size: 0.60em;
+    padding: 5px 15px;
+}
+@media (min-width:1366px) and (max-width:1560px){     
+    font-size: 0.60em;
+    padding: 5px 15px;
+}
 }
 
 .badge {
@@ -806,7 +1240,15 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-
+  @media (min-width:1025px) and (max-width:1279px){
+    font-size: 0.55em;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+    font-size: 0.60em;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    font-size: 0.60em;
+  }
   &-status {
     float: left;
     width: 100px;
@@ -814,6 +1256,17 @@
     @media (max-width:1025px){
       margin-top: 0;
     }
+    @media (min-width:1025px) and (max-width:1279px){
+      margin-top: 3px;
+    }
+    @media (min-width:1280px) and (max-width:1365px){
+      margin-top: 3px;
+    }
+    @media (min-width:1366px) and (max-width:1560px){
+      margin-top: 3px;
+    }
+
+    
   }
 
   &-not {
@@ -901,5 +1354,96 @@
    
   }
     }
+  }
+}
+
+
+.other-form-ctrl{
+  width: 100%;
+  border: 1px solid #2251ff;
+  height: 32px;
+  padding: 15px;
+  font-size: 1em;
+  color: $btn-border;
+  @include box-shadow(0, 1PX, 1PX,  rgba(0,0,0,.075), inset);       
+  @include transition(border-color .15s ease-in-out, box-shadow .15s ease-in-out);
+  &:focus{
+      outline: none;
+      border-color: $lt-blue; 
+      @include box-shadow(0, 0, 8px, rgba(102,175,233,.6));
+  }
+  margin-bottom: 15px;
+  @media (min-width:1025px) and (max-width:1279px){
+      height: 18px;
+      font-size: 0.40em;
+      padding: 8px;
+      margin-bottom: 3px;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+      height:24px;
+      font-size: 0.55em;
+      padding: 6px;
+      margin-bottom:3px;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+      height:24px;
+      font-size: 0.55em;
+      padding: 6px;
+      margin-bottom:6px;
+  }
+}
+.questions-inner{  
+.other-form-ctrl{
+  @media (min-width:1025px) and (max-width:1279px){
+    height: 18px;
+    font-size: 0.60em;
+    padding: 8px;
+    margin-bottom: 3px;
+}
+@media (min-width:1280px) and (max-width:1365px){
+    height:24px;
+    font-size: 0.70em;
+    padding: 6px;
+    margin-bottom:3px;
+}
+@media (min-width:1366px) and (max-width:1560px){    
+    padding: 6px;
+    margin-bottom:6px;
+    font-size: 0.70em;
+    height: 28px;
+    padding-right: 25px;
+    
+    }
+  }
+  .cst-form-control{
+    @media (min-width:1025px) and (max-width:1279px){
+        font-size: 0.60em;
+        height: 24px;
+        }
+      @media (min-width:1280px) and (max-width:1365px){
+        font-size: 0.70em;
+        height: 27px;
+       }
+       @media (min-width:1366px) and (max-width:1560px){
+        font-size: 0.70em;
+        height: 28px;
+        padding-right: 25px;
+       }
+  }
+}
+
+    
+.questions-inner .question-type1 .question-row .question-group{
+  @media (min-width:1025px) and (max-width:1279px){
+  margin-top:8px;
+  margin-bottom: 3px;
+  }
+  @media (min-width:1280px) and (max-width:1365px){
+    margin-top:8px;
+    margin-bottom: 3px;
+  }
+  @media (min-width:1366px) and (max-width:1560px){
+    margin-top:8px;
+    margin-bottom: 3px;
   }
 }
