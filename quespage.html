@@ -22,1378 +22,310 @@
     </div>
 </div>
  <!--Main wrapper end-->
- 	
-<!-- <span id="jsonData" style="display: none">
+ 
+    
+<span id="jsonData" style="display: none">
 	{
 		"headerData": {
-			"logo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/mck-logo.svg",
-			"headerTitle": "CC 360 Assessment",
+			"logo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/v2/mck-logo.svg",
+			"headerTitle": "CC360 KPI Assessment",
 			"leftPanelOpen": "true"
 		},
 		"leftData": {
-			"seltdVal": "P_TR_INPNU",
-			"mandatoryQuesVal": ["FP_GEO_DD", "CID_ICALLS_INPNU", "CS_ASOCC_INPNU", "IVR_COMPLETION_INPNU", "CS_ASA_INPNU", "RO_ECR_INPNU", "P_TR_INPNU"],
+			"seltdVal": "L1",
+			"mandatoryQuesVal": [],
 			"links": [{
-				"menuTxt": "Organizational details",
-				"menuVal": "FP_GEO_DD",
-				"initialQAnsd": "0",
-				"totalQues": "11",
-				"intialUponTtl": "/"
-			}, {
-				"menuTxt": "Call details",
-				"menuVal": "CID_ICALLS_INPNU",
-				"initialQAnsd": "0",
-				"totalQues": "15",
-				"intialUponTtl": "/"
-			}, {
-				"menuTxt": "Cost structure",
-				"menuVal": "CS_ASOCC_INPNU",
-				"initialQAnsd": "0",
-				"totalQues": "12",
-				"intialUponTtl": "/"
-			}, {
-				"menuTxt": "IVR containment, utilization and productivity",
-				"menuVal": "IVR_COMPLETION_INPNU",
-				"initialQAnsd": "0",
-				"totalQues": "24",
-				"intialUponTtl": "/"
-			}, {
-				"menuTxt": "CSAT data",
-				"menuVal": "CS_ASA_INPNU",
-				"initialQAnsd": "0",
+				"menuTxt": "General",
+				"menuVal": "A1",
+				"initialQAnsd": "12",
 				"totalQues": "14",
-				"intialUponTtl": "/"
+				"intialUponTtl": "/",
+				"curState": "1"
 			}, {
-				"menuTxt": "Revenue data",
-				"menuVal": "RO_ECR_INPNU",
+				"menuTxt": "Assement KPI",
+				"menuVal": "L1",
 				"initialQAnsd": "0",
-				"totalQues": "9",
-				"intialUponTtl": "/"
-			}, {
-				"menuTxt": "People data",
-				"menuVal": "P_TR_INPNU",
-				"initialQAnsd": "0",
-				"totalQues": "19",
-				"intialUponTtl": "/"
+				"totalQues": "18",
+				"intialUponTtl": "/",
+				"curState": "0"
 			}]
 		},
 		"rightData": [{
 			"readdOnly": false,
-			"catType": 2,
-			"heading": "Call details",
-			"subheading": "Calls/interaction details",
+			"catType": 1,
+			"heading": "Self Service capabilities ",
+			"scrollPosition": "",
 			"questions": [{
-				"questionHeading": "Annual inbound calls",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Inbound - calls - agent handled only",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Total number of inbound calls handled calls by agents from in-house as well as outsourced sites",
-					"selectedText": "",
-					"selectedId": "CID_ICALLS_INPNU",
-					"afterText": "#",
-					"maxLength": 10,
-					"maxRange":100,
-					"minRange":0
-				}]
+				"optionName": "# of unique customer on the web ",
+				"type": "num",
+				"placeholder": "#",
+				"description": "Last 90-day active customers on web",
+				"selectedText": "",
+				"selectedId": "L1",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
 			}, {
-				"questionHeading": "Annual inbound emails",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Inbound - emails - agent handled only",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Total number of inbound emails handled by agents from in-house and outsourced sites",
-					"selectedText": "",
-					"selectedId": "CID_IEMAILS_INPNU",
-					"afterText": "#",
-					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0
-				}]
+				"optionName": "# of unique customers on the app ",
+				"type": "num",
+				"placeholder": "#",
+				"description": "Last 90-day active customers on app",
+				"selectedText": "",
+				"selectedId": "L2",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
 			}, {
-				"questionHeading": "Annual inbound chats",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Inbound - chat - agent handled only",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Total number of inbound chat handled by agents from in-house and outsourced sites",
-					"selectedText": "",
-					"selectedId": "CID_ICHAT_INPNU",
-					"afterText": "#",
-					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0
-				}]
+				"optionName": "Chat bot containment ",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Percentage of chats contained with in chatbot ",
+				"selectedText": "",
+				"selectedId": "L3",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
 			}, {
-				"questionHeading": "Outsourcing leverage for inbound calls",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Inbound calls outsourced",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Total annual inbound calls outsourced to onshore, nearshore and offshore vendors",
-					"selectedText": "",
-					"selectedId": "CID_ICALLSO_INPNU",
-					"afterText": "#",
-					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0
-				}]
+				"optionName": "IVR completion rate",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Percentage of calls contained with in IVR through self serve options&lt;br&gt;(e.g. 30 calls which ended in IVR itself /100 calls were total reached to IVR, this means 30% containment rates)",
+				"selectedText": "",
+				"selectedId": "L4",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}]
+		}, {
+			"readdOnly": false,
+			"catType": 1,
+			"heading": "Current interaction details",
+			"scrollPosition": "",
+			"questions": [{
+				"optionName": "Annual Inbound - calls - agent handled only",
+				"type": "num",
+				"placeholder": "#",
+				"description": "Total number of inbound calls handled calls by agents from in-house as well as outsourced sites",
+				"selectedText": "",
+				"selectedId": "L5",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
 			}, {
-				"questionHeading": "Inbound call volume mix (agent handled) - please provide site wise",
-				"quesLength": 6,
+				"optionName": "Percent of calls outsourced",
+				"type": "num",
+				"placeholder": "#",
+				"description": "Total number of live calls outsourced / total number of live calls",
+				"selectedText": "",
+				"selectedId": "L6",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}]
+		}, {
+			"readdOnly": false,
+			"catType": 1,
+			"heading": "Cost",
+			"scrollPosition": "",
+			"questions": [{
+				"optionName": "Total call center actual spend (annual)",
+				"type": "num",
+				"placeholder": "US$",
+				"description": "Total dollars allocated to call center operating expenses (incl. salaries, incentives, support functions, equipment, technology, facilities, etc.)",
+				"selectedText": "",
+				"selectedId": "L7",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}]
+		}, {
+			"readdOnly": false,
+			"catType": 1,
+			"heading": "Operations excellence",
+			"scrollPosition": "",
+			"questions": [{
+				"optionName": "Average handling time (AHT)- Inbound calls",
+				"type": "num",
+				"placeholder": "seconds",
+				"description": "Sum of talk time (time spend on talking to customers), hold time (time spend when customer is on hold) and wrap time (time spend on completing after work  or taking notes)",
+				"selectedText": "",
+				"selectedId": "L8",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}, {
+				"optionName": "Total Shrinkage",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Total time dedicated to shrinkage elements [(out of office: vacation, holiday, sick etc. +  in-office: paid breaks, training, meeting, coaching etc.)]/Agent paid time",
+				"selectedText": "",
+				"selectedId": "L9",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}, {
+				"optionName": "Occupancy",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Total time agent is serving customer(does not include customer related back office work)/agent available hours",
+				"selectedText": "",
+				"selectedId": "L10",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}, {
+				"optionName": "Forecast accuracy- daily level",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Weighted average of daily forecast accuracy (calculated using mean absolute percentage) for last year or minimum 90 days",
+				"selectedText": "",
+				"selectedId": "L11",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}, {
+				"optionName": "Schedule adherence",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Measures of time agent is adhering to the schedule (Percent of time an agent is at work as scheduled)",
+				"selectedText": "",
+				"selectedId": "L12",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}]
+		}, {
+			"readdOnly": false,
+			"catType": 1,
+			"heading": "Customer satisfaction",
+			"scrollPosition": "",
+			"questions": [{
+				"optionName": "Average speed of answer (ASA) - Inbound call",
+				"type": "num",
+				"placeholder": "seconds",
+				"description": "The average wait in queue experienced by all callers for last 1 year or minimum 90 days",
+				"selectedText": "",
+				"selectedId": "L13",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}, {
+				"optionName": "First call resolution (FCR)",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Percentage of customers inquiries or problems that are resolved in the first call (monitored through a survey that is sent to sample customers after the call)",
+				"selectedText": "",
+				"selectedId": "L14",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}, {
+				"optionName": "Threshold used (hours to days)",
+				"type": "dd",
+				"placeholder": "hours,days",
+				"description": "Threshold set for FCR",
+				"selectedId": "",
 				"options": [{
-					"optionName": "Customer service (billing and inquiries)",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-					"selectedText": "",
-					"selectedId": "CID_CS_INPNU",
-					"afterText": "%",
-					"maxLength": 3,
-					"maxRange":100,
-					"minRange":0
+					"ddName": "within 24 hours",
+					"ddId": "L15_1_label"
 				}, {
-					"optionName": "Complaint handling",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-					"selectedText": "",
-					"selectedId": "CID_CH_INPNU",
-					"afterText": "%",
-					"maxLength": 3,
-					"maxRange":100,
-					"minRange":0
+					"ddName": "within 48 hours",
+					"ddId": "L15_2_label"
 				}, {
-					"optionName": "Technical helpdesk",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-					"selectedText": "",
-					"selectedId": "CID_TH_INPNU",
-					"afterText": "%",
-					"maxLength": 3,
-					"maxRange":100,
-					"minRange":0
+					"ddName": "within 72 hours",
+					"ddId": "L15_3_label"
 				}, {
-					"optionName": "Transaction or processing involved ",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-					"selectedText": "",
-					"selectedId": "CID_TPI_INPNU",
-					"afterText": "%",
-					"maxLength": 3,
-					"maxRange":100,
-					"minRange":0
+					"ddName": "within 5 days",
+					"ddId": "L15_4_label"
 				}, {
-					"optionName": "Response to direct marketing ",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-					"selectedText": "",
-					"selectedId": "CID_RDM_INPNU",
-					"afterText": "%",
-					"maxLength": 3,
-					"maxRange":100,
-					"minRange":0
+					"ddName": "within 7 days",
+					"ddId": "L15_5_label"
 				}, {
-					"optionName": "Other",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-					"selectedText": "",
-					"selectedId": "CID_OTHER_INPNU",
-					"afterText": "%",
-					"maxLength": 3,
-					"maxRange":100,
-					"minRange":0
+					"ddName": "within 15 days",
+					"ddId": "L15_6_label"
 				}]
 			}, {
-				"questionHeading": "Annual outbound calls",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Outbound calls",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Call center (in-house + outsourced)-provide site wise numbers for outbound (excludes follow-up calls in relation to inbound call)",
-					"selectedText": "",
-					"selectedId": "CID_OC_INPNU",
-					"afterText": "#",
-					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0
-				}]
+				"optionName": "Transfer rate",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Total # of calls internally transferred to other agents/all calls answered (within same level of support, excludes escalations etc.)",
+				"selectedText": "",
+				"selectedId": "L16",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
 			}, {
-				"questionHeading": "Outbound - sales",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Telesales",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Total outbound calls made for Telesales",
-					"selectedText": "",
-					"selectedId": "CID_TELESALES_INPNU",
-					"afterText": "#",
-					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0
-				}]
-			}, {
-				"questionHeading": "Outbound - collection",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Collections",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Total outbound calls made for collections",
-					"selectedText": "",
-					"selectedId": "CID_COLLECTIONS_INPNU",
-					"afterText": "#",
-					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0
-				}]
-			}, {
-				"questionHeading": "Outbound - retention",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Retentions",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Total outbound calls made for customer retention",
-					"selectedText": "",
-					"selectedId": "CID_RETENTIONS_INPNU",
-					"afterText": "#",
-					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0
-				}]
-			}, {
-				"questionHeading": "Outbound - marketing &amp; others",
-				"quesLength": 1,
-				"options": [{
-					"optionName": "Marketing &amp; others",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Total outbound calls made for marketing or surveys etc.",
-					"selectedText": "",
-					"selectedId": "CID_MO_INPNU",
-					"afterText": "#",
-					"maxLength": 5,
-					"maxRange":100,
-					"minRange":0
-				}]
+				"optionName": "Customer satisfaction- Calls",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Average customer satisfaction",
+				"selectedText": "",
+				"selectedId": "L17",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
+			}]
+		}, {
+			"readdOnly": false,
+			"catType": 1,
+			"heading": "Recruitment and Training",
+			"scrollPosition": "",
+			"questions": [{
+				"optionName": "Attrition",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Annual agent turnover in the call center.  Can be internal (moving to new role) or external (agent quits or is let go).",
+				"selectedText": "",
+				"selectedId": "L18",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 99999999999999999999,
+				"minRange": 0
 			}]
 		}],
 		"progressData": {
-			"answerTxt": "Answered",
+			"answerTxt": "Answered per category",
+			"heading": "",
 			"answrdQues": "0",
 			"of": "of",
-			"totalQues": "15",
+			"totalQues": "18",
 			"percentge": "0",
 			"saveTxt": "Save",
-			"sveVal": "CID_ICALLS_INPNU",
+			"sveVal": "L1",
 			"submitTxt": "Submit",
-			"submitVal": "Sub_Thank"
+			"submitVal": "Feedback",
+			"notstarted": "Not Started",
+			"inprogress": "In Progress",
+			"isLight": true,
+			"complete": "Completed"
 		},
 		"footerData": {
 			"prevTxt": "Previous",
-			"prevVal": "FP_GEO_DD",
-			"forwardTxt": "Forward",
-			"forwardVal": "CS_ASOCC_INPNU",
-			"footerLogo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/mck-logo-footer.png",
-			"copyrghtTxt": "© 1996-2019 McKinsey &amp; Company",
-			"ttlCnt": "Total Answered:"
+			"prevVal": "A1",
+			"forwardTxt": "Next",
+			"forwardVal": "Feedback",
+			"footerLogo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project/v2/mck-logo-footer.png",
+			"copyrghtTxt": "© 1996-2021 McKinsey &amp; Company",
+			"ttlCnt": "Total answered"
 		}
 	}
-    
-    </span>  -->
-    
-    
-    <span id="jsonData" style="display: none">		
-		{
-			"headerData": {
-				"logo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project_v2/mck-logo.svg",
-				"headerTitle": "CC360 KPI Assessment",
-				"leftPanelOpen": "false"
-			},
-			"leftData": {
-				"seltdVal": "A1",
-				"mandatoryQuesVal": [],
-				"links": [{
-					"menuTxt": "General",
-					"menuVal": "A1",
-					"initialQAnsd": "0",
-					"totalQues": "10",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}, {
-					"menuTxt": "Self serve capabilities",
-					"menuVal": "B1",
-					"initialQAnsd": "0",
-					"totalQues": "5",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}, {
-					"menuTxt": "Interaction details",
-					"menuVal": "C1",
-					"initialQAnsd": "0",
-					"totalQues": "17",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}, {
-					"menuTxt": "Cost",
-					"menuVal": "D1",
-					"initialQAnsd": "0",
-					"totalQues": "12",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}, {
-					"menuTxt": "Operations excellence",
-					"menuVal": "E1",
-					"initialQAnsd": "0",
-					"totalQues": "25",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}, {
-					"menuTxt": "Customer satisfaction",
-					"menuVal": "F1",
-					"initialQAnsd": "0",
-					"totalQues": "13",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}, {
-					"menuTxt": "Revenue",
-					"menuVal": "G1",
-					"initialQAnsd": "0",
-					"totalQues": "10",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}, {
-					"menuTxt": "Organization structure",
-					"menuVal": "H1",
-					"initialQAnsd": "0",
-					"totalQues": "8",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}, {
-					"menuTxt": "Recruitment and Training",
-					"menuVal": "I1",
-					"initialQAnsd": "0",
-					"totalQues": "3",
-					"intialUponTtl": "/",
-					"curState": "0"
-				}]
-			},
-			"rightData": [{
-				"readdOnly": false,
-				"catType": 1,
-				"heading": "General",
-				"scrollPosition": "",
-				"questions": [{
-					"optionName": "ddd",
-					"optionName2": "Geographic",
-					"type": "ddd",
-					"placeholder": "Please select",
-					"placeholder2": "Please select2",
-					"placeholder3": "Please select3",
-					"description": "Geographical region/ continent",
-					"description2": "Geographical region/ continent",
-					"selectedId": "",
-					"selectedId2": "",
-					"selectedId3": "",
-					"options": [{
-						"ddName": "TA",
-						"ddId": "A6_1_label"
-					}, {
-						"ddName": "TB",
-						"ddId": "A6_2_label"
-					}],
-					"options2": [{
-						"ddName": "TA1",
-						"ddId": "A1_1"
-					}, {
-						"ddName": "TB1",
-						"ddId": "B1_1"
-					}, {
-						"ddName": "TC1",
-						"ddId": "C1_1"
-					}, {
-						"ddName": "TD1",
-						"ddId": "D1_1"
-					}],
-					"options3": [{
-						"ddName": "TA2",
-						"ddId": "A2_1"
-					}, {
-						"ddName": "TB3",
-						"ddId": "B3_1"
-					}, {
-						"ddName": "TC3",
-						"ddId": "C3_1"
-					}, {
-						"ddName": "TD3",
-						"ddId": "D3_1"
-					}],
-					"map": "1:C1_1-D1_1",
-					"map2": "3:A2_1-B3_1"
-				}, {
-					"optionName": "option 1",
-					"optionName2": "option 2",
-					"type": "sdd",
-					"placeholder": "Please select",
-					"placeholder2": "Please select2",
-					"description": "option 1",
-					"description2": "option 2",
-					"selectedId": "SA6_1_label",
-					"selectedId2": "",
-					"options": [{
-						"ddName": "STA",
-						"ddId": "SA6_1_label"
-					}, {
-						"ddName": "STB",
-						"ddId": "SA6_2_label"
-					}],
-					"options2": [{
-						"ddName": "STA1",
-						"ddId": "SA1_1"
-					}, {
-						"ddName": "STB1",
-						"ddId": "SB1_1"
-					}, {
-						"ddName": "STC1",
-						"ddId": "SC1_1"
-					}, {
-						"ddName": "STD1",
-						"ddId": "SD1_1"
-					}],
-					"map": "1:SC1_1-SD1_1|2:SA1_1-SB1_1"
-				}, {
-					"optionName": "Geographic",
-					"type": "numlist",
-					"placeholder": "Please select",
-					"description": "Geographical region/ continent",
-					"selectedId": "1",
-					"selectedText": "",
-					"selectTextId": "",
-					"maxLength": 5,
-					"maxRange": 100,
-					"minRange": 0,
-					"options": [{
-						"ddName": "Africa",
-						"ddId": "1",
-						"textId": "A"
-					}, {
-						"ddName": "Asia",
-						"ddId": "2",
-						"textId": "B"
-					}]
-				}, {
-					"optionName": "Client name",
-					"type": "txt",
-					"placeholder": "Enter the text",
-					"description": "Client name",
-					"selectedText": "",
-					"selectedId": "A1"
-				}, {
-					"optionName": "Geography",
-					"type": "dd",
-					"placeholder": "Please select",
-					"description": "Geographical region/ continent ",
-					"selectedId": "",
-					"options": [{
-						"ddName": "Africa",
-						"ddId": "A2_1_label"
-					}, {
-						"ddName": "Asia",
-						"ddId": "A2_2_label"
-					}, {
-						"ddName": "Asia Pacific",
-						"ddId": "A2_3_label"
-					}, {
-						"ddName": "Australia",
-						"ddId": "A2_4_label"
-					}, {
-						"ddName": "Central America",
-						"ddId": "A2_5_label"
-					}, {
-						"ddName": "Eastern Europe",
-						"ddId": "A2_6_label"
-					}, {
-						"ddName": "Europe",
-						"ddId": "A2_7_label"
-					}, {
-						"ddName": "Middle East",
-						"ddId": "A2_8_label"
-					}, {
-						"ddName": "North America",
-						"ddId": "A2_9_label"
-					}, {
-						"ddName": "Pacific",
-						"ddId": "A2_10_label"
-					}, {
-						"ddName": "South America",
-						"ddId": "A2_11_label"
-					}, {
-						"ddName": "Western Europe",
-						"ddId": "A2_12_label"
-					}]
-				}, {
-					"optionName": "Country",
-					"type": "dd",
-					"placeholder": "Please select",
-					"description": "Country of footprint",
-					"selectedId": "",
-					"options": [{
-						"ddName": "Afghanistan",
-						"ddId": "A3_1_label"
-					}, {
-						"ddName": "Albania",
-						"ddId": "A3_2_label"
-					}, {
-						"ddName": "Algeria",
-						"ddId": "A3_3_label"
-					}, {
-						"ddName": "Andorra",
-						"ddId": "A3_4_label"
-					}, {
-						"ddName": "Angola",
-						"ddId": "A3_5_label"
-					}, {
-						"ddName": "Antigua and Barbuda",
-						"ddId": "A3_6_label"
-					}, {
-						"ddName": "Argentina",
-						"ddId": "A3_7_label"
-					}, {
-						"ddName": "Armenia",
-						"ddId": "A3_8_label"
-					}, {
-						"ddName": "Aruba",
-						"ddId": "A3_9_label"
-					}, {
-						"ddName": "Australia",
-						"ddId": "A3_10_label"
-					}, {
-						"ddName": "Austria",
-						"ddId": "A3_11_label"
-					}, {
-						"ddName": "Azerbaijan",
-						"ddId": "A3_12_label"
-					}, {
-						"ddName": "Bahamas, The",
-						"ddId": "A3_13_label"
-					}, {
-						"ddName": "Bahrain",
-						"ddId": "A3_14_label"
-					}, {
-						"ddName": "Bangladesh",
-						"ddId": "A3_15_label"
-					}, {
-						"ddName": "Barbados",
-						"ddId": "A3_16_label"
-					}, {
-						"ddName": "Belarus",
-						"ddId": "A3_17_label"
-					}, {
-						"ddName": "Belgium",
-						"ddId": "A3_18_label"
-					}, {
-						"ddName": "Belize",
-						"ddId": "A3_19_label"
-					}, {
-						"ddName": "Benin",
-						"ddId": "A3_20_label"
-					}, {
-						"ddName": "Bhutan",
-						"ddId": "A3_21_label"
-					}, {
-						"ddName": "Bolivia",
-						"ddId": "A3_22_label"
-					}, {
-						"ddName": "Bosnia and Herzegovina",
-						"ddId": "A3_23_label"
-					}, {
-						"ddName": "Botswana",
-						"ddId": "A3_24_label"
-					}, {
-						"ddName": "Brazil",
-						"ddId": "A3_25_label"
-					}, {
-						"ddName": "Brunei",
-						"ddId": "A3_26_label"
-					}, {
-						"ddName": "Bulgaria",
-						"ddId": "A3_27_label"
-					}, {
-						"ddName": "Burkina Faso",
-						"ddId": "A3_28_label"
-					}, {
-						"ddName": "Burma",
-						"ddId": "A3_29_label"
-					}, {
-						"ddName": "Burundi",
-						"ddId": "A3_30_label"
-					}, {
-						"ddName": "Cambodia",
-						"ddId": "A3_31_label"
-					}, {
-						"ddName": "Cameroon",
-						"ddId": "A3_32_label"
-					}, {
-						"ddName": "Canada",
-						"ddId": "A3_33_label"
-					}, {
-						"ddName": "Cabo Verde",
-						"ddId": "A3_34_label"
-					}, {
-						"ddName": "Central African Republic",
-						"ddId": "A3_35_label"
-					}, {
-						"ddName": "Chad",
-						"ddId": "A3_36_label"
-					}, {
-						"ddName": "Chile",
-						"ddId": "A3_37_label"
-					}, {
-						"ddName": "China",
-						"ddId": "A3_38_label"
-					}, {
-						"ddName": "Colombia",
-						"ddId": "A3_39_label"
-					}, {
-						"ddName": "Comoros",
-						"ddId": "A3_40_label"
-					}, {
-						"ddName": "Congo, Democratic Republic of the",
-						"ddId": "A3_41_label"
-					}, {
-						"ddName": "Congo, Republic of the",
-						"ddId": "A3_42_label"
-					}, {
-						"ddName": "Costa Rica",
-						"ddId": "A3_43_label"
-					}, {
-						"ddName": "Cote d'Ivoire",
-						"ddId": "A3_44_label"
-					}, {
-						"ddName": "Croatia",
-						"ddId": "A3_45_label"
-					}, {
-						"ddName": "Cuba",
-						"ddId": "A3_46_label"
-					}, {
-						"ddName": "Curacao",
-						"ddId": "A3_47_label"
-					}, {
-						"ddName": "Cyprus",
-						"ddId": "A3_48_label"
-					}, {
-						"ddName": "Czechia",
-						"ddId": "A3_49_label"
-					}, {
-						"ddName": "Denmark",
-						"ddId": "A3_50_label"
-					}, {
-						"ddName": "Djibouti",
-						"ddId": "A3_51_label"
-					}, {
-						"ddName": "Dominica",
-						"ddId": "A3_52_label"
-					}, {
-						"ddName": "Dominican Republic",
-						"ddId": "A3_53_label"
-					}, {
-						"ddName": "East Timor",
-						"ddId": "A3_54_label"
-					}, {
-						"ddName": "Ecuador",
-						"ddId": "A3_55_label"
-					}, {
-						"ddName": "Egypt",
-						"ddId": "A3_56_label"
-					}, {
-						"ddName": "El Salvador",
-						"ddId": "A3_57_label"
-					}, {
-						"ddName": "Equatorial Guinea",
-						"ddId": "A3_58_label"
-					}, {
-						"ddName": "Eritrea",
-						"ddId": "A3_59_label"
-					}, {
-						"ddName": "Estonia",
-						"ddId": "A3_60_label"
-					}, {
-						"ddName": "Ethiopia",
-						"ddId": "A3_61_label"
-					}, {
-						"ddName": "Fiji",
-						"ddId": "A3_62_label"
-					}, {
-						"ddName": "Finland",
-						"ddId": "A3_63_label"
-					}, {
-						"ddName": "France",
-						"ddId": "A3_64_label"
-					}, {
-						"ddName": "Gabon",
-						"ddId": "A3_65_label"
-					}, {
-						"ddName": "Gambia, The",
-						"ddId": "A3_66_label"
-					}, {
-						"ddName": "Georgia",
-						"ddId": "A3_67_label"
-					}, {
-						"ddName": "Germany",
-						"ddId": "A3_68_label"
-					}, {
-						"ddName": "Ghana",
-						"ddId": "A3_69_label"
-					}, {
-						"ddName": "Greece",
-						"ddId": "A3_70_label"
-					}, {
-						"ddName": "Grenada",
-						"ddId": "A3_71_label"
-					}, {
-						"ddName": "Guatemala",
-						"ddId": "A3_72_label"
-					}, {
-						"ddName": "Guinea",
-						"ddId": "A3_73_label"
-					}, {
-						"ddName": "Guinea-Bissau",
-						"ddId": "A3_74_label"
-					}, {
-						"ddName": "Guyana",
-						"ddId": "A3_75_label"
-					}, {
-						"ddName": "Haiti",
-						"ddId": "A3_76_label"
-					}, {
-						"ddName": "Holy See",
-						"ddId": "A3_77_label"
-					}, {
-						"ddName": "Honduras",
-						"ddId": "A3_78_label"
-					}, {
-						"ddName": "Hong Kong",
-						"ddId": "A3_79_label"
-					}, {
-						"ddName": "Hungary",
-						"ddId": "A3_80_label"
-					}, {
-						"ddName": "Iceland",
-						"ddId": "A3_81_label"
-					}, {
-						"ddName": "India",
-						"ddId": "A3_82_label"
-					}, {
-						"ddName": "Indonesia",
-						"ddId": "A3_83_label"
-					}, {
-						"ddName": "Iran",
-						"ddId": "A3_84_label"
-					}, {
-						"ddName": "Iraq",
-						"ddId": "A3_85_label"
-					}, {
-						"ddName": "Ireland",
-						"ddId": "A3_86_label"
-					}, {
-						"ddName": "Israel",
-						"ddId": "A3_87_label"
-					}, {
-						"ddName": "Italy",
-						"ddId": "A3_88_label"
-					}, {
-						"ddName": "Jamaica",
-						"ddId": "A3_89_label"
-					}, {
-						"ddName": "Japan",
-						"ddId": "A3_90_label"
-					}, {
-						"ddName": "Jordan",
-						"ddId": "A3_91_label"
-					}, {
-						"ddName": "Kazakhstan",
-						"ddId": "A3_92_label"
-					}, {
-						"ddName": "Kenya",
-						"ddId": "A3_93_label"
-					}, {
-						"ddName": "Kiribati",
-						"ddId": "A3_94_label"
-					}, {
-						"ddName": "Korea, North",
-						"ddId": "A3_95_label"
-					}, {
-						"ddName": "Korea, South",
-						"ddId": "A3_96_label"
-					}, {
-						"ddName": "Kosovo",
-						"ddId": "A3_97_label"
-					}, {
-						"ddName": "Kuwait",
-						"ddId": "A3_98_label"
-					}, {
-						"ddName": "Kyrgyzstan",
-						"ddId": "A3_99_label"
-					}, {
-						"ddName": "Laos",
-						"ddId": "A3_100_label"
-					}, {
-						"ddName": "Latvia",
-						"ddId": "A3_101_label"
-					}, {
-						"ddName": "Lebanon",
-						"ddId": "A3_102_label"
-					}, {
-						"ddName": "Lesotho",
-						"ddId": "A3_103_label"
-					}, {
-						"ddName": "Liberia",
-						"ddId": "A3_104_label"
-					}, {
-						"ddName": "Libya",
-						"ddId": "A3_105_label"
-					}, {
-						"ddName": "Liechtenstein",
-						"ddId": "A3_106_label"
-					}, {
-						"ddName": "Lithuania",
-						"ddId": "A3_107_label"
-					}, {
-						"ddName": "Luxembourg",
-						"ddId": "A3_108_label"
-					}, {
-						"ddName": "Macau",
-						"ddId": "A3_109_label"
-					}, {
-						"ddName": "Macedonia",
-						"ddId": "A3_110_label"
-					}, {
-						"ddName": "Madagascar",
-						"ddId": "A3_111_label"
-					}, {
-						"ddName": "Malawi",
-						"ddId": "A3_112_label"
-					}, {
-						"ddName": "Malaysia",
-						"ddId": "A3_113_label"
-					}, {
-						"ddName": "Maldives",
-						"ddId": "A3_114_label"
-					}, {
-						"ddName": "Mali",
-						"ddId": "A3_115_label"
-					}, {
-						"ddName": "Malta",
-						"ddId": "A3_116_label"
-					}, {
-						"ddName": "Marshall Islands",
-						"ddId": "A3_117_label"
-					}, {
-						"ddName": "Mauritania",
-						"ddId": "A3_118_label"
-					}, {
-						"ddName": "Mauritius",
-						"ddId": "A3_119_label"
-					}, {
-						"ddName": "Mexico",
-						"ddId": "A3_120_label"
-					}, {
-						"ddName": "Micronesia",
-						"ddId": "A3_121_label"
-					}, {
-						"ddName": "Moldova",
-						"ddId": "A3_122_label"
-					}, {
-						"ddName": "Monaco",
-						"ddId": "A3_123_label"
-					}, {
-						"ddName": "Mongolia",
-						"ddId": "A3_124_label"
-					}, {
-						"ddName": "Montenegro",
-						"ddId": "A3_125_label"
-					}, {
-						"ddName": "Morocco",
-						"ddId": "A3_126_label"
-					}, {
-						"ddName": "Mozambique",
-						"ddId": "A3_127_label"
-					}, {
-						"ddName": "Namibia",
-						"ddId": "A3_128_label"
-					}, {
-						"ddName": "Nauru",
-						"ddId": "A3_129_label"
-					}, {
-						"ddName": "Nepal",
-						"ddId": "A3_130_label"
-					}, {
-						"ddName": "Netherlands",
-						"ddId": "A3_131_label"
-					}, {
-						"ddName": "New Zealand",
-						"ddId": "A3_132_label"
-					}, {
-						"ddName": "Nicaragua",
-						"ddId": "A3_133_label"
-					}, {
-						"ddName": "Niger",
-						"ddId": "A3_134_label"
-					}, {
-						"ddName": "Nigeria",
-						"ddId": "A3_135_label"
-					}, {
-						"ddName": "North Korea",
-						"ddId": "A3_136_label"
-					}, {
-						"ddName": "Norway",
-						"ddId": "A3_137_label"
-					}, {
-						"ddName": "Oman",
-						"ddId": "A3_138_label"
-					}, {
-						"ddName": "Pakistan",
-						"ddId": "A3_139_label"
-					}, {
-						"ddName": "Palau",
-						"ddId": "A3_140_label"
-					}, {
-						"ddName": "Palestinian Territories",
-						"ddId": "A3_141_label"
-					}, {
-						"ddName": "Panama",
-						"ddId": "A3_142_label"
-					}, {
-						"ddName": "Papua New Guinea",
-						"ddId": "A3_143_label"
-					}, {
-						"ddName": "Paraguay",
-						"ddId": "A3_144_label"
-					}, {
-						"ddName": "Peru",
-						"ddId": "A3_145_label"
-					}, {
-						"ddName": "Philippines",
-						"ddId": "A3_146_label"
-					}, {
-						"ddName": "Poland",
-						"ddId": "A3_147_label"
-					}, {
-						"ddName": "Portugal",
-						"ddId": "A3_148_label"
-					}, {
-						"ddName": "Qatar",
-						"ddId": "A3_149_label"
-					}, {
-						"ddName": "Romania",
-						"ddId": "A3_150_label"
-					}, {
-						"ddName": "Russia",
-						"ddId": "A3_151_label"
-					}, {
-						"ddName": "Rwanda",
-						"ddId": "A3_152_label"
-					}, {
-						"ddName": "Saint Kitts and Nevis",
-						"ddId": "A3_153_label"
-					}, {
-						"ddName": "Saint Lucia",
-						"ddId": "A3_154_label"
-					}, {
-						"ddName": "Saint Vincent and the Grenadines",
-						"ddId": "A3_155_label"
-					}, {
-						"ddName": "Samoa",
-						"ddId": "A3_156_label"
-					}, {
-						"ddName": "San Marino",
-						"ddId": "A3_157_label"
-					}, {
-						"ddName": "Sao Tome and Principe",
-						"ddId": "A3_158_label"
-					}, {
-						"ddName": "Saudi Arabia",
-						"ddId": "A3_159_label"
-					}, {
-						"ddName": "Senegal",
-						"ddId": "A3_160_label"
-					}, {
-						"ddName": "Serbia",
-						"ddId": "A3_161_label"
-					}, {
-						"ddName": "Seychelles",
-						"ddId": "A3_162_label"
-					}, {
-						"ddName": "Sierra Leone",
-						"ddId": "A3_163_label"
-					}, {
-						"ddName": "Singapore",
-						"ddId": "A3_164_label"
-					}, {
-						"ddName": "Sint Maarten",
-						"ddId": "A3_165_label"
-					}, {
-						"ddName": "Slovakia",
-						"ddId": "A3_166_label"
-					}, {
-						"ddName": "Slovenia",
-						"ddId": "A3_167_label"
-					}, {
-						"ddName": "Solomon Islands",
-						"ddId": "A3_168_label"
-					}, {
-						"ddName": "Somalia",
-						"ddId": "A3_169_label"
-					}, {
-						"ddName": "South Africa",
-						"ddId": "A3_170_label"
-					}, {
-						"ddName": "South Korea",
-						"ddId": "A3_171_label"
-					}, {
-						"ddName": "South Sudan",
-						"ddId": "A3_172_label"
-					}, {
-						"ddName": "Spain",
-						"ddId": "A3_173_label"
-					}, {
-						"ddName": "Sri Lanka",
-						"ddId": "A3_174_label"
-					}, {
-						"ddName": "Sudan",
-						"ddId": "A3_175_label"
-					}, {
-						"ddName": "Suriname",
-						"ddId": "A3_176_label"
-					}, {
-						"ddName": "Swaziland",
-						"ddId": "A3_177_label"
-					}, {
-						"ddName": "Sweden",
-						"ddId": "A3_178_label"
-					}, {
-						"ddName": "Switzerland",
-						"ddId": "A3_179_label"
-					}, {
-						"ddName": "Syria",
-						"ddId": "A3_180_label"
-					}, {
-						"ddName": "Taiwan",
-						"ddId": "A3_181_label"
-					}, {
-						"ddName": "Tajikistan",
-						"ddId": "A3_182_label"
-					}, {
-						"ddName": "Tanzania",
-						"ddId": "A3_183_label"
-					}, {
-						"ddName": "Thailand",
-						"ddId": "A3_184_label"
-					}, {
-						"ddName": "Timor-Leste",
-						"ddId": "A3_185_label"
-					}, {
-						"ddName": "Togo",
-						"ddId": "A3_186_label"
-					}, {
-						"ddName": "Tonga",
-						"ddId": "A3_187_label"
-					}, {
-						"ddName": "Trinidad and Tobago",
-						"ddId": "A3_188_label"
-					}, {
-						"ddName": "Tunisia",
-						"ddId": "A3_189_label"
-					}, {
-						"ddName": "Turkey",
-						"ddId": "A3_190_label"
-					}, {
-						"ddName": "Turkmenistan",
-						"ddId": "A3_191_label"
-					}, {
-						"ddName": "Tuvalu",
-						"ddId": "A3_192_label"
-					}, {
-						"ddName": "Uganda",
-						"ddId": "A3_193_label"
-					}, {
-						"ddName": "Ukraine",
-						"ddId": "A3_194_label"
-					}, {
-						"ddName": "United Arab Emirates",
-						"ddId": "A3_195_label"
-					}, {
-						"ddName": "United States",
-						"ddId": "A3_196_label"
-					}, {
-						"ddName": "United Kingdom",
-						"ddId": "A3_197_label"
-					}, {
-						"ddName": "Uruguay",
-						"ddId": "A3_198_label"
-					}, {
-						"ddName": "Uzbekistan",
-						"ddId": "A3_199_label"
-					}, {
-						"ddName": "Vanuatu",
-						"ddId": "A3_200_label"
-					}, {
-						"ddName": "Venezuela",
-						"ddId": "A3_201_label"
-					}, {
-						"ddName": "Vietnam",
-						"ddId": "A3_202_label"
-					}, {
-						"ddName": "Yemen",
-						"ddId": "A3_203_label"
-					}, {
-						"ddName": "Zambia",
-						"ddId": "A3_204_label"
-					}, {
-						"ddName": "Zimbabwe",
-						"ddId": "A3_205_label"
-					}]
-				}, {
-					"optionName": "City",
-					"type": "txt",
-					"placeholder": "Enter the text",
-					"description": "City of delivery footprint",
-					"selectedText": "",
-					"selectedId": "A4"
-				}, {
-					"optionName": "Economic status",
-					"type": "dd",
-					"placeholder": "Please select",
-					"description": "Advanced/developed or Emerging/developing",
-					"selectedId": "",
-					"options": [{
-						"ddName": "Advanced",
-						"ddId": "A5_1_label"
-					}, {
-						"ddName": "Emerging and developing",
-						"ddId": "A5_2_label"
-					}]
-				}, {
-					"optionName": "Business type",
-					"type": "dd",
-					"placeholder": "Please select",
-					"description": "Sub- sector of client operation",
-					"selectedId": "",
-					"options": [{
-						"ddName": "B2B",
-						"ddId": "A8_1_label"
-					}, {
-						"ddName": "B2C",
-						"ddId": "A8_2_label"
-					}, {
-						"ddName": "Both",
-						"ddId": "A8_3_label"
-					}]
-				}, {
-					"optionName": "Major work type",
-					"type": "dd",
-					"placeholder": "Please select",
-					"description": "Type of activity/ service performed",
-					"selectedId": "",
-					"options": [{
-						"ddName": "Inbound",
-						"ddId": "A9_1_label"
-					}, {
-						"ddName": "Inbound/outbound mixed",
-						"ddId": "A9_2_label"
-					}, {
-						"ddName": "Outbound/telesales",
-						"ddId": "A9_3_label"
-					}, {
-						"ddName": "Outbound/collections",
-						"ddId": "A9_4_label"
-					}, {
-						"ddName": "Save desk",
-						"ddId": "A9_5_label"
-					}, {
-						"ddName": "Help desk",
-						"ddId": "A9_6_label"
-					}]
-				}, {
-					"optionName": "Year",
-					"type": "dd",
-					"placeholder": "Please select",
-					"description": "",
-					"selectedId": "",
-					"options": [{
-						"ddName": "2014",
-						"ddId": "A10_1_label"
-					}, {
-						"ddName": "2015",
-						"ddId": "A10_2_label"
-					}, {
-						"ddName": "2016",
-						"ddId": "A10_3_label"
-					}, {
-						"ddName": "2017",
-						"ddId": "A10_4_label"
-					}, {
-						"ddName": "2018",
-						"ddId": "A10_5_label"
-					}, {
-						"ddName": "2019",
-						"ddId": "A10_6_label"
-					}, {
-						"ddName": "2020",
-						"ddId": "A10_7_label"
-					}, {
-						"ddName": "2021",
-						"ddId": "A10_8_label"
-					}, {
-						"ddName": "2022",
-						"ddId": "A10_9_label"
-					}, {
-						"ddName": "2023",
-						"ddId": "A10_10_label"
-					}, {
-						"ddName": "2024",
-						"ddId": "A10_11_label"
-					}, {
-						"ddName": "2025",
-						"ddId": "A10_12_label"
-					}, {
-						"ddName": "2026",
-						"ddId": "A10_13_label"
-					}, {
-						"ddName": "2027",
-						"ddId": "A10_14_label"
-					}, {
-						"ddName": "2028",
-						"ddId": "A10_15_label"
-					}, {
-						"ddName": "2029",
-						"ddId": "A10_16_label"
-					}, {
-						"ddName": "2030",
-						"ddId": "A10_17_label"
-					}]
-				},{
-					"optionName": "Other",
-					"type": "num",
-					"placeholder": "Enter the value",
-					"description": "Please describe how your inbound call volume is distributed by call type (% of calls) - agent handled calls only",
-					"selectedText": "",
-					"selectedId": "CID_OTHER_INPNU",
-					"afterText": "%",
-					"maxLength": 3,
-					"maxRange":100,
-					"minRange":0
-				},{
-					"optionName": "Shrinkage",
-					"description": "Client name",
-					"type": "numboxes",
-					"inputsPlaceholder": ["%","%","%","%","%","%","%","%","%","%","%"],
-					"inputsSelectedText": ["","","","","","","","","","",""],
-					"inputsLowerText": ["vacation","Holidays","Absent","super","super","super","super","super","super","super","super"],   
-					"inputIds": ["A1","B1","C1","E1","E1"],
-					"outputPlaceholder":"%",
-					"outputSelectedText": 0,
-					"outputLowerText":"Total",
-					"outputId": "D1",
-					"maxLength": 10,
-					"maxRange":100,
-					"minRange":0
-				   
-				},{
-					"optionName": "Shrinkage",
-					"description": "Client name",
-					"type": "NPS",
-					"inputsPlaceholder": ["%","%"],
-					"inputsSelectedText": ["",""],
-					"inputsLowerText": ["vacation","Holidays"],
-					"minRange":[0,0],   
-					"maxRange":[100,100],   
-					"maxLength":[3,3],   
-					"inputIds": ["A1","B1"],
-					"outputPlaceholder":"%",
-					"outputSelectedText": "",
-					"outputdescription":"Hello moto",
-					"outputLowerText":"Total",
-					"outputId": "D1",
-					"outputMaxLength": 3,
-					"outputMaxRange":100,
-					"outputMinRange":-100
-				   
-				},{
-					"type": "2Dnumboxes",
-					"maxLength": 10,
-					"maxRange":100,
-					"minRange":0,
-					"totalOptionName": "Total Shrinkage",
-					"totalDescription": "Client name total shrinkage",
-					"totalOutputPlaceholder":"%",
-					"totalOutputSelectedText": 0,
-					"totalOutputLowerText":"Total*",
-					"totalOutputId": "E18",
-					"totalbottomText":"Total is calculated value as the sum of it's components but in case user doesn't has the break-up user should also be able to fill the total value",
-					"rows":[{
-						"optionName": "Shrinkage",
-						"description": "Client name",
-						"inputsPlaceholder": ["%","%","%","%"],
-						"inputsSelectedText": ["","","",""],
-						"inputsLowerText": ["vacation","Holidays","Absent","super"],   
-						"inputIds": ["A1","B1","C1","E1"],
-						"outputPlaceholder":"%",
-						"outputSelectedText": 0,
-						"outputLowerText":"Total",
-						"outputId": "D1"
-					},{
-						"optionName": "Shrinkage2",
-						"description": "Client name2",
-						"inputsPlaceholder": ["%","%","%","%"],
-						"inputsSelectedText": ["","","",""],
-						"inputsLowerText": ["vacation","Holidays","Absent","super"],   
-						"inputIds": ["A1","B1","C1","E1"],
-						"outputPlaceholder":"%",
-						"outputSelectedText": 0,
-						"outputLowerText":"Total",
-						"outputId": "D1"
-					}]
-				}]
-			}],
-			"progressData": {
-				"answerTxt": "Answered",
-				"answrdQues": "0",
-				"of": "of",
-				"totalQues": "11",
-				"percentge": "0",
-				"saveTxt": "Save",
-				"sveVal": "A1",
-				"submitTxt": "Submit",
-				"submitVal": "Sub_Thank",
-				"notstarted": "Not Started",
-				"inprogress": "In progress",
-				"complete": "Completed",
-				"heading": "General"
-			},
-			"footerData": {
-				"prevTxt": "Previous",
-				"prevVal": "",
-				"forwardTxt": "Forward",
-				"forwardVal": "B1",
-				"footerLogo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project_v2/mck-logo-footer.png",
-				"copyrghtTxt": "© 1996-2020 McKinsey &amp; Company",
-				"ttlCnt": "Total Answered:"
-			}
-		}
-
-	</span>
+</span>
 	
 
 
@@ -1402,7 +334,8 @@
 
 
 
-
+<input class="" type="text" name="L1" id="L1" style="position:absolute;top: 100px;left: 100px;z-index: 222;"/>
+<input class="" type="text" name="L2" id="L2" style="position: absolute;top: 200px;left: 100px;z-index: 222;"/>
 <input class="el1" type="text" name="navText" id="navText" />
 <input class="el2 left-panel-open" name="left-panel-open" />
 <input class="el3 left-panel-menu-slctn" id="left-panel-menu-slctn" name="currentTab" />
@@ -1472,7 +405,7 @@
 <script src="dist/js/vendor/vue.js" type="text/javascript"></script>
 <script src="./dist/js/vendor/OverlayScrollbars.min.js"></script>
 <!-- <script src="https://unpkg.com/vue-multiselect@2.1.0"></script> -->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="/dist/js/vendor/jquery.min.js"></script>
 <script src="dist/js/production/questionpage.js" type="text/javascript"></script>
 
 
