@@ -12,7 +12,7 @@ Vue.component("right-panel", {
               <h4 class="sub-heading" v-html='qType.subheading'></h4>
               <p class="question-line" v-html='qType.categoryHeading'></p>
               <div class="q-gutter">
-              <div class="question-row" :data-bg="question.grayBG" :class="[question.type=='numboxes'?'numboxes':'',question.type=='2Dnumboxes'?'numboxes':'',question.type=='NPS'?'numboxes':'']"  v-for="(question,quesIndex) of qType.questions">
+              <div class="question-row" :id="question.grayBG+quesIndex" :data-bg="question.grayBG" :class="[question.type=='numboxes'?'numboxes':'',question.type=='2Dnumboxes'?'numboxes':'',question.type=='NPS'?'numboxes':'']"  v-for="(question,quesIndex) of qType.questions">
               <template v-if="question.type=='dd'">
               <div class='validated-error-question' v-html="getError(question.error_id)" v-if="getError(question.error_id)"></div>
                 <div class="question-group" >

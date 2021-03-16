@@ -106,6 +106,41 @@
        }
   }
 }
+.feedback-submit-setTop {
+  width: 100%;  
+  text-align: center;
+  .btn_submit-now {
+    display: inline-block;
+    width: 150px;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    margin: 0px auto;
+    background: #2251ff;
+    color: #fff;
+    @media (max-width: 480px){
+        width: 115px;
+      }
+    &:first-child{
+      margin-right: 10px;
+    }
+    @media (min-width:1025px) and (max-width:1279px){
+      width: 95px;
+      padding: 8px 5px;
+      font-size:0.55em;
+      }
+      @media (min-width:1280px) and (max-width:1365px){
+        width: 95px;
+        padding: 8px 5px;
+        font-size:0.60em;
+       }
+       @media (min-width:1366px) and (max-width:1560px){
+        width: 95px;
+        padding: 8px 5px;
+        font-size:0.60em;
+       }
+  }
+}
 
 .feedback-content {
   margin: 40px auto 30px;
