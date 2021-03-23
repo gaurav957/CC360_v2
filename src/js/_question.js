@@ -51,6 +51,23 @@ Vue.component("right-panel", {
                     <div v-html="question.afterText" class="after-text"></div>
                   </div>
                 </template>
+                <template v-if="question.type=='txtArea'">
+                  <div class='validated-error-question' v-html="getError(question.selectedId)" v-if="getError(question.selectedId)"></div>
+                  <div class="question-group" >
+                    <div class="text-label"><span v-html="question.optionName"></span>
+                      <span class="tooltips">
+                        <div class="tooltip">
+                          <span class="custom-infoicon"  @click="toltiptoggle"></span>
+                          <span class="tooltiptext" v-html="question.description"></span>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="input-box">
+                      <textarea type="text" class="cst-form-control" :placeholder="question.placeholder" @input="handleInput(question,qType.catType,quesIndex,null ,$event,qTypeIndex)" :value="question.selectedText" ></textarea>
+                    </div>
+                    <div v-html="question.afterText" class="after-text"></div>
+                  </div>
+                </template>
                 <div class="question-group" v-if="question.type=='numlist'">
                   <div class="text-label"><span v-html='question.optionName'></span> 
                     <span class="tooltips">
@@ -317,7 +334,7 @@ Vue.component("right-panel", {
                         </div>
                     </span>
                   </div>
-                  <div class="input-box">
+                  <div class="input-box" data-info="option.type">
                     <input v-if="option.type=='num' || option.type=='txt'" type="text" :placeholder="option.placeholder"
                     class="cst-form-control"  :value="option.selectedText" @input="handleInput(option,qType.catType, quesIndex,optionIndex ,$event)">
                     <div  v-if="option.type=='num' || option.type=='txt'" type="text" v-html="option.afterText" class="after-text"></div>
@@ -757,7 +774,7 @@ Vue.component("right-panel", {
     },
     
     handleInput: function (question, catType, quesIndex, optionIndex, e, qTypeIndex) {
-      console.log("hello");
+      //console.log("hello");
       let { type, maxLength, selectedId } = question;
       let val, valArr;
 
@@ -809,7 +826,7 @@ Vue.component("right-panel", {
           valArr = valArr.filter((ch) => /^[a-zA-Z\s]*$/.test(ch));
         
       }
-      if (type == "txtNum") {
+      if (type == "txtNum" || type == "txtArea") {
         val = e.target.value.trim();
         valArr = val.split("");
         for (let i = 0; i < valArr.length; i++) {
@@ -822,9 +839,26 @@ Vue.component("right-panel", {
           }
         }
         
-        valArr = valArr.filter((ch) => /^[a-zA-Z0-9!@#$%^&*()_+`~\s]*$/.test(ch));
+        //valArr = valArr.filter((ch) => /^[ A-Za-z0-9()[\]+-*/%]*$/.test(ch));
+        valArr = valArr.filter((ch) => /^[ a-zA-Z0-9!@#$%^&* ()_+;`"'~,.\s]*$/.test(ch));
         
-      }
+      }/*
+      if (type == "txtArea") {
+        val = e.target.value.trim();
+        valArr = val.split("");
+        for (let i = 0; i < valArr.length; i++) {
+          const ch = valArr[i];
+          if(ch==' '){
+            valArr.splice(i,1);
+            //console.log(valArr)
+          }else{
+            break;
+          }
+        }
+        //console.log(valArr)
+        valArr = valArr.filter((ch) => /^[a-zA-Z0-9!@#$%^&* ()_+;`"'~,.\s]*$/.test(ch));
+        
+      }*/
 
       val = valArr.join("");
 
@@ -849,9 +883,26 @@ Vue.component("right-panel", {
       }
 
       this.updateProgressData();
+      //window.clipboardData.setData('text', '')
       e.target.value = val;
-
-      document.getElementById(selectedId).value = val;
+      var s = val;
+      s = s.replace(/[^a-zA-Z0-9!@#$%^&*()_+;`"'~,. ]/g, ' ');
+      s=s.replace(/"/g, '\\"');
+      s=s.replace(/'/g, '\\"');
+      //s = s.replace(/\\/g, '')
+      //s = s.replace(/(^\s*)|(\s*$)/gi,"");
+      //s = s.replace(/[ ]{2,}/gi," ");
+      // s = s.replace(/\n /,"\n");
+      //s = s.replace(/\t/, "");
+      //s=s.replace(/\n/g, "\\n")
+      //s=s.replace(/'/g, "'")
+      //s=s.replace(/"/g, '\\"');
+      //s=s.replace(/\//g, '');
+      //s=s.replace(/x0b/g, '');
+      //s=s.replace(/\r\v\t/g, '');
+      //s.clipboardData.setData('');
+      console.log(s)
+      document.getElementById(selectedId).value = s;
     },
     handleInputBoxes: function (question, boxUnique, punchId,e) {
 
@@ -877,7 +928,7 @@ Vue.component("right-panel", {
 
       this.rightData[0].questions[quesIndex].inputsSelectedText[boxIndex] = val;
       totalSum = this.numBoxesTotal(quesIndex);
-      console.log(totalSum);
+      //console.log(totalSum);
       if(totalSum.toString().indexOf('.') != -1){
         if(totalSum.toString().split(".")[1].length >10){
           totalSum = totalSum.toFixed(10);
@@ -1198,7 +1249,7 @@ Vue.component("right-panel", {
                 totalAttempted++;
               }
             }
-            if (question.type == "txt" || question.type == "num"||question.type =="numlist" || question.type == "txtNum") {
+            if (question.type == "txt" || question.type == "num"||question.type =="numlist" || question.type == "txtNum" || question.type == "txtArea") {
               if (question.selectedText !== "") {
                 totalAttempted++;
               }
@@ -1234,7 +1285,7 @@ Vue.component("right-panel", {
                   totalAttempted++;
                 }
               }
-              if (option.type == "txt" || option.type == "num" || option.type == "txtNum") {
+              if (option.type == "txt" || option.type == "num" || option.type == "txtNum" || option.type == "txtArea") {
                 if (option.selectedText !== "") {
                   totalAttempted++;
                 }

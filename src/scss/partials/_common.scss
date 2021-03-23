@@ -191,19 +191,31 @@ p {
       font-size: 0.9em;
     }
     @media (min-width: 1025px) and (max-width: 1279px) {
-      font-size: 0.7em;
+      font-size: 0.9em;
     }
     @media (min-width: 1280px) and (max-width: 1365px) {
-      font-size: 0.7em;
+      font-size: 0.9em;
     }
     @media (min-width: 1366px) and (max-width: 1560px) {
-      font-size: 0.7em;
+      font-size: 0.9em;
     }
   }
   .intro-panel {
     @media (max-width: 481px) {
-      font-size: 0.9em;
+      font-size: 1em;
     }
+    p{
+      @media (min-width: 1025px) and (max-width: 1279px) {
+        font-size: .8em;
+      }
+      @media (min-width: 1280px) and (max-width: 1365px) {
+        font-size: .8em;
+      }
+      @media (min-width: 1366px) and (max-width: 1560px) {
+        font-size: .8em;
+      }
+    }
+    
   }
 }
 .survey-intro {
@@ -301,13 +313,13 @@ p {
   font-size: 18px;
   font-weight: 600;
   @media (min-width: 1025px) and (max-width: 1279px) {
-    font-size: 0.7em;
+    font-size: 0.9em;
   }
   @media (min-width: 1280px) and (max-width: 1365px) {
-    font-size: 0.7em;
+    font-size: 0.9em;
   }
   @media (min-width: 1366px) and (max-width: 1560px) {
-    font-size: 0.7em;
+    font-size: 0.9em;
   }
 }
 .offering-panel {
@@ -338,13 +350,28 @@ p {
     font-weight: 600;
     margin-bottom: 10px;
     @media (min-width: 1025px) and (max-width: 1279px) {
-      font-size: 0.7em;
+      font-size: 0.9em;
     }
     @media (min-width: 1280px) and (max-width: 1365px) {
-      font-size: 0.7em;
+      font-size: 0.9em;
     }
     @media (min-width: 1366px) and (max-width: 1560px) {
-      font-size: 0.7em;
+      font-size: 0.9em;
+    }
+  }
+  @media (min-width: 1025px) and (max-width: 1279px) {
+    p, li{
+      font-size: 0.9em;
+    }
+  }
+  @media (min-width: 1280px) and (max-width: 1365px) {
+    p, li{
+      font-size: 0.9em;
+    }
+  }
+  @media (min-width: 1366px) and (max-width: 1560px) {
+    p, li{
+      font-size: 0.9em;
     }
   }
   ul {

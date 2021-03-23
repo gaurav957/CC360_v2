@@ -243,6 +243,7 @@
       &.numboxes {
         width: 100%;
         background-color: $ee-clr;
+        padding-right: 0px;
         .question-group {
           .text-label {
             width: 22.1%;
@@ -299,12 +300,14 @@
                 }
               }
             }
+            
+            
             @media (max-width: 767px) {
               width: 87%;
             }
           }
           .middle-inputbox-wrapper {
-            width: 55%;
+            width: 53.6%;
             padding-right: 5px;
             display: table-cell;
             input {
@@ -1427,8 +1430,11 @@
       padding-right: 25px;
     }
   }
+  
 }
-
+textarea.cst-form-control {
+  height: 75px!important;
+}
 .questions-inner .question-type1 .question-row .question-group {
   @media (min-width: 1025px) and (max-width: 1279px) {
     margin-top: 8px;
@@ -1454,6 +1460,17 @@
   background-color: $ee-clr;
   padding-bottom: 5px;
 }
-#true4{
-  visibility: hidden;
+.tooltip .tooltiptext{
+  font-size: 10px;
+}
+
+/*div#false0{
+  padding-right: 4px;
+}
+div#false0 .text-label {
+  width: 22.5% !important;
+}*/
+
+div.question-row.numboxes .question-group.mb-block .middle-inputbox-wrapper.clearfix{
+  /*width: 56.6%!important;*/
 }
