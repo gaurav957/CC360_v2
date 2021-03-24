@@ -827,7 +827,8 @@ Vue.component("right-panel", {
         
       }
       if (type == "txtNum" || type == "txtArea") {
-        val = e.target.value.trim();
+        // val = e.target.value.trim();
+        val = e.target.value;
         valArr = val.split("");
         for (let i = 0; i < valArr.length; i++) {
           const ch = valArr[i];
@@ -838,9 +839,10 @@ Vue.component("right-panel", {
             break;
           }
         }
-        
+       //debugger
         //valArr = valArr.filter((ch) => /^[ A-Za-z0-9()[\]+-*/%]*$/.test(ch));
-        valArr = valArr.filter((ch) => /^[ a-zA-Z0-9!@#$%^&* ()_+;`"'~,.\s]*$/.test(ch));
+        //valArr = valArr.filter((ch) => /^[/\s/g]*$/.test(ch));
+        valArr = valArr.filter((ch) => /^[a-zA-Z0-9!@#$%^&* ()_+;`"'~,.\s]*$/.test(ch));
         
       }/*
       if (type == "txtArea") {
