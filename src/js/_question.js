@@ -842,7 +842,7 @@ Vue.component("right-panel", {
        //debugger
         //valArr = valArr.filter((ch) => /^[ A-Za-z0-9()[\]+-*/%]*$/.test(ch));
         //valArr = valArr.filter((ch) => /^[/\s/g]*$/.test(ch));
-        valArr = valArr.filter((ch) => /^[a-zA-Z0-9!@#$%^&* ()_+;`"'~,.\s]*$/.test(ch));
+        valArr = valArr.filter((ch) => /^[a-zA-Z0-9!\n@#$%^&*()_+;`"'~,.\s]*$/.test(ch));
         
       }/*
       if (type == "txtArea") {
@@ -888,9 +888,10 @@ Vue.component("right-panel", {
       //window.clipboardData.setData('text', '')
       e.target.value = val;
       var s = val;
-      s = s.replace(/[^a-zA-Z0-9!@#$%^&*()_+;`"'~,. ]/g, ' ');
+      s = s.replace(/[^a-zA-Z0-9\n*!@#$%^&*()_+;`"'~,. ]/g, ' ');
       s=s.replace(/"/g, '\\"');
-      s=s.replace(/'/g, '\\"');
+      //s=s.replace(/'/g, "\'");
+      s=s.replace(/\n/g, ". ");
       //s = s.replace(/\\/g, '')
       //s = s.replace(/(^\s*)|(\s*$)/gi,"");
       //s = s.replace(/[ ]{2,}/gi," ");
