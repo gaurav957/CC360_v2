@@ -904,7 +904,7 @@ Vue.component("right-panel", {
       //s=s.replace(/x0b/g, '');
       //s=s.replace(/\r\v\t/g, '');
       //s.clipboardData.setData('');
-      console.log(s)
+      //console.log(s)
       document.getElementById(selectedId).value = s;
     },
     handleInputBoxes: function (question, boxUnique, punchId,e) {
