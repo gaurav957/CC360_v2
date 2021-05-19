@@ -16,8 +16,9 @@ Vue.component('intro-content', {
                         </div>
                     </div>
                 </div>
+               
                 <div class="survey-begin txt-center">
-                    <div class="btn-item frw" @click="handleForward" v-html="JsonData.frdBtnTxt"></div>
+                    <div class="btn-item frw" @click="handleForward" v-html="JsonData.frdBtnTxt">cscavae</div>
                 </div>
                 </div>
             </div>    

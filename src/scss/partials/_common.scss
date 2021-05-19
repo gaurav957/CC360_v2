@@ -869,3 +869,222 @@ input[type="number"] {
     width: 9px;
   }
 }
+.survey-template-inner{
+  width: 90%;
+  margin: 0 auto;
+  @media all and (max-width:1024px){
+    width: 100%;
+  }
+  .divider{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background: $gray-blue;
+    height: 2px;
+  }
+  .survey-template {
+    width: 70%;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    @media all and (max-width:1024px){
+      width: 100%;
+    }
+    .introduction-title{
+      padding-left: 15px;
+    }
+.data-btn-row{
+  margin-left: -15px;
+  margin-right: -15px;
+  .data-btn-col{
+    width: 50%;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    @media all and (max-width:599px){
+      width: 100%;
+       &:first-child{
+         margin-bottom: 15px;
+       }
+    }
+  }
+}
+  
+    .data-btn-wrapper{
+      width: 100%;
+      height: 170px;      
+      background: $white;
+      border-radius: 4px;
+      text-align: center;
+      display: table;
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.3s linear;    
+      @include box-shadow(0, 0, 8px, rgba(34, 33, 105, 0.3));     
+      .btn-template{
+        display: table-cell;
+        vertical-align: middle;
+         & > .fas{
+          font-size: 2.25em;
+          color:$accent-blue-accent;
+          font-size: 36px;
+          margin-bottom: 15px;;
+         }
+      }
+      &.data-btn-active{
+        background:$accent-blue;        
+        .btn-template-title{
+          color: $white;
+        }
+      }
+    &:hover{
+       background:$accent-blue;
+      .btn-template-title{
+        color: $white;
+      }  
+    }
+     .btn-template-title{
+      font-size: 1.25em;
+      color: $black;
+      transition: all 0.3s linear;  
+       &.browse-title{
+         font-weight: 600;
+       }
+      @media (max-width: 481px) {
+        font-size: 0.9em;
+      }
+      @media (min-width: 1025px) and (max-width: 1279px) {
+        font-size: 0.9em;
+      }
+      @media (min-width: 1280px) and (max-width: 1365px) {
+        font-size: 0.9em;
+      }
+      @media (min-width: 1366px) and (max-width: 1560px) {
+        font-size: 0.9em;
+      }
+     }
+    }
+}
+}
+.popup-layer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba($color: $bg-color, $alpha: 0.7);
+  z-index: 11;
+  top: 0;
+  left: 0;
+  .popup-layer__popup-model {
+    max-width: 680px;
+    width: 99%;
+    padding: 40px;
+    background: #fff;
+    @include border-radius(4px);
+    @media (min-width: 600px) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @media (max-width: 599px) {
+      margin: 50px auto;
+      padding: 15px;
+    }
+    @media (min-width: 1025px) and (max-width: 1279px) {
+      padding: 30px;
+    }
+    @media (min-width: 1280px) and (max-width: 1365px) {
+      padding: 30px;
+    }
+    @media (min-width: 1366px) and (max-width: 1560px) {
+      padding: 30px;
+    }
+    .close-popup {
+      text-align: right;
+      .close {
+        width: 19px;
+        height: 19px;
+        display: inline-block;
+        @extend %cancel-icon;
+        cursor: pointer;
+        @media (min-width: 1025px) and (max-width: 1279px) {
+          zoom: 0.7;
+        }
+        @media (min-width: 1280px) and (max-width: 1365px) {
+          zoom: 0.7;
+        }
+        @media (min-width: 1366px) and (max-width: 1560px) {
+          zoom: 0.7;
+        }
+      }
+    }
+    .model-header {
+      padding-bottom: 20px;
+      color: $bg-color;
+      font-size: 1.5em;
+      font-weight: 500;
+      @media (max-width: 481px) {
+        font-size: 0.9em;
+      }
+      @media (min-width: 1025px) and (max-width: 1279px) {
+        font-size: 0.9em;
+      }
+      @media (min-width: 1280px) and (max-width: 1365px) {
+        font-size: 0.9em;
+      }
+      @media (min-width: 1366px) and (max-width: 1560px) {
+        font-size: 0.9em;
+      }
+    }
+    .popup-model-body {
+      .notification {
+        color: $bg-color;
+        font-size: 1em;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        line-height: 22px;
+        @media (min-width: 1025px) and (max-width: 1279px) {
+          font-size: 0.6em;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        @media (min-width: 1280px) and (max-width: 1365px) {
+          font-size: 0.6em;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        @media (min-width: 1366px) and (max-width: 1560px) {
+          font-size: 0.6em;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+      .popup-form-row {
+        &:not(:last-child) {
+          margin-bottom: 15px;
+        }
+      }
+      label{
+        width: 100%;
+        display: block;
+        color: $black;
+        margin-bottom: 5px;
+        font-weight: 600;
+          @media all and (min-width: 1366px) and (max-width: 1560px) {        
+              font-size: 0.7em;         
+         }
+      
+          @media all and (min-width: 1280px) and (max-width: 1365px) {         
+              font-size: 0.7em;        
+           }
+      
+          @media all and (min-width: 1025px) and (max-width: 1279px) {      
+               font-size: 0.6em;         
+          }
+       }
+    }
+    .popup-btn-inner {
+      text-align: center;
+      margin-top: 20px;
+    }
+  }
+}

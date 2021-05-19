@@ -36,6 +36,7 @@ gulp.task("introduction", function () {
     .src([
       "src/js/_headerLarge.js",
       "src/js/_introContent.js",
+      "src/js/_surveyTemplateUploader.js",
       "src/js/_introFooter.js",
       "src/js/_introApp.js",
     ])
