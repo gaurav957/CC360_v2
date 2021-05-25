@@ -38,7 +38,9 @@ mounted: function () {
   //if(JsonData.isInvalid==true){
     //this.isInvalid=true
   //}
-  // console.log(this.isInvalid);
+  this.passValue=document.getElementById("passwordCompare").value;
+  document.getElementById("Clink").value = document.getElementById("__continuelink").getAttribute("href");
+  console.log();
 },
 methods: {
   handleSelect: function (index, e) {
@@ -48,12 +50,17 @@ methods: {
   handleForward: function () {
     if(this.JsonData.inputFields[0].inputVal == this.inputVal){
       this.isInvalid = false;
-      console.log("filled")
       document.getElementById("forwardbutton").click();
     }else{
       this.isInvalid = true;
-      console.log("error");
-      document.getElementById("forwardbutton").click();
+        //console.log("error");
+        if(document.getElementById("qual_0").value == this.passValue && this.passValue!=""){
+          //console.log("dd");
+          document.getElementById("urlcontinuelink").click();
+        }
+        else{
+          document.getElementById("forwardbutton").click();
+        }
     }
 
   },
