@@ -1,5 +1,11 @@
 Vue.component('survey-template-uploader', {
     props:["JsonData"],
+    data: function () {
+        return {
+          showUploadDownload: true,
+          forwardbtnVal : ""
+        };
+    },
     template:`<div class="assessment-intro">  
 
     <!--popup code here-->
@@ -36,9 +42,8 @@ Vue.component('survey-template-uploader', {
                                     <div class="btn-template-title">Input Data Using <br/> Input From</div>
                                 </div>
                               </div>
-                           </div>
-
-                        <div class="data-btn-col clearfix">
+                        </div>
+                        <div class="data-btn-col clearfix" @click="showHideUploadDownload">
                             <div class="data-btn-wrapper data-btn-active">
                                 <div class="btn-template">
                                 <div class="btn-template-title">Input Data Using <br/> Input Template</div>
@@ -46,36 +51,32 @@ Vue.component('survey-template-uploader', {
                             </div>
                         </div>
                     </div>
+                    
              </div>  
-            <div class="divider">&nbsp;</div>
+            <div class="divider" v-if="showUploadDownload">&nbsp;</div>
 
-            <div class="survey-template">
+            <div class="survey-template" v-if="showUploadDownload">
             
               <div class="data-btn-row clearfix">
-                   <div class="data-btn-col clearfix">
-                       <div class="data-btn-wrapper">
-                           <div class="btn-template">
-                           <i class="fas fa-cloud-upload-alt"></i>
-                               <div class="btn-template-title browse-title">Download Template</div>
-                           </div>
-                         </div>
-                      </div>
-
-                   <div class="data-btn-col clearfix">
+                   <div class="data-btn-col clearfix" >
                        <div class="data-btn-wrapper">
                            <div class="btn-template">
                            <i class="fas fa-cloud-download-alt"></i>
-                           <div class="btn-template-title browse-title">Upload Template</div>
+                               <div class="btn-template-title browse-title" v-html="JsonData.templateData.templateOptions[0].inputText">Download Template</div>
                            </div>
-                       </div>
-                   </div>
+                         </div>
+                    </div>
+                    <div class="data-btn-col clearfix">
+                        <div class="data-btn-wrapper">
+                            <div class="btn-template">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <div class="btn-template-title browse-title" v-html="JsonData.templateData.templateOptions[1].inputText">Upload Template</div>
+                            </div>
+                        </div>
+                    </div>
                </div>
-        </div> 
-
-
-
-
-                             
+            </div> 
+                 
         </div>
      </div>
      <div class="survey-begin txt-center">
@@ -87,6 +88,10 @@ Vue.component('survey-template-uploader', {
     methods:{
         handleForward:function(){
             document.getElementById('forwardbutton').click();
+        },
+        showHideUploadDownload:function(){
+            showUploadDownload = true;
         }
+        
     }
 }) 

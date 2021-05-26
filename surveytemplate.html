@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>survey template</title>
+    <link rel="stylesheet" href="./dist/css/surveytemplate.css">
+    <link rel="stylesheet" href="./dist/css/OverlayScrollbars.css">
+
+</head>
+<body>
+    <span id="jsonData" style="display: none;">
+        
+        {
+            "logo": "https://e2eresearch.com/swteam/McKinsey/Assessment-app/mck-logo.svg",
+            "title": "Contact Center Walkthrough",
+            "heading": "Survey upload",
+            "banner": "https://e2eresearch.com/swteam/McKinsey/Assessment-app/intro-banner.png",
+            "frdBtnTxt": "Next",
+            "footerLogo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project_v2_New/mck-logo-footer.png",
+            "footerContent": "© 1996-2019 McKinsey & Company",
+            "pId":"23324234",
+            "respId":"ssdfg", 
+            "inputData":{
+                    "inputHeading": "How would like to input data?",
+                    "inputOptions":[
+                        {
+                            "frdBtnValue":1,
+                            "inputText": "Input Data Using Input From",
+                            "iconPath": "./images/icon.png"
+                        },
+                        {
+                            "frdBtnValue":2,
+                            "inputText": "input data using input template",
+                            "iconPath": "./images/icon.png"
+                        }
+                    ]
+                },
+            "templateData":{
+                "templateHeading": "",
+                "templateOptions":[
+                    {
+                        "inputText": "download template",
+                        "iconPath": "./images/icon.png",
+                        "targetUrl":"https://cc360admin-dev.intranet.mckinsey.com/api/d/Download/DownloadTemplate?templatetype=1"
+                    },
+                    {
+                        "inputText": "upload template",
+                        "iconPath": "./images/icon.png",
+                        "targetUrl":"https://cc360admin-dev.intranet.mckinsey.com/api/d/Download/DownloadTemplate?templatetype=2"
+                    }
+                ]
+            }
+        
+        }
+    </span>
+
+    <div id="main-wrapper">
+        <header-large :json-data="jsonData"></header-large>
+        <survey-template-uploader :json-data="jsonData"></survey-template-uploader>
+        <intro-footer :json-data="jsonData"></intro-footer>
+    </div>
+    
+    <input type="submit" id="forwardbutton" style="display: none;" name="__fwd" tabindex="9998" class="navbutton confirmit-nav" onclick=" if(typeof wix=='object') {wix.nav(event, 'p1862356818');} " value="  >>  "></div>
+
+    <script src="./dist/js/vendor/vue.js"></script>
+    <script src="./dist/js/vendor/OverlayScrollbars.min.js"></script>
+    <script src="./dist/js/production/surveytemplate.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+         

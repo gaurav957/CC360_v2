@@ -49,6 +49,24 @@ gulp.task("introduction", function () {
     .pipe(gulp.dest("./dist/js/production"));
 });
 
+gulp.task("surveytemplate", function () {
+  return gulp
+    .src([
+      "src/js/_headerLarge.js",
+      // "src/js/_introContent.js",
+      "src/js/_surveyTemplateUploader.js",
+      "src/js/_introFooter.js",
+      "src/js/_introApp.js",
+    ])
+    .pipe(concat("surveytemplate.js"))
+    .pipe(
+      babel({
+        presets: ["@babel/env"],
+      })
+    )
+    .pipe(gulp.dest("./dist/js/production"));
+});
+
 gulp.task("thankyou", function () {
   return gulp
     .src([
@@ -123,6 +141,24 @@ gulp.task("questionpagecss", function () {
 gulp.task("introductioncss", function () {
   return gulp
     .src(["src/scss/introduction.scss"])
+    .pipe(sourcemaps.init())
+    .pipe(
+      compass({
+        css: "dist/css",
+        sass: "src/scss",
+        sourcemap: true,
+      })
+    )
+    .pipe(sourcemaps.write({ includeContent: false }))
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(autoPrefixer({ cascade: false }))
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest("./dist/css"));
+});
+
+gulp.task("surveytemplatecss", function () {
+  return gulp
+    .src(["src/scss/surveytemplate.scss"])
     .pipe(sourcemaps.init())
     .pipe(
       compass({
@@ -220,11 +256,13 @@ gulp.task("copyVendorjs", async () => {
 gulp.task("watch", function () {
   gulp.watch("src/js/*.js", gulp.series("questionpage"));
   gulp.watch("src/js/*.js", gulp.series("introduction"));
+  gulp.watch("src/js/*.js", gulp.series("surveytemplate"));
   gulp.watch("src/js/*.js", gulp.series("thankyou"));
   gulp.watch("src/js/*.js", gulp.series("password"));
   gulp.watch("src/js/*.js", gulp.series("feedback"));
   gulp.watch("src/scss/**/*.scss", gulp.series("questionpagecss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("introductioncss"));
+  gulp.watch("src/scss/**/*.scss", gulp.series("surveytemplatecss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("qualificationcss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("thankyoucss"));
   gulp.watch("src/scss/**/*.scss", gulp.series("feedbackcss"));
@@ -235,6 +273,7 @@ gulp.task(
   gulp.series([
     "questionpage",
     "introduction",
+    "surveytemplate",
     "thankyou",
     "feedback",
     "password",
@@ -242,6 +281,7 @@ gulp.task(
     "feedbackcss",
     "questionpagecss",
     "introductioncss",
+    "surveytemplatecss",
     "qualificationcss",
     "copyfonts",
     "copyImages",
