@@ -1110,3 +1110,54 @@ input[type="number"] {
 .cloud-upload-icon{
   @extend %upload-cloud-icon;
 }
+// loader
+.pre-loading-panel{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(5, 28, 44, 0.7);
+  display: flex;
+  z-index: 200000;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  &.hide{
+    display: none;
+   }
+   .logo{
+    width: 100%;
+    height: auto;
+  }
+  .loading-bar{
+    width: 130px;
+    height: 5px;
+    background: #FFF;
+    margin-top: 22px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    &::before{
+      content: '';
+      width: 68px;
+      height: 5px;
+      background: #3152ff;
+      position: absolute;
+      left: -34px;
+      border-radius: 2px;
+      animation: bluebar 1.5s infinite ease;
+      }
+    }
+    .loading-animation{
+      background: rgba(0, 99, 171, 0.9);
+      padding: 10px;
+      width: 130px;
+      border-radius: 5px;
+    }
+}
+@keyframes bluebar{
+  50%{
+    left: 96px;
+  }
+}
