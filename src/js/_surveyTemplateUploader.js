@@ -8,13 +8,14 @@ Vue.component('survey-template-uploader', {
           messageText:"",
           showPopup:false,
           showClose:false,
+          showPreloader:false
         };
     },
     template:`<div class="assessment-intro">  
     <!--preloader-->
-    <div class="pre-loading-panel" id="pre-loading-panel">
+    <div class="pre-loading-panel" id="pre-loading-panel" v-if="showPreloader">
     <div class="loading-animation">
-      <img src=https://e2eresearch.com/swteam/McKinsey/Assessment-app/v2/mck-logo.svg alt="" class="logo">
+      <img :src="JsonData.preloaderImg" alt="" class="logo">
       <svg viewBox="-25 -25 110 70" preserveAspectRatio>
           <circle fill="#fff" stroke="none" cx="6" cy="25" r="6">
           <animateTransform 
@@ -184,6 +185,7 @@ Vue.component('survey-template-uploader', {
         somethingcalled:function(link){
             // console.log($('#imgupload')[0].files[0]);
             // console.log(this.JsonData);
+            this.showPreloader = true;
             var data = new FormData();
             //data.append('File',$('#imgupload')[0].files[0]);
             var fileUpload = $("#imgupload").get(0);
@@ -226,6 +228,10 @@ Vue.component('survey-template-uploader', {
                             },2000)
                         }
                         this.showPopup=true;
+                        
+                    },
+                    complete:()=>{
+                        this.showPreloader=false;
                     }
                 });
             })
