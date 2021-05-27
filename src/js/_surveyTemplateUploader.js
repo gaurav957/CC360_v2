@@ -62,7 +62,7 @@ Vue.component('survey-template-uploader', {
                         <a  :href="JsonData.templateData.templateOptions[0].targetUrl" ref="download" />
                        <div class="data-btn-wrapper" @click="downloadlink(JsonData.templateData.templateOptions[0].targetUrl)">
                            <div class="btn-template">
-                           <i class="fas fa-cloud-download-alt"></i>
+                           <span class="cloud-icon cloud-download-icon"></span>
                                <div class="btn-template-title browse-title" v-html="JsonData.templateData.templateOptions[0].inputText" >Download Template</div>
                            </div>
                          </div>
@@ -71,7 +71,7 @@ Vue.component('survey-template-uploader', {
                         <input type="file" ref="input" id="imgupload" style="display:none" accept=".xls,.xlsx,.xlsm" @change="somethingcalled(JsonData.templateData.templateOptions[1].targetUrl)"/>
                         <div class="data-btn-wrapper" @click="openUploader()">
                             <div class="btn-template">
-                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span class="cloud-icon cloud-upload-icon"></span>
                             <div class="btn-template-title browse-title" v-html="JsonData.templateData.templateOptions[1].inputText">Upload Template</div>
                             </div>
                         </div>

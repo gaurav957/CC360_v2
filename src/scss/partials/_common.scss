@@ -883,11 +883,15 @@ input[type="number"] {
     height: 2px;
   }
   .survey-template {
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     padding-left: 15px;
     padding-right: 15px;
+   
     @media all and (max-width:1024px){
+      width: 80%;
+    }
+    @media all and (max-width:767px){
       width: 100%;
     }
     .introduction-title{
@@ -950,6 +954,10 @@ input[type="number"] {
        &.browse-title{
          font-weight: 600;
        }
+    
+      @media (max-width: 1024px) {
+        font-size: 1em;
+      }
       @media (max-width: 481px) {
         font-size: 0.9em;
       }
@@ -1088,4 +1096,17 @@ input[type="number"] {
       margin-top: 20px;
     }
   }
+}
+.cloud-icon{
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+    background-size: 40px;
+}
+.cloud-download-icon{
+  @extend %download-cloud-icon;
+  
+}
+.cloud-upload-icon{
+  @extend %upload-cloud-icon;
 }
