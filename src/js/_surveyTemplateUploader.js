@@ -112,7 +112,7 @@ Vue.component('survey-template-uploader', {
              </div>  
             <div class="divider" v-if="showDownload">&nbsp;</div>
 
-            <div class="survey-template">
+            <div class="survey-template" v-if="showDownload">
             
               <div class="data-btn-row clearfix">
                    <div class="data-btn-col clearfix" >
@@ -183,6 +183,7 @@ Vue.component('survey-template-uploader', {
             this.$refs.input.click();
         },
         somethingcalled:function(link){
+            //console.log("called");
             // console.log($('#imgupload')[0].files[0]);
             // console.log(this.JsonData);
             this.showPreloader = true;
@@ -199,6 +200,7 @@ Vue.component('survey-template-uploader', {
             // data.append('RespId',this.JsonData.respId);
             data.append('PId',this.JsonData.pId);
             data.append('RespId',this.JsonData.respId);
+            $("#imgupload").val("");
             $(document).ready(()=>{
                 
                 $.ajax({
@@ -211,8 +213,8 @@ Vue.component('survey-template-uploader', {
                     timeout: 600000,
                     data:data,
                     success: (successData)=>{
-                        console.log(successData)
-                        console.log(successData.DataObject.Data)
+                        //console.log(successData)
+                        //console.log(successData.DataObject.Data)
                         if(successData.DataObject.Data==false){
                             this.messageText = successData.ResultCode.MessageText;
                             this.showClose = true;
