@@ -68,7 +68,7 @@ Vue.component('survey-template-uploader', {
                          </div>
                     </div>
                     <div class="data-btn-col clearfix">
-                        <input type="file" ref="input" id="imgupload" style="display:none" accept=".xls,.xlsx" @change="somethingcalled(JsonData.templateData.templateOptions[1].targetUrl)"/>
+                        <input type="file" ref="input" id="imgupload" style="display:none" accept=".xls,.xlsx,.xlsm" @change="somethingcalled(JsonData.templateData.templateOptions[1].targetUrl)"/>
                         <div class="data-btn-wrapper" @click="openUploader()">
                             <div class="btn-template">
                             <i class="fas fa-cloud-upload-alt"></i>
@@ -129,7 +129,16 @@ Vue.component('survey-template-uploader', {
             // console.log($('#imgupload')[0].files[0]);
             // console.log(this.JsonData);
             var data = new FormData();
-            data.append('File',$('#imgupload')[0].files[0]);
+            //data.append('File',$('#imgupload')[0].files[0]);
+            var fileUpload = $("#imgupload").get(0);
+            var files = fileUpload.files;
+
+            //var fileData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                data.append(files[i].name, files[i]);
+            }
+            // data.append('PId',this.JsonData.pId);
+            // data.append('RespId',this.JsonData.respId);
             data.append('PId',this.JsonData.pId);
             data.append('RespId',this.JsonData.respId);
             $(document).ready(()=>{
@@ -137,8 +146,11 @@ Vue.component('survey-template-uploader', {
                 $.ajax({
                     url: link,
                     type:"POST",
+                    enctype: 'multipart/form-data',
                     processData: false,
                     contentType: false,
+                    cache: false,
+                    timeout: 600000,
                     data:data,
                     success: (successData)=>{
                         console.log(successData)
