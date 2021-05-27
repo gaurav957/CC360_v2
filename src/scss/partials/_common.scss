@@ -877,13 +877,13 @@ input[type="number"] {
     width: 100%;
   }
   .divider{
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 18px;
+    margin-bottom:18px;
     background: $gray-blue;
     height: 2px;
   }
   .survey-template {
-    width: 60%;
+    width: 58%;
     margin: 0 auto;
     padding-left: 15px;
     padding-right: 15px;
@@ -916,7 +916,7 @@ input[type="number"] {
   
     .data-btn-wrapper{
       width: 100%;
-      height: 170px;      
+      height: 150px;      
       background: $white;
       border-radius: 4px;
       text-align: center;
@@ -936,13 +936,13 @@ input[type="number"] {
          }
       }
       &.data-btn-active{
-        background:$accent-blue;        
+        background:$selectd;        
         .btn-template-title{
           color: $white;
         }
       }
     &:hover{
-       background:$accent-blue;
+       background:$selectd;
       .btn-template-title{
         color: $white;
       }  
@@ -1101,14 +1101,29 @@ input[type="number"] {
   width: 40px;
   height: 40px;
   display: inline-block;
-    background-size: 40px;
+  background-size: 40px;
+  transition: all 0.3s linear;
 }
 .cloud-download-icon{
   @extend %download-cloud-icon;
-  
+ 
 }
 .cloud-upload-icon{
   @extend %upload-cloud-icon;
+ 
+}
+.data-btn-wrapper{
+  &:hover{
+    .cloud-download-icon{
+      @extend %download-cloud-icon-active;
+      background-size: 40px;
+    }
+    .cloud-upload-icon{
+      @extend %upload-cloud-icon-active;
+      background-size: 40px;
+    }
+  } 
+ 
 }
 // loader
 .pre-loading-panel{

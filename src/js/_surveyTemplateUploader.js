@@ -112,7 +112,7 @@ Vue.component('survey-template-uploader', {
              </div>  
             <div class="divider" v-if="showDownload">&nbsp;</div>
 
-            <div class="survey-template" v-if="showDownload">
+            <div class="survey-template">
             
               <div class="data-btn-row clearfix">
                    <div class="data-btn-col clearfix" >
