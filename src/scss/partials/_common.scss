@@ -1176,3 +1176,26 @@ input[type="number"] {
     left: 96px;
   }
 }
+
+.submit-setup{
+  padding: 15px 0;
+  & .last-uploaded{
+    width: calc(100-140px);
+    display: inline-block;
+  }
+}
+
+.prev-uploads{
+  width: 100%;
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+  & .prev-left{
+    float: left;
+    width: 50%;
+  }
+  & .prev-right{
+    float: right;
+    width: 50%;
+  }
+}

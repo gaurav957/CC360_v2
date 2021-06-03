@@ -8,7 +8,9 @@ Vue.component('survey-template-uploader', {
           messageText:"",
           showPopup:false,
           showClose:false,
-          showPreloader:false
+          showPreloader:false,
+          recordAvailable:true,
+          uploadFileName:"CC360_template.xlsx"
         };
     },
     template:`<div class="assessment-intro">  
@@ -103,7 +105,7 @@ Vue.component('survey-template-uploader', {
                         <div class="data-btn-col clearfix" @click="showHideUploadDownload(false,true,JsonData.inputData.inputOptions[1].frdBtnValue)">
                             <div class="data-btn-wrapper data-btn-active">
                                 <div class="btn-template">
-                                <div class="btn-template-title">Input Data Using <br/> Input Template</div>
+                                <div class="btn-template-title" v-html="JsonData.inputData.inputOptions[1].inputText">Input Data Using <br/> Input Template</div>
                                 </div>
                             </div>
                         </div>
@@ -113,6 +115,12 @@ Vue.component('survey-template-uploader', {
             <div class="divider" v-if="showDownload">&nbsp;</div>
 
             <div class="survey-template" v-if="showDownload">
+
+            <div class="inst">
+                <div class="inst-title" v-html="JsonData.inst.title">Instructions:</div>
+                <div class="inst-list" v-for="(inst,index) in JsonData.inst.list" v-html="inst">
+                </div>
+            </div>
             
               <div class="data-btn-row clearfix">
                    <div class="data-btn-col clearfix" >
@@ -130,6 +138,25 @@ Vue.component('survey-template-uploader', {
                             <div class="btn-template">
                             <span class="cloud-icon cloud-upload-icon"></span>
                             <div class="btn-template-title browse-title" v-html="JsonData.templateData.templateOptions[1].inputText">Upload Template</div>
+                            </div>
+                        </div>
+                        <div class="submit-setup">
+                            <div class="last-uploaded">CC360_template.xlsx</div>
+                            <div class="btn-item frw">Submit</div>
+                        </div>
+                    </div>
+                    <div class="prev-uploads" v-if="recordAvailable">
+                        <div class="prev-title">Previous Uploads</div>
+                        <div class="prev-data">
+                            <div>
+                                <div class="prev-left">
+                                    <span v-html="uploadFileName">CC360_v1</span>
+                                </div>
+                                <div class="prev-right">
+                                    <span>28.05.2021</span>
+                                    <span>10:00PM</span>
+                                    <span class="download_icon"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
