@@ -4,13 +4,21 @@ Vue.component('survey-template-uploader', {
         return {
           showDownload: false,
           forwardbtnVal : "",
-          showNext:false,
           messageText:"",
           showPopup:false,
           showClose:false,
           showPreloader:false,
-          recordAvailable:true,
-          uploadFileName:"CC360_template.xlsx"
+          recordAvailable:false,
+          disabledigitalForm:false,
+          showSubmit:false,
+          historyArr:[
+            // {
+            //     fileName:"abc.xls",
+            //     date:"28.05.2021",
+            //     time:"10:00PM",
+            //     downloadLink:"https://cc360admin-dev.intranet.mckinsey.com/api/d/Download/DownloadSurveyDataHistoryFile?filePath=~/Upload/SurveyData/p27334778/Jangir_V2.xlsm"
+            // },
+          ]
         };
     },
     template:`<div class="assessment-intro">  
@@ -95,7 +103,7 @@ Vue.component('survey-template-uploader', {
                  <div class="introduction-title" v-html="JsonData.heading"></div>
                  
                    <div class="data-btn-row clearfix">
-                        <div class="data-btn-col clearfix" @click="showHideUploadDownload(true,false,JsonData.inputData.inputOptions[0].frdBtnValue);redirect()">
+                        <div class="data-btn-col clearfix" :class="disabledigitalForm==true?'disable':''" @click="disabledigitalForm==true?'showHideUploadDownload(true,false,JsonData.inputData.inputOptions[0].frdBtnValue);redirect()':''">
                             <div class="data-btn-wrapper">
                                 <div class="btn-template">
                                     <div class="btn-template-title" v-html="JsonData.inputData.inputOptions[0].inputText">Input Data Using <br/> Input From</div>
@@ -133,45 +141,48 @@ Vue.component('survey-template-uploader', {
                          </div>
                     </div>
                     <div class="data-btn-col clearfix">
-                        <input type="file" ref="input" id="imgupload" style="display:none" accept=".xls,.xlsx,.xlsm" @change="somethingcalled(JsonData.templateData.templateOptions[1].targetUrl)"/>
+                        <input type="file" ref="input" id="imgupload" style="display:none" accept=".xls,.xlsx,.xlsm" @change="uploadTemplate(JsonData.templateData.templateOptions[1].targetUrl)"/>
                         <div class="data-btn-wrapper" @click="openUploader()">
                             <div class="btn-template">
                             <span class="cloud-icon cloud-upload-icon"></span>
                             <div class="btn-template-title browse-title" v-html="JsonData.templateData.templateOptions[1].inputText">Upload Template</div>
                             </div>
                         </div>
-                        <div class="submit-setup">
-                            <div class="last-uploaded">CC360_template.xlsx</div>
-                            <div class="btn-item frw">Submit</div>
-                        </div>
                     </div>
                     <div class="prev-uploads" v-if="recordAvailable">
                         <div class="prev-title">Previous Uploads</div>
                         <div class="prev-data">
-                            <div>
+                            <div v-for="(history,historyIndex) in historyArr">
                                 <div class="prev-left">
-                                    <span v-html="uploadFileName">CC360_v1</span>
+                                    <span v-html="history.fileName">CC360_v1</span>
                                 </div>
                                 <div class="prev-right">
-                                    <span>28.05.2021</span>
-                                    <span>10:00PM</span>
-                                    <span class="download_icon"></span>
+                                    <span v-html="history.date">28.05.2021</span>
+                                    <span v-html="history.time">10:00PM</span>
+                                    <a class="download_history" :href="history.downloadLink"></a>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="submit-setup" v-if="showSubmit">
+                        <div class="btn-item frw" v-html="JsonData.submitTxt" @click="handleForward">Submit</div>
                     </div>
                </div>
             </div> 
                  
         </div>
      </div>
-     <div class="survey-begin txt-center" v-if="showNext">
+     <div class="survey-begin txt-center" v-if="1!=1">
          <div class="btn-item frw" @click="handleForward" v-html="JsonData.frdBtnTxt">cscavae</div>
      </div>
      </div>
    </div>    
     `,
+    mounted:function(){
+        this.getHistory();
+    },
     methods:{
+        
         handleForward:function(){
             document.getElementById('forwardbutton').click();
         },
@@ -180,14 +191,11 @@ Vue.component('survey-template-uploader', {
             this.showClose = false;
         },
         showHideUploadDownload:function(nxtBtn,showDownload,frdBtnValue){
-            //console.log(nxtBtn)
-            //this.showNext = nxtBtn;
             this.showDownload = showDownload;
             this.forwardbtnVal = frdBtnValue;
             document.getElementById("navText").value = frdBtnValue;
         },
         redirect:function(){
-            console.log("called");
             this.showPopup = true;
             this.messageText = this.JsonData.firstOptionMessage;
             setTimeout(()=>{
@@ -196,23 +204,14 @@ Vue.component('survey-template-uploader', {
             
         },
         downloadlink:function(link){
-            this.$refs.download.click();
-            // $(document).ready(function(){
-            //     $.ajax({url: link,type:"GET", success: function(){
-            //         console.log("kar diya call");
-            //         //$("#div1").html(result);
-            //     }});
-            // })
-            
+            this.$refs.download.click();           
 
         },
         openUploader:function(){
             this.$refs.input.click();
         },
-        somethingcalled:function(link){
-            //console.log("called");
-            // console.log($('#imgupload')[0].files[0]);
-            // console.log(this.JsonData);
+        uploadTemplate:function(link){
+           
             this.showPreloader = true;
             var data = new FormData();
             //data.append('File',$('#imgupload')[0].files[0]);
@@ -240,20 +239,18 @@ Vue.component('survey-template-uploader', {
                     timeout: 600000,
                     data:data,
                     success: (successData)=>{
-                        //console.log(successData)
-                        //console.log(successData.DataObject.Data)
+                        
                         if(successData.DataObject.Data==false){
                             this.messageText = successData.ResultCode.MessageText;
                             this.showClose = true;
-                            // setTimeout(()=>{
-                            //     this.showPopup=false;
-                            // },2000)
+                           
                         }else{
                             this.messageText = this.JsonData.successText;
-                            //console.log(this.JsonData.successText);
+                           
                             setTimeout(()=>{
                                 this.showPopup=false;
-                                this.handleForward();
+                                
+                                //this.handleForward();
                             },2000)
                         }
                         this.showPopup=true;
@@ -264,6 +261,75 @@ Vue.component('survey-template-uploader', {
                     }
                 });
             })
+        },
+        getHistory:function(){
+
+            this.showPreloader = true;
+           
+
+            $.ajax({
+                url: this.JsonData.history.getHistoryUrl,
+                type:"GET",
+                data:{'pid':this.JsonData.pId}, 
+                success: (result)=>{
+                    
+                    if(result.DataObject.Data != null){
+                        
+                        const dataObject = result.DataObject.Data;
+                        const createdData = [];
+
+                        dataObject.forEach(element => {
+
+                            let dateObj = new Date(element.CreatedDate);
+                            let date = dateObj.getDate();
+                            let month = dateObj.getMonth();
+                            let year = dateObj.getFullYear();
+                            date = [date,month,year].join('.');
+
+                            let hours  = dateObj.getHours();
+                            let minutes  = dateObj.getMinutes();
+                            let ampm = "";
+
+                            let time = [hours,":",minutes,ampm].join('');
+                            if(hours>12){
+                                hours = hours-12;
+                                ampm = "PM";
+                            }else{
+                                ampm = "AM";
+                            }
+
+                            let dataObj = {
+                                fileName:element.FileName,
+                                date,
+                                time,
+                                downloadLink:this.JsonData.history.downloadFileUrl+"?filepath="+element.FilePath
+
+                            }
+
+                            createdData.push(dataObj);
+                            
+                        });
+
+
+                        this.historyArr = createdData;
+                        this.disabledigitalForm = true;
+                        this.showSubmit=true;
+                        this.recordAvailable = true;
+                        document.getElementById("navText").value = this.JsonData.submitVal;
+
+                    }else{
+
+                    }
+                
+
+                },
+                complete:()=>{
+                    this.showPreloader=false;
+                }
+            });
+
+           
+
         }
         
     }
