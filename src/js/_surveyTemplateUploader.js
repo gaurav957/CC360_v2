@@ -9,7 +9,7 @@ Vue.component('survey-template-uploader', {
           showClose:false,
           showPreloader:false,
           recordAvailable:false,
-          disabledigitalForm:false,
+          enableDigitalForm:true,
           showSubmit:false,
           historyArr:[
             // {
@@ -103,8 +103,8 @@ Vue.component('survey-template-uploader', {
                  <div class="introduction-title" v-html="JsonData.heading"></div>
                  
                    <div class="data-btn-row clearfix">
-                        <div class="data-btn-col clearfix" :class="disabledigitalForm==true?'disable':''" @click="disabledigitalForm==true?'showHideUploadDownload(true,false,JsonData.inputData.inputOptions[0].frdBtnValue);redirect()':''">
-                            <div class="data-btn-wrapper">
+                        <div class="data-btn-col clearfix"  @click="enableDigitalForm==false?'':[showHideUploadDownload(true,false,JsonData.inputData.inputOptions[0].frdBtnValue),redirect()]">
+                            <div class="data-btn-wrapper" :class="enableDigitalForm==false?'disable':''">
                                 <div class="btn-template">
                                     <div class="btn-template-title" v-html="JsonData.inputData.inputOptions[0].inputText">Input Data Using <br/> Input From</div>
                                 </div>
@@ -122,15 +122,17 @@ Vue.component('survey-template-uploader', {
              </div>  
             <div class="divider" v-if="showDownload">&nbsp;</div>
 
-            <div class="survey-template" v-if="showDownload">
+            <div  v-if="showDownload">
 
             <div class="inst">
                 <div class="inst-title" v-html="JsonData.inst.title">Instructions:</div>
-                <div class="inst-list" v-for="(inst,index) in JsonData.inst.list" v-html="inst">
-                </div>
+                <ol>
+                    <li class="inst-list" v-for="(inst,index) in JsonData.inst.list" v-html="inst"></li>
+                </ol>
             </div>
-            
+            <div class="survey-template">
               <div class="data-btn-row clearfix">
+                <div class="clearfix">
                    <div class="data-btn-col clearfix" >
                         <a  :href="JsonData.templateData.templateOptions[0].targetUrl" ref="download" />
                        <div class="data-btn-wrapper" @click="downloadlink(JsonData.templateData.templateOptions[0].targetUrl)">
@@ -149,26 +151,30 @@ Vue.component('survey-template-uploader', {
                             </div>
                         </div>
                     </div>
+                    </div>
                     <div class="prev-uploads" v-if="recordAvailable">
                         <div class="prev-title">Previous Uploads</div>
                         <div class="prev-data">
-                            <div v-for="(history,historyIndex) in historyArr">
-                                <div class="prev-left">
-                                    <span v-html="history.fileName">CC360_v1</span>
-                                </div>
-                                <div class="prev-right">
-                                    <span v-html="history.date">28.05.2021</span>
-                                    <span v-html="history.time">10:00PM</span>
-                                    <a class="download_history" :href="history.downloadLink"></a>
-                                </div>
-                            </div>
+                            <ol>
+                                <li v-for="(history,historyIndex) in historyArr">
+                                    <div class="prev-left">
+                                        <span v-html="history.fileName">CC360_v1</span>
+                                    </div>
+                                    <div class="prev-right">
+                                        <span v-html="history.date">28.05.2021</span>
+                                        <span v-html="history.time">10:00PM</span>
+                                        <a class="download_history" :href="history.downloadLink"></a>
+                                    </div>
+                                </li>
+                            </ol>
                         </div>
                     </div>
-                    <div class="submit-setup" v-if="showSubmit">
+                    <div class="submit-setup txt-center" v-if="showSubmit">
                         <div class="btn-item frw" v-html="JsonData.submitTxt" @click="handleForward">Submit</div>
                     </div>
                </div>
             </div> 
+            </div>
                  
         </div>
      </div>
@@ -182,6 +188,22 @@ Vue.component('survey-template-uploader', {
         this.getHistory();
     },
     methods:{
+
+        digitalFormClick:function(enableDigitalForm){
+
+            console.log(enableDigitalForm)
+
+            // enableDigitalForm == true?'':showHideUploadDownload(true,false,JsonData.inputData.inputOptions[0].frdBtnValue),redirect()
+
+        },
+        digitalFormClick2:function(enableDigitalForm){
+
+            console.log(enableDigitalForm)
+
+            // enableDigitalForm == true?'':showHideUploadDownload(true,false,JsonData.inputData.inputOptions[0].frdBtnValue),redirect()
+
+        },
+
         
         handleForward:function(){
             document.getElementById('forwardbutton').click();
@@ -191,6 +213,7 @@ Vue.component('survey-template-uploader', {
             this.showClose = false;
         },
         showHideUploadDownload:function(nxtBtn,showDownload,frdBtnValue){
+            console.log("itit");
             this.showDownload = showDownload;
             this.forwardbtnVal = frdBtnValue;
             document.getElementById("navText").value = frdBtnValue;
@@ -209,6 +232,13 @@ Vue.component('survey-template-uploader', {
         },
         openUploader:function(){
             this.$refs.input.click();
+        },
+        prependZero:function(number){
+            if(parseInt(number)<=9){
+                return "0"+number;
+            }else{
+                return number;
+            }
         },
         uploadTemplate:function(link){
            
@@ -249,6 +279,7 @@ Vue.component('survey-template-uploader', {
                            
                             setTimeout(()=>{
                                 this.showPopup=false;
+                                this.getHistory();
                                 
                                 //this.handleForward();
                             },2000)
@@ -270,7 +301,10 @@ Vue.component('survey-template-uploader', {
             $.ajax({
                 url: this.JsonData.history.getHistoryUrl,
                 type:"GET",
-                data:{'pid':this.JsonData.pId}, 
+                data:{
+                    'pid':this.JsonData.pId,
+                    'respid':this.JsonData.respId
+                }, 
                 success: (result)=>{
                     
                     if(result.DataObject.Data != null){
@@ -282,21 +316,22 @@ Vue.component('survey-template-uploader', {
 
                             let dateObj = new Date(element.CreatedDate);
                             let date = dateObj.getDate();
-                            let month = dateObj.getMonth();
+                            let month = dateObj.getMonth()+1;
                             let year = dateObj.getFullYear();
-                            date = [date,month,year].join('.');
+                            date = [this.prependZero(date),this.prependZero(month),this.prependZero(year)].join('.');
 
                             let hours  = dateObj.getHours();
                             let minutes  = dateObj.getMinutes();
                             let ampm = "";
 
-                            let time = [hours,":",minutes,ampm].join('');
                             if(hours>12){
                                 hours = hours-12;
                                 ampm = "PM";
                             }else{
                                 ampm = "AM";
                             }
+
+                            let time = [this.prependZero(hours),":",this.prependZero(minutes),ampm].join('');
 
                             let dataObj = {
                                 fileName:element.FileName,
@@ -312,7 +347,7 @@ Vue.component('survey-template-uploader', {
 
 
                         this.historyArr = createdData;
-                        this.disabledigitalForm = true;
+                        this.enableDigitalForm = false;
                         this.showSubmit=true;
                         this.recordAvailable = true;
                         document.getElementById("navText").value = this.JsonData.submitVal;
