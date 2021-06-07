@@ -163,7 +163,7 @@ Vue.component('survey-template-uploader', {
                                     <div class="prev-right">
                                         <span v-html="history.date">28.05.2021</span>
                                         <span v-html="history.time">10:00PM</span>
-                                        <a class="download_history" :href="history.downloadLink"></a>
+                                        <a class="download_history" :href="history.downloadLink">&nbsp;</a>
                                     </div>
                                 </li>
                             </ol>

@@ -950,10 +950,10 @@ input[type="number"] {
      .btn-template-title{
       font-size: 1.25em;
       color: $black;
-      transition: all 0.3s linear;  
-       &.browse-title{
-         font-weight: 600;
-       }
+      transition: all 0.3s linear;
+      //  &.browse-title{
+      //   font-weight: 600;
+      //  }
     
       @media (max-width: 1024px) {
         font-size: 1em;
@@ -1116,8 +1116,9 @@ input[type="number"] {
 .download_history{
   @extend %download-icon;
   width: 16px;
-  height: 16px;
+  // height: 16px;
   display: inline-block;
+  color: transparent;
  
 }
 .data-btn-wrapper{
@@ -1225,11 +1226,6 @@ input[type="number"] {
     margin-left: 15px;
     color: #828282;
     margin-bottom: 5px;
-    
-  }
-  & .prev-left{
-    float: left;
-    width: 50%;
     @media (min-width: 1025px) and (max-width: 1279px) {
       font-size: 0.8em;
      
@@ -1242,24 +1238,30 @@ input[type="number"] {
       font-size: 0.8em;
      
     }
+    
+  }
+  & .prev-left{
+    float: left;
+    width: 50%;
+    
    
   }
   & .prev-right{
     float: right;
     width: 50%;
     text-align: right;
-    @media (min-width: 1025px) and (max-width: 1279px) {
-      font-size: 0.8em;
+    //@media (min-width: 1025px) and (max-width: 1279px) {
+    //   font-size: 0.8em;
      
-    }
-    @media (min-width: 1280px) and (max-width: 1365px) {
-      font-size: 0.8em;
+    // }
+    // @media (min-width: 1280px) and (max-width: 1365px) {
+    //   font-size: 0.8em;
      
-    }
-    @media (min-width: 1366px) and (max-width: 1560px) {
-      font-size: 0.8em;
+    // }
+    // @media (min-width: 1366px) and (max-width: 1560px) {
+    //   font-size: 0.8em;
      
-    }
+    // }
    
 
     & span, & a{
@@ -1294,7 +1296,7 @@ input[type="number"] {
 
   & .inst-list{
     margin-left: 15px;
-    font-style: italic;
+    // font-style: italic;
     color: #828282;
 
     @media (min-width: 1025px) and (max-width: 1279px) {
