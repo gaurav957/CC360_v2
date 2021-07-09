@@ -27,180 +27,280 @@
 <span id="jsonData" style="display: none">
 	{
 		"headerData": {
-			"logo": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/CC360V1/mck-logo.svg",
+			"logo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project_v3/mck-logo.svg",
 			"headerTitle": "CC360 KPI Assessment",
 			"leftPanelOpen": "true"
 		},
 		"leftData": {
-			"seltdVal": "M1",
+			"seltdVal": "A1",
 			"mandatoryQuesVal": [],
 			"links": [{
 				"menuTxt": "General",
 				"menuVal": "A1",
-				"initialQAnsd": "12",
+				"initialQAnsd": "9",
 				"totalQues": "13",
 				"intialUponTtl": "/",
 				"curState": "1"
 			}, {
-				"menuTxt": "Assessment KPIs",
-				"menuVal": "L1",
+				"menuTxt": "Self serve capabilities",
+				"menuVal": "B1",
 				"initialQAnsd": "0",
-				"totalQues": "19",
+				"totalQues": "10",
 				"intialUponTtl": "/",
 				"curState": "0"
 			}, {
-				"menuTxt": "Strategic questions",
-				"menuVal": "M1",
-				"initialQAnsd": "2",
-				"totalQues": "6",
+				"menuTxt": "Interaction details",
+				"menuVal": "C1",
+				"initialQAnsd": "0",
+				"totalQues": "17",
 				"intialUponTtl": "/",
-				"curState": "1"
+				"curState": "0"
+			}, {
+				"menuTxt": "Cost",
+				"menuVal": "D1",
+				"initialQAnsd": "0",
+				"totalQues": "11",
+				"intialUponTtl": "/",
+				"curState": "0"
+			}, {
+				"menuTxt": "Operations excellence",
+				"menuVal": "E1",
+				"initialQAnsd": "0",
+				"totalQues": "13",
+				"intialUponTtl": "/",
+				"curState": "0"
+			}, {
+				"menuTxt": "Customer satisfaction",
+				"menuVal": "F1",
+				"initialQAnsd": "0",
+				"totalQues": "12",
+				"intialUponTtl": "/",
+				"curState": "0"
+			}, {
+				"menuTxt": "Revenue",
+				"menuVal": "G1",
+				"initialQAnsd": "0",
+				"totalQues": "10",
+				"intialUponTtl": "/",
+				"curState": "0"
+			}, {
+				"menuTxt": "Organization structure",
+				"menuVal": "H1",
+				"initialQAnsd": "0",
+				"totalQues": "8",
+				"intialUponTtl": "/",
+				"curState": "0"
+			}, {
+				"menuTxt": "Recruitment and Training",
+				"menuVal": "I1",
+				"initialQAnsd": "0",
+				"totalQues": "3",
+				"intialUponTtl": "/",
+				"curState": "0"
 			}]
 		},
 		"rightData": [{
 			"readdOnly": false,
 			"catType": 1,
-			"heading": "Other details",
-			"scrollPosition": "0",
+			"heading": "Operations excellence",
+			"scrollPosition": "",
 			"questions": [{
-				"optionName": "What % of your inhouse workforce do you expect to work from home in a post-COVID-19 crisis (business as usual) environment?",
-				"type": "dd",
-				"placeholder": "Please select",
-				"description": "",
-				"selectedId": "M1_5_label",
-				"options": [{
-					"ddName": "&lt;=10%",
-					"ddId": "M1_1_label"
-				}, {
-					"ddName": "11-20%",
-					"ddId": "M1_2_label"
-				}, {
-					"ddName": "21-30%",
-					"ddId": "M1_3_label"
-				}, {
-					"ddName": "31-40%",
-					"ddId": "M1_4_label"
-				}, {
-					"ddName": "41-60%",
-					"ddId": "M1_5_label"
-				}, {
-					"ddName": "61-80%",
-					"ddId": "M1_6_label"
-				}, {
-					"ddName": "81-100%",
-					"ddId": "M1_7_label"
-				}]
+				"optionName": "Average handling time (AHT)- Inbound calls",
+				"description": "Sum of talk time (time spent talking to customers), hold time (time spent when customer is on hold), and wrap time (time spent after work completing or taking notes)",
+				"type": "numboxes",
+				"inputsPlaceholder": ["seconds", "seconds", "seconds"],
+				"inputsSelectedText": ["", "", ""],
+				"inputsLowerText": ["Talk Time", "Hold Time", "Wrap Time"],
+				"inputIds": ["E1", "E2", "E3"],
+				"outputPlaceholder": "seconds",
+				"outputSelectedText": "",
+				"outputLowerText": "Total",
+				"outputDescription": "",
+				"outputId": "E4",
+				"grayBG": "false",
+				"maxLength": 28,
+				"maxRange": 999999999999999,
+				"minRange": 0
 			}, {
-				"optionName": "Have you seen a shift in volume from live channels (phone/chat/email) to digital channels (web/app) in light of COVID-19?",
-				"type": "dd",
-				"placeholder": "Please select",
-				"description": "",
-				"selectedId": "M2_3_label",
-				"options": [{
-					"ddName": "No change",
-					"ddId": "M2_1_label"
-				}, {
-					"ddName": "Dropped",
-					"ddId": "M2_2_label"
-				}, {
-					"ddName": "Increased by 0-10%",
-					"ddId": "M2_3_label"
-				}, {
-					"ddName": "Increased by 10-20%",
-					"ddId": "M2_4_label"
-				}, {
-					"ddName": "Increased by 20-40%",
-					"ddId": "M2_5_label"
-				}, {
-					"ddName": "Increased by 40-50%",
-					"ddId": "M2_6_label"
-				}, {
-					"ddName": "Increased by 50%+",
-					"ddId": "M2_7_label"
-				}]
-			}, {
-				"optionName": "Have you observed any change in the AHT of agents working from home during the COVID-19 crisis?",
-				"type": "dd",
-				"placeholder": "Please select",
-				"description": "",
-				"selectedId": "",
-				"options": [{
-					"ddName": "No change",
-					"ddId": "M3_1_label"
-				}, {
-					"ddName": "Dropped",
-					"ddId": "M3_2_label"
-				}, {
-					"ddName": "Increased by 0-10%",
-					"ddId": "M3_3_label"
-				}, {
-					"ddName": "Increased by 10-20%",
-					"ddId": "M3_4_label"
-				}, {
-					"ddName": "Increased by 20-40%",
-					"ddId": "M3_5_label"
-				}, {
-					"ddName": "Increased by 40-50%",
-					"ddId": "M3_6_label"
-				}, {
-					"ddName": "Increased by 50%+",
-					"ddId": "M3_7_label"
-				}]
-			}, {
-				"optionName": "Have you observed any change in the utilization of agents working from home during the COVID-19 crisis?",
-				"type": "dd",
-				"placeholder": "Please select",
-				"description": "",
-				"selectedId": "",
-				"options": [{
-					"ddName": "No change",
-					"ddId": "M4_1_label"
-				}, {
-					"ddName": "Dropped",
-					"ddId": "M4_2_label"
-				}, {
-					"ddName": "Increased by 0-10%",
-					"ddId": "M4_3_label"
-				}, {
-					"ddName": "Increased by 10-20%",
-					"ddId": "M4_4_label"
-				}, {
-					"ddName": "Increased by 20-40%",
-					"ddId": "M4_5_label"
-				}, {
-					"ddName": "Increased by 40-50%",
-					"ddId": "M4_6_label"
-				}, {
-					"ddName": "Increased by 50%+",
-					"ddId": "M4_7_label"
-				}]
-			}, {
-				"optionName": "What's the biggest challenge you are trying to solve right now (e.g. digital adoption, improving utilization, increasing service to sales, enhancing employee satisfaction, etc.)? ",
-				"type": "txtArea",
-				"placeholder": "Enter the text",
-				"description": "",
+				"optionName": "Average chat handling time",
+				"type": "num",
+				"placeholder": "seconds",
+				"description": "Time agent is spending while chatting with customer",
 				"selectedText": "",
-				"selectedId": "M5"
+				"selectedId": "E5",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 15,
+				"maxRange": 3600,
+				"minRange": 0
 			}, {
-				"optionName": "What's the biggest opportunity ahead of you in the next two years?",
-				"type": "txtArea",
-				"placeholder": "Enter the text",
-				"description": "",
+				"optionName": "Chat concurrency",
+				"type": "num",
+				"placeholder": "#",
+				"description": "Average number active customer chat interactions that are handled by agents simultaneously",
 				"selectedText": "",
-				"selectedId": "M6"
+				"selectedId": "E6",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 999999999999999,
+				"minRange": 0
+			}, {
+				"optionName": "Average email transactions per hours",
+				"type": "num",
+				"placeholder": "#",
+				"description": "Number of emails handled per hour per agent",
+				"selectedText": "",
+				"selectedId": "E7",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 999999999999999,
+				"minRange": 0
+			}, {
+				"optionName": "Paid hours (per agent per year)",
+				"type": "num",
+				"placeholder": "h/year/FTE",
+				"description": "Total paid hours as per agreement/contract/actual data including over time",
+				"selectedText": "",
+				"selectedId": "E8",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 28,
+				"maxRange": 999999999999999,
+				"minRange": 0
+			}, {
+				"type": "2Dnumboxes",
+				"maxLength": 15,
+				"maxRange": 100,
+				"minRange": 0,
+				"totalOptionName": "Total shrinkage",
+				"totalDescription": "Total time dedicated to shrinkage elements [(out of office: vacation, holiday, sick etc. +  in-office: paid breaks, training, meeting, coaching etc.)]/Agent paid time",
+				"totalOutputPlaceholder": "%",
+				"totalOutputSelectedText": "",
+				"totalOutputLowerText": "Total",
+				"totalOutputId": "E18",
+				"totalbottomText": "Total is calculated value as the sum of it's components but in case user doesn't has the break-up user should also be able to fill the total value",
+				"rows": [{
+					"optionName": "Shrinkage-Out of office",
+					"description": "% of paid time when agent is not in office due to vacation, holidays, absenteeism (incl. sick, late arrival, unexplained leaves, emergency)",
+					"inputsPlaceholder": ["%", "%", "%"],
+					"inputsSelectedText": ["", "", ""],
+					"inputsLowerText": ["Vacation", "Holidays", "Absenteeism"],
+					"inputIds": ["E9", "E10", "E11"],
+					"outputPlaceholder": "%",
+					"outputSelectedText": "",
+					"outputLowerText": "Total",
+					"outputId": "Total_OUT"
+				}, {
+					"optionName": "Shrinkage-in office",
+					"description": " % of paid time when agent is in office and not working due to paid breaks, training, meetings, coaching, time spent on back office activities etc",
+					"inputsPlaceholder": ["%", "%", "%", "%", "%", "%"],
+					"inputsSelectedText": ["", "", "", "", "", ""],
+					"inputsLowerText": ["Paid breaks", "Training", "Meetings", "Coaching", "Back office", "Other in office"],
+					"inputIds": ["E12", "E13", "E14", "E15", "E16", "E17"],
+					"outputPlaceholder": "%",
+					"outputSelectedText": "",
+					"outputLowerText": "Total",
+					"outputId": "Total_IN"
+				}]
+			}, {
+				"optionName": "Occupancy",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Total time agent is serving customer/agent available hours (do not include customer-related back office work)",
+				"selectedText": "",
+				"selectedId": "E19",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 15,
+				"maxRange": 100,
+				"minRange": 0
+			}, {
+				"optionName": "Utilization",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Total time agent is serving customer(does not include customer related back office work)/paid hours",
+				"selectedText": "",
+				"selectedId": "E20",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 15,
+				"maxRange": 100,
+				"minRange": 0
+			}, {
+				"optionName": "Service level",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Percentage of actual calls answered within defined threshold",
+				"selectedText": "",
+				"selectedId": "E22",
+				"grayBG": "true",
+				"afterText": "",
+				"maxLength": 3,
+				"maxRange": 100,
+				"minRange": 0
+			}, {
+				"optionName": "Threshold time",
+				"type": "num",
+				"placeholder": "seconds",
+				"description": "Service level threshold defined in seconds",
+				"selectedText": "",
+				"selectedId": "E21",
+				"grayBG": "true",
+				"afterText": "",
+				"maxLength": 15,
+				"maxRange": 3600,
+				"minRange": 0
+			}, {
+				"optionName": "Forecast accuracy- daily level",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Weighted average of daily forecast accuracy (calculated using mean absolute percentage) over the last year or minimum 90 days",
+				"selectedText": "",
+				"selectedId": "E23",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 15,
+				"maxRange": 100,
+				"minRange": 0
+			}, {
+				"optionName": "Forecast accuracy- interval level",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Weighted average of 30 minute interval  forecast accuracy (calculated using mean absolute percentage) for last year or minimum 90 days",
+				"selectedText": "",
+				"selectedId": "E24",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 15,
+				"maxRange": 100,
+				"minRange": 0
+			}, {
+				"optionName": "Schedule adherence",
+				"type": "num",
+				"placeholder": "%",
+				"description": "Measures of time agent is adhering to the schedule (percent of time an agent is at work as scheduled)",
+				"selectedText": "",
+				"selectedId": "E25",
+				"grayBG": "false",
+				"afterText": "",
+				"maxLength": 15,
+				"maxRange": 100,
+				"minRange": 0
 			}]
 		}],
 		"progressData": {
 			"answerTxt": "Answered per category",
-			"heading": "",
-			"answrdQues": "2",
+			"heading": "Operations excellence",
+			"answrdQues": "0",
 			"of": "of",
-			"totalQues": "6",
-			"percentge": "33",
+			"totalQues": "13",
+			"percentge": "0",
 			"saveTxt": "Save",
-			"sveVal": "M1",
+			"sveVal": "E1",
 			"submitTxt": "Submit",
-			"submitVal": "Feedback",
+			"submitVal": "Sub_Thank",
 			"notstarted": "Not Started",
 			"inprogress": "In Progress",
 			"isLight": false,
@@ -208,10 +308,10 @@
 		},
 		"footerData": {
 			"prevTxt": "Previous",
-			"prevVal": "L1",
+			"prevVal": "D1",
 			"forwardTxt": "Next",
-			"forwardVal": "Feedback",
-			"footerLogo": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/CC360V1/mck-logo-footer.png",
+			"forwardVal": "F1",
+			"footerLogo": "https://e2eresearch.com/swteam/McKinsey/CC360_KPI_Project_v3/mck-logo-footer.png",
 			"copyrghtTxt": "© 1996-2021 McKinsey &amp; Company",
 			"ttlCnt": "Total answered"
 		}
